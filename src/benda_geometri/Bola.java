@@ -1,33 +1,19 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Bola extends Lingkaran implements Benda3D {
 
-    /**
-     * Default constructor
-     */
-    public Bola() {
+    public Bola(double radius) throws NegativeInputException {
+        super(radius);
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+        return (4.0 / 3) * Math.PI * Math.pow(getRadius(), 3);
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+        return 4 * Math.PI * Math.pow(getRadius(), 2);
     }
 
 }

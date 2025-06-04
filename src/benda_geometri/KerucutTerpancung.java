@@ -1,57 +1,46 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class KerucutTerpancung extends Kerucut {
 
-    /**
-     * Default constructor
-     */
-    public KerucutTerpancung() {
-    }
-
-    /**
-     * 
-     */
+    private double radiusAtas;
     private double radiusBawah;
 
-    /**
-     * 
-     */
-    private double radiusAtas;
+    public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi) throws NegativeInputException {
+        super(radiusBawah, tinggi);
+        setRadiusBawah(radiusBawah);
+        setRadiusAtas(radiusAtas);
+    }
 
-    /**
-     * @return
-     */
     public double getRadiusBawah() {
-        // TODO implement here
-        return 0.0d;
+        return radiusBawah;
     }
 
-    /**
-     * @param radiusBawah
-     */
-    public void setRadiusBawah(double radiusBawah) {
-        // TODO implement here
+    public void setRadiusBawah(double radiusBawah) throws NegativeInputException {
+        if (radiusBawah < 0) {
+            throw new NegativeInputException("Radius bawah tidak boleh negatif!");
+        }
+        this.radiusBawah = radiusBawah;
     }
 
-    /**
-     * @return
-     */
     public double getRadiusAtas() {
-        // TODO implement here
-        return 0.0d;
+        return radiusAtas;
     }
 
-    /**
-     * @param radiusAtas
-     */
-    public void setRadiusAtas(double radiusAtas) {
-        // TODO implement here
+    public void setRadiusAtas(double radiusAtas) throws NegativeInputException {
+        if (radiusAtas < 0) {
+            throw new NegativeInputException("Radius tidak boleh negatif!");
+        }
+        this.radiusAtas = radiusAtas;
     }
 
+    @Override
+    public double hitungVolume() {
+        return (1.0 / 3) * Math.PI * getTinggi() * (Math.pow(radiusBawah, 2) + (radiusBawah * radiusAtas) + Math.pow(radiusAtas, 2));
+    }
+
+    @Override
+    public double hitungLuasPermukaan() {
+        double s = Math.sqrt(Math.pow(radiusBawah - radiusAtas, 2) + Math.pow(getTinggi(), 2));
+        return Math.PI * (Math.pow(radiusBawah, 2) + Math.pow(radiusAtas, 2) + s * (radiusBawah + radiusAtas));
+    }
 }

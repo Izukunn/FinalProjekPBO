@@ -1,73 +1,44 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Kerucut extends Lingkaran implements Benda3D {
 
-    /**
-     * Default constructor
-     */
-    public Kerucut() {
-    }
-
-    /**
-     * 
-     */
     private double tinggi;
-
-    /**
-     * 
-     */
     private double garisPelukis;
 
-    /**
-     * @return
-     */
+    public Kerucut(double radius, double tinggi) throws NegativeInputException {
+        super(radius);
+        setTinggi(tinggi);
+    }
+
     public double getTinggi() {
-        // TODO implement here
-        return 0.0d;
+        return tinggi;
     }
 
-    /**
-     * @param tinggi
-     */
-    public void setTinggi(double tinggi) {
-        // TODO implement here
+    public void setTinggi(double tinggi) throws NegativeInputException {
+        if (tinggi < 0) {
+            throw new NegativeInputException("Tinggi tidak boleh negatif!");
+        }
+        this.tinggi = tinggi;
     }
 
-    /**
-     * @return
-     */
     public double getGarisPelukis() {
-        // TODO implement here
-        return 0.0d;
+        return garisPelukis;
     }
 
-    /**
-     * @param garisPelukis
-     */
-    public void setGarisPelukis(double garisPelukis) {
-        // TODO implement here
+    public void setGarisPelukis(double garisPelukis) throws NegativeInputException {
+        if (garisPelukis < 0) {
+            throw new NegativeInputException("Garis Pelukis tidak boleh negatif!");
+        }
+        this.garisPelukis = garisPelukis;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+        return (1.0 / 3) * Math.PI * Math.pow(getRadius(), 2) * tinggi;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+        return Math.PI * getRadius() * (getRadius() + garisPelukis);
     }
-
 }

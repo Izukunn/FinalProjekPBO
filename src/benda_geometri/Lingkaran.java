@@ -1,53 +1,32 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Lingkaran implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public Lingkaran() {
-    }
-
-    /**
-     * 
-     */
     private double radius;
 
-    /**
-     * @return
-     */
+    public Lingkaran(double radius) throws NegativeInputException {
+        setRadius(radius);
+    }
+
     public double getRadius() {
-        // TODO implement here
-        return 0.0d;
+        return radius;
     }
 
-    /**
-     * @param radius
-     */
-    public void setRadius(double radius) {
-        // TODO implement here
+    public void setRadius(double radius) throws NegativeInputException {
+        if (radius < 0) {
+            throw new NegativeInputException("Radius tidak boleh negatif!");
+        }
+        this.radius = radius;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
+        return Math.PI * radius * radius;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
+        return 2 * Math.PI * radius;
     }
 
 }
