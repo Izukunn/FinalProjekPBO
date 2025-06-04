@@ -1,37 +1,33 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class JuringLingkaran extends Lingkaran {
 
-    /**
-     * Default constructor
-     */
-    public JuringLingkaran() {
-    }
-
-    /**
-     * 
-     */
     private double sudut;
 
-    /**
-     * @return
-     */
+    public JuringLingkaran(double radius, double sudut) throws NegativeInputException {
+        super(radius);
+        setSudut(sudut);
+    }
+
     public double getSudut() {
-        // TODO implement here
-        return 0.0d;
+        return sudut;
     }
 
-    /**
-     * @param sudut
-     */
-    public void setSudut(double sudut) {
-        // TODO implement here
+    public void setSudut(double sudut) throws NegativeInputException {
+        if (sudut < 0) {
+            throw new NegativeInputException("Sudut tidak boleh negatif!");
+        }
+        this.sudut = sudut;
     }
 
+    @Override
+    public double hitungLuas() {
+        return (sudut / 360.0) * Math.PI * Math.pow(getRadius(), 2);
+    }
+
+    @Override
+    public double hitungKeliling() {
+        double panjangBusur = (sudut / 360.0) * 2 * Math.PI * getRadius();
+        return panjangBusur + 2 * getRadius();
+    }
 }

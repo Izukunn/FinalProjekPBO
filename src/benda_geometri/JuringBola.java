@@ -1,37 +1,32 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class JuringBola extends Bola {
 
-    /**
-     * Default constructor
-     */
-    public JuringBola() {
-    }
-
-    /**
-     * 
-     */
     private double sudutPusat;
 
-    /**
-     * @return
-     */
+    public JuringBola(double radius, double sudutPusat) throws NegativeInputException {
+        super(radius);
+        setSudutPusat(sudutPusat);
+    }
+
     public double getSudutPusat() {
-        // TODO implement here
-        return 0.0d;
+        return sudutPusat;
     }
 
-    /**
-     * @param sudutPusat
-     */
-    public void setSudutPusat(double sudutPusat) {
-        // TODO implement here
+    public void setSudutPusat(double sudutPusat) throws NegativeInputException {
+        if (sudutPusat < 0) {
+            throw new NegativeInputException("Sudut pusat tidak boleh negatif!");
+        }
+        this.sudutPusat = sudutPusat;
     }
 
+    @Override
+    public double hitungVolume() {
+        return (2.0 / 3) * Math.PI * Math.pow(getRadius(), 3) * (sudutPusat / 360);
+    }
+
+    @Override
+    public double hitungLuasPermukaan() {
+        return Math.PI * Math.pow(getRadius(), 2) * (sudutPusat / 90);
+    }
 }

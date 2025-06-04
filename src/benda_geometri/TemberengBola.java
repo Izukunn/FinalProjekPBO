@@ -1,37 +1,32 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class TemberengBola extends Bola {
 
-    /**
-     * Default constructor
-     */
-    public TemberengBola() {
-    }
-
-    /**
-     * 
-     */
     private double tinggiTembereng;
 
-    /**
-     * @return
-     */
+    public TemberengBola(double radius, double tinggiTembereng) throws NegativeInputException {
+        super(radius);
+        setTinggiTembereng(tinggiTembereng);
+    }
+
     public double getTinggiTembereng() {
-        // TODO implement here
-        return 0.0d;
+        return tinggiTembereng;
     }
 
-    /**
-     * @param tinggiTembereng
-     */
-    public void setTinggiTembereng(double tinggiTembereng) {
-        // TODO implement here
+    public void setTinggiTembereng(double tinggiTembereng) throws NegativeInputException {
+        if (tinggiTembereng < 0) {
+            throw new NegativeInputException("Tinggi tembereng tidak boleh negatif!");
+        }
+        this.tinggiTembereng = tinggiTembereng;
     }
 
+    @Override
+    public double hitungVolume() {
+        return ((Math.PI * Math.pow(tinggiTembereng, 2)) / 3) * (3 * getRadius() - tinggiTembereng);
+    }
+
+    @Override
+    public double hitungLuasPermukaan() {
+        return 2 * Math.PI * getRadius() * (getRadius() + tinggiTembereng);
+    }
 }

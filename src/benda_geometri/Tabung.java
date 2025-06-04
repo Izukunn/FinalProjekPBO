@@ -1,53 +1,32 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Tabung extends Lingkaran implements Benda3D {
 
-    /**
-     * Default constructor
-     */
-    public Tabung() {
-    }
-
-    /**
-     * 
-     */
     private double tinggi;
 
-    /**
-     * @return
-     */
+    public Tabung(double radius, double tinggi) throws NegativeInputException {
+        super(radius);
+        setTinggi(tinggi);
+    }
+
     public double getTinggi() {
-        // TODO implement here
-        return 0.0d;
+        return tinggi;
     }
 
-    /**
-     * @param tinggi
-     */
-    public void setTinggi(double tinggi) {
-        // TODO implement here
+    public void setTinggi(double tinggi) throws NegativeInputException {
+        if (tinggi < 0) {
+            throw new NegativeInputException("Tinggi tidak boleh negatif!");
+        }
+        this.tinggi = tinggi;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+        return Math.PI * Math.pow(getRadius(), 2) * tinggi;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+        return 2 * Math.PI * getRadius() * (getRadius() + tinggi);
     }
-
 }
