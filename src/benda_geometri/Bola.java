@@ -16,4 +16,11 @@ public class Bola extends Lingkaran implements Benda3D {
         return 4 * Math.PI * Math.pow(getRadius(), 2);
     }
 
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Bola");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Volume\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+    }
 }

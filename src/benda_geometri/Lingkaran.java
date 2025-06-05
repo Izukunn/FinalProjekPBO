@@ -29,4 +29,11 @@ public class Lingkaran implements Benda2D {
         return 2 * Math.PI * radius;
     }
 
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Lingkaran");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Luas\t: " + hitungLuas());
+        System.out.println("Keliling\t: " + hitungKeliling());
+    }
 }

@@ -5,8 +5,8 @@ public class KerucutTerpancung extends Kerucut {
     private double radiusAtas;
     private double radiusBawah;
 
-    public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi) throws NegativeInputException {
-        super(radiusBawah, tinggi);
+    public KerucutTerpancung(double radiusBawah, double radiusAtas, double garisPelukis, double tinggi) throws NegativeInputException {
+        super(radiusBawah, garisPelukis, tinggi);
         setRadiusBawah(radiusBawah);
         setRadiusAtas(radiusAtas);
     }
@@ -42,5 +42,16 @@ public class KerucutTerpancung extends Kerucut {
     public double hitungLuasPermukaan() {
         double s = Math.sqrt(Math.pow(radiusBawah - radiusAtas, 2) + Math.pow(getTinggi(), 2));
         return Math.PI * (Math.pow(radiusBawah, 2) + Math.pow(radiusAtas, 2) + s * (radiusBawah + radiusAtas));
+    }
+    
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Kerucut Terpancung");
+        System.out.println("Radius Bawah\t: " + getRadiusBawah());
+        System.out.println("Radius Atas\t: " + getRadiusAtas());
+        System.out.println("Tinggi\t: " + getTinggi());
+        System.out.println("Garis Pelukis\t: " + getGarisPelukis());
+        System.out.println("Volume\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
     }
 }

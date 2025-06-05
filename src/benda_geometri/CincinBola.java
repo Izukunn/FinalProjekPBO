@@ -42,4 +42,13 @@ public class CincinBola extends Bola {
     public double hitungLuasPermukaan() {
         return 4 * Math.PI * (Math.pow(radiusLuar, 2) + Math.pow(radiusDalam, 2));
     }
+    
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Cincin Bola");
+        System.out.println("Radius Luar\t: " + getRadiusLuar());
+        System.out.println("Radius Dalam\t: " + getRadiusDalam());
+        System.out.println("Volume\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+    }
 }

@@ -46,4 +46,13 @@ public class TemberengLingkaran extends Lingkaran {
         double taliBusur = 2 * Math.sqrt(getRadius() * getRadius() - Math.pow(getRadius() - tinggiSagitta, 2));
         return panjangBusur + taliBusur;
     }
+    
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Tembereng Lingkaran");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Sudut\t: " + getSudut());
+        System.out.println("Luas\t: " + hitungLuas());
+        System.out.println("Keliling\t: " + hitungKeliling());
+    }
 }

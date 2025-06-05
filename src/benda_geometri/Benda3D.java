@@ -5,4 +5,6 @@ public interface Benda3D {
     public double hitungVolume();
 
     public double hitungLuasPermukaan();
+
+    public void tampilkanInfo();
 }

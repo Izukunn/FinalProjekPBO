@@ -29,4 +29,13 @@ public class TemberengBola extends Bola {
     public double hitungLuasPermukaan() {
         return 2 * Math.PI * getRadius() * (getRadius() + tinggiTembereng);
     }
+
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Kerucut");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Tinggi Tembereng\t: " + getTinggiTembereng());
+        System.out.println("Volume\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+    }
 }

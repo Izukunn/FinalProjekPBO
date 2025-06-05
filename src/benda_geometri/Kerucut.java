@@ -5,9 +5,10 @@ public class Kerucut extends Lingkaran implements Benda3D {
     private double tinggi;
     private double garisPelukis;
 
-    public Kerucut(double radius, double tinggi) throws NegativeInputException {
+    public Kerucut(double radius, double tinggi, double garisPelukis) throws NegativeInputException {
         super(radius);
         setTinggi(tinggi);
+        setGarisPelukis(garisPelukis);
     }
 
     public double getTinggi() {
@@ -40,5 +41,15 @@ public class Kerucut extends Lingkaran implements Benda3D {
     @Override
     public double hitungLuasPermukaan() {
         return Math.PI * getRadius() * (getRadius() + garisPelukis);
+    }
+    
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Kerucut");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Tinggi\t: " + getTinggi());
+        System.out.println("Garis Pelukis\t: " + getGarisPelukis());
+        System.out.println("Volume\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
     }
 }

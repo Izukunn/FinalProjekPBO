@@ -30,4 +30,13 @@ public class JuringLingkaran extends Lingkaran {
         double panjangBusur = (sudut / 360.0) * 2 * Math.PI * getRadius();
         return panjangBusur + 2 * getRadius();
     }
+    
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Juring Lingkaran");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Sudut\t: " + getSudut());
+        System.out.println("Luas\t: " + hitungLuas());
+        System.out.println("Keliling\t: " + hitungKeliling());
+    }
 }

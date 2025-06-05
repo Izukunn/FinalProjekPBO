@@ -29,4 +29,13 @@ public class JuringBola extends Bola {
     public double hitungLuasPermukaan() {
         return Math.PI * Math.pow(getRadius(), 2) * (sudutPusat / 90);
     }
+
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Juring Bola");
+        System.out.println("Radius\t: " + getRadius());
+        System.out.println("Sudut Pusat\t: " + getSudutPusat());
+        System.out.println("Volume\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+    }
 }
