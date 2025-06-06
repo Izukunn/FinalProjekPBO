@@ -1,53 +1,46 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class PrismaLayangLayang extends LayangLayang implements Benda3D {
 
-    /**
-     * Default constructor
-     */
-    public PrismaLayangLayang() {
-    }
-
-    /**
-     * 
-     */
     private double tinggiPrisma;
 
-    /**
-     * @return
-     */
+    public PrismaLayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang, double tinggiPrisma) throws NegativeInputException {
+        super(diagonal1, diagonal2, sisiPendek, sisiPanjang);
+        setTinggiPrisma(tinggiPrisma);
+    }
+
     public double getTinggiPrisma() {
-        // TODO implement here
-        return 0.0d;
+        return tinggiPrisma;
     }
 
-    /**
-     * @param tinggiPrisma
-     */
-    public void setTinggiPrisma(double tinggiPrisma) {
-        // TODO implement here
+    public void setTinggiPrisma(double tinggiPrisma) throws NegativeInputException {
+        if (tinggiPrisma < 0) {
+            throw new NegativeInputException("Tinggi prisma tidak boleh negatif!");
+        }
+        this.tinggiPrisma = tinggiPrisma;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+        // Volume prisma = luas alas * tinggi prisma
+        return super.hitungLuas() * tinggiPrisma;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+        // Luas permukaan = (2 * luas alas) + (keliling alas * tinggi prisma)
+        return (2 * super.hitungLuas()) + (super.hitungKeliling() * tinggiPrisma);
     }
 
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t\t: Prisma Layang-layang");
+        System.out.println("Diagonal 1\t: " + getDiagonal1());
+        System.out.println("Diagonal 2\t: " + getDiagonal2());
+        System.out.println("Sisi Pendek\t: " + getSisiPendek());
+        System.out.println("Sisi Panjang\t: " + getSisiPanjang());
+        System.out.println("Tinggi Prisma\t: " + getTinggiPrisma());
+        System.out.println("Volume\t\t: " + hitungVolume());
+        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+    }
 }
