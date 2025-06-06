@@ -1,93 +1,67 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class BelahKetupat implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public BelahKetupat() {
-    }
-
-    /**
-     * 
-     */
     private double diagonal1;
-
-    /**
-     * 
-     */
     private double diagonal2;
-
-    /**
-     * 
-     */
     private double sisi;
 
-    /**
-     * @return
-     */
+    public BelahKetupat(double diagonal1, double diagonal2, double sisi) throws NegativeInputException {
+        setDiagonal1(diagonal1);
+        setDiagonal2(diagonal2);
+        setSisi(sisi);
+    }
+
     public double getDiagonal1() {
-        // TODO implement here
-        return 0.0d;
+        return diagonal1;
     }
 
-    /**
-     * @param diagonal1
-     */
-    public void setDiagonal1(double diagonal1) {
-        // TODO implement here
+    public void setDiagonal1(double diagonal1) throws NegativeInputException {
+        if (diagonal1 < 0) {
+            throw new NegativeInputException("Diagonal 1 tidak boleh negatif!");
+        }
+        this.diagonal1 = diagonal1;
     }
 
-    /**
-     * @return
-     */
     public double getDiagonal2() {
-        // TODO implement here
-        return 0.0d;
+        return diagonal2;
     }
 
-    /**
-     * @param diagonal2
-     */
-    public void setDiagonal2(double diagonal2) {
-        // TODO implement here
+    public void setDiagonal2(double diagonal2) throws NegativeInputException {
+        if (diagonal2 < 0) {
+            throw new NegativeInputException("Diagonal 2 tidak boleh negatif!");
+        }
+        this.diagonal2 = diagonal2;
     }
 
-    /**
-     * @return
-     */
     public double getSisi() {
-        // TODO implement here
-        return 0.0d;
+        return sisi;
     }
 
-    /**
-     * @param sisi
-     */
-    public void setSisi(double sisi) {
-        // TODO implement here
+    public void setSisi(double sisi) throws NegativeInputException {
+        if (sisi < 0) {
+            throw new NegativeInputException("Sisi tidak boleh negatif!");
+        }
+        this.sisi = sisi;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
+        return (diagonal1 * diagonal2) / 2.0;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
+        return 4 * sisi;
     }
 
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Belah Ketupat");
+        System.out.println("Diagonal 1\t: " + getDiagonal1());
+        System.out.println("Diagonal 2\t: " + getDiagonal2());
+        System.out.println("Sisi\t: " + getSisi());
+        System.out.println("Luas\t: " + hitungLuas());
+        System.out.println("Keliling\t: " + hitungKeliling());
+    }
 }
