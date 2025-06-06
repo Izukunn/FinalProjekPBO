@@ -1,113 +1,83 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class LayangLayang implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public LayangLayang() {
-    }
-
-    /**
-     * 
-     */
     private double diagonal1;
-
-    /**
-     * 
-     */
     private double diagonal2;
-
-    /**
-     * 
-     */
     private double sisiPendek;
-
-    /**
-     * 
-     */
     private double sisiPanjang;
 
-    /**
-     * @return
-     */
+    // Constructor
+    public LayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang) throws NegativeInputException {
+        setDiagonal1(diagonal1);
+        setDiagonal2(diagonal2);
+        setSisiPendek(sisiPendek);
+        setSisiPanjang(sisiPanjang);
+    }
+
+    // Getter dan Setter dengan validasi
     public double getDiagonal1() {
-        // TODO implement here
-        return 0.0d;
+        return diagonal1;
     }
 
-    /**
-     * @param diagonal1
-     */
-    public void setDiagonal1(double diagonal1) {
-        // TODO implement here
+    public void setDiagonal1(double diagonal1) throws NegativeInputException {
+        if (diagonal1 < 0) {
+            throw new NegativeInputException("Diagonal 1 tidak boleh negatif!");
+        }
+        this.diagonal1 = diagonal1;
     }
 
-    /**
-     * @return
-     */
     public double getDiagonal2() {
-        // TODO implement here
-        return 0.0d;
+        return diagonal2;
     }
 
-    /**
-     * @param diagonal2
-     */
-    public void setDiagonal2(double diagonal2) {
-        // TODO implement here
+    public void setDiagonal2(double diagonal2) throws NegativeInputException {
+        if (diagonal2 < 0) {
+            throw new NegativeInputException("Diagonal 2 tidak boleh negatif!");
+        }
+        this.diagonal2 = diagonal2;
     }
 
-    /**
-     * @return
-     */
     public double getSisiPendek() {
-        // TODO implement here
-        return 0.0d;
+        return sisiPendek;
     }
 
-    /**
-     * @param sisiPendek
-     */
-    public void setSisiPendek(double sisiPendek) {
-        // TODO implement here
+    public void setSisiPendek(double sisiPendek) throws NegativeInputException {
+        if (sisiPendek < 0) {
+            throw new NegativeInputException("Sisi pendek tidak boleh negatif!");
+        }
+        this.sisiPendek = sisiPendek;
     }
 
-    /**
-     * @return
-     */
     public double getSisiPanjang() {
-        // TODO implement here
-        return 0.0d;
+        return sisiPanjang;
     }
 
-    /**
-     * @param sisiPanjang
-     */
-    public void setSisiPanjang(double sisiPanjang) {
-        // TODO implement here
+    public void setSisiPanjang(double sisiPanjang) throws NegativeInputException {
+        if (sisiPanjang < 0) {
+            throw new NegativeInputException("Sisi panjang tidak boleh negatif!");
+        }
+        this.sisiPanjang = sisiPanjang;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
+        return 0.5 * diagonal1 * diagonal2;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
+        return 2 * (sisiPendek + sisiPanjang);
     }
 
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t\t: Layang-layang");
+        System.out.println("Diagonal 1\t: " + getDiagonal1());
+        System.out.println("Diagonal 2\t: " + getDiagonal2());
+        System.out.println("Sisi Pendek\t: " + getSisiPendek());
+        System.out.println("Sisi Panjang\t: " + getSisiPanjang());
+        System.out.println("Luas\t\t: " + hitungLuas());
+        System.out.println("Keliling\t: " + hitungKeliling());
+    }
 }
