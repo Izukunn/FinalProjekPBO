@@ -1,26 +1,42 @@
 package benda_geometri;
 
-public class Bola extends Lingkaran implements Benda3D {
+public class Bola implements Benda3D {
+
+    private double radius;
+    private double pi = 3.14;
+    private double volume;
+    private double luasPermukaan;
 
     public Bola(double radius) throws InvalidInputException {
-        super(radius);
+        if (radius < 0) {
+            throw new InvalidInputException("Radius tidak boleh negatif!");
+        }
+        this.radius = radius;
     }
 
     @Override
-    public double hitungVolume() {
-        return (4.0 / 3) * Math.PI * Math.pow(getRadius(), 3);
+    public void hitungVolume() {
+        volume = (4.0 / 3) * pi * Math.pow(radius, 3);
     }
 
     @Override
-    public double hitungLuasPermukaan() {
-        return 4 * Math.PI * Math.pow(getRadius(), 2);
+    public void hitungLuasPermukaan() {
+        luasPermukaan = 4 * pi * Math.pow(radius, 2);
     }
 
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Bola");
-        System.out.println("Radius\t: " + getRadius());
-        System.out.println("Volume\t: " + hitungVolume());
-        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+        System.out.println("Radius\t: " + radius);
+        System.out.println("pi\t: " + pi);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    }
+
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }

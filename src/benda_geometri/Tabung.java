@@ -16,12 +16,12 @@ public class Tabung extends Lingkaran implements Benda3D {
 
     @Override
     public void hitungVolume() {
-        volume =  super.luas * tinggi;
+        volume = super.luas * tinggi;
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        luasPermukaan =  2 * super.luas + (super.keliling * tinggi);
+        luasPermukaan = 2 * super.luas + (super.keliling * tinggi);
     }
 
     @Override
@@ -31,5 +31,12 @@ public class Tabung extends Lingkaran implements Benda3D {
         System.out.println("Tinggi\t: " + tinggi);
         System.out.println("Volume\t: " + volume);
         System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    }
+
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }

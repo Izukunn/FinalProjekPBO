@@ -1,41 +1,45 @@
 package benda_geometri;
 
-public class JuringBola extends Bola {
+public class JuringBola implements Benda3D {
 
-    private double sudutPusat;
+    private double radius;
+    private double pi = 3.14;
+    private double tinggi;
+    private double volume;
+    private double luasPermukaan;
 
-    public JuringBola(double radius, double sudutPusat) throws InvalidInputException {
-        super(radius);
-        setSudutPusat(sudutPusat);
-    }
-
-    public double getSudutPusat() {
-        return sudutPusat;
-    }
-
-    public void setSudutPusat(double sudutPusat) throws InvalidInputException {
-        if (sudutPusat < 0) {
-            throw new InvalidInputException("Sudut pusat tidak boleh negatif!");
+    public JuringBola(double radius, double tinggi) throws InvalidInputException {
+        if (radius < 0 || tinggi < 0) {
+            throw new InvalidInputException("Input tidak boleh negatif!");
         }
-        this.sudutPusat = sudutPusat;
+        this.radius = radius;
+        this.tinggi = tinggi;
     }
 
     @Override
-    public double hitungVolume() {
-        return (2.0 / 3) * Math.PI * Math.pow(getRadius(), 3) * (sudutPusat / 360);
+    public void hitungVolume() {
+        volume = (2.0 / 3) * pi * Math.pow(radius, 2) * tinggi; // Volume = ²⁄₃πr²h
     }
 
     @Override
-    public double hitungLuasPermukaan() {
-        return Math.PI * Math.pow(getRadius(), 2) * (sudutPusat / 90);
+    public void hitungLuasPermukaan() {
+        luasPermukaan = pi * radius * (2 * tinggi + radius); // Luas = πr(2h + r)
     }
 
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Juring Bola");
-        System.out.println("Radius\t: " + getRadius());
-        System.out.println("Sudut Pusat\t: " + getSudutPusat());
-        System.out.println("Volume\t: " + hitungVolume());
-        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+        System.out.println("Radius\t: " + radius);
+        System.out.println("pi\t: " + pi);
+        System.out.println("Tinggi\t: " + tinggi);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    }
+
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }

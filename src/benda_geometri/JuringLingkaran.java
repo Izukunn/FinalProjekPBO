@@ -32,4 +32,11 @@ public class JuringLingkaran extends Lingkaran {
         System.out.println("Luas\t: " + luas);
         System.out.println("Keliling\t: " + keliling);
     }
+
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
+    }
 }

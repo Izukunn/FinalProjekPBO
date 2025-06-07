@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public interface Benda3D {
+public interface Benda3D extends Runnable{
 
     public void hitungVolume();
 

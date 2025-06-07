@@ -21,13 +21,11 @@ public class Kerucut extends Lingkaran implements Benda3D {
 
     @Override
     public void hitungVolume() {
-        super.hitungLuas();
         volume = super.luas * tinggi;
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        super.hitungKeliling();
         luasPermukaan = (super.keliling * tinggi) + (2 * super.luas);
     }
 
@@ -39,5 +37,12 @@ public class Kerucut extends Lingkaran implements Benda3D {
         System.out.println("Garis Pelukis\t: " + garisPelukis);
         System.out.println("Volume\t: " + volume);
         System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    }
+
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }

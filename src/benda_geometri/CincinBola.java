@@ -1,54 +1,42 @@
 package benda_geometri;
 
-public class CincinBola extends Bola {
+public class CincinBola implements Benda3D {
+    private double radiusBola;
+    private double pi = 3.14;
+    private double ketebalan;
+    private double volume;
+    private double luasPermukaan;
 
-    private double radiusLuar;
-    private double radiusDalam;
-
-    public CincinBola(double radiusLuar, double radiusDalam) throws InvalidInputException {
-        super(radiusLuar);
-        setRadiusLuar(radiusLuar);
-        setRadiusDalam(radiusDalam);
-    }
-
-    public double getRadiusLuar() {
-        return radiusLuar;
-    }
-
-    public void setRadiusLuar(double radiusLuar) throws InvalidInputException {
-        if (radiusLuar < 0) {
-            throw new InvalidInputException("Radius luar tidak boleh negatif!");
-        }
-        this.radiusLuar = radiusLuar;
-    }
-
-    public double getRadiusDalam() {
-        return radiusDalam;
-    }
-
-    public void setRadiusDalam(double radiusDalam) throws InvalidInputException {
-        if (radiusDalam < 0) {
-            throw new InvalidInputException("Radius dalam tidak boleh negatif!");
-        }
-        this.radiusDalam = radiusDalam;
+    public CincinBola(double radiusBola, double ketebalan) throws InvalidInputException {
+        if (radiusBola < 0 || ketebalan < 0) throw new InvalidInputException("Input tidak boleh negatif!");
+        this.radiusBola = radiusBola;
+        this.ketebalan = ketebalan;
     }
 
     @Override
-    public double hitungVolume() {
-        return (4.0 / 3) * Math.PI * (Math.pow(radiusLuar, 3) - Math.pow(radiusDalam, 3));
+    public void hitungVolume() {
+        volume = (pi * Math.pow(ketebalan, 3)) / 6; // Volume = πt³/6
     }
-    
+
     @Override
-    public double hitungLuasPermukaan() {
-        return 4 * Math.PI * (Math.pow(radiusLuar, 2) + Math.pow(radiusDalam, 2));
+    public void hitungLuasPermukaan() {
+        luasPermukaan = pi * ketebalan * (2 * radiusBola + ketebalan); // Luas = πt(2R + t)
     }
-    
+
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Cincin Bola");
-        System.out.println("Radius Luar\t: " + getRadiusLuar());
-        System.out.println("Radius Dalam\t: " + getRadiusDalam());
-        System.out.println("Volume\t: " + hitungVolume());
-        System.out.println("Luas Permukaan\t: " + hitungLuasPermukaan());
+        System.out.println("Radius Bola\t: " + radiusBola);
+        System.out.println("pi\t: " + pi);
+        System.out.println("Ketebalan\t: " + ketebalan);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    }
+    
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }

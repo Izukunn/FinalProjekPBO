@@ -44,4 +44,11 @@ public class TemberengLingkaran extends Lingkaran {
         System.out.println("Luas\t: " + luas);
         System.out.println("Keliling\t: " + keliling);
     }
+
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
+    }
 }

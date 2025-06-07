@@ -12,13 +12,13 @@ public class Lingkaran implements Benda2D {
             throw new InvalidInputException("Radius tidak boleh negatif!");
         }
         this.radius = radius;
-        hitungLuas();  // Hitung saat inisialisasi
+        hitungLuas();
         hitungKeliling();
     }
 
     @Override
     public void hitungLuas() {
-        luas = pi * radius * radius;
+        luas = pi * Math.pow(radius, 2);
     }
 
     @Override
@@ -33,5 +33,12 @@ public class Lingkaran implements Benda2D {
         System.out.println("pi\t: " + pi);
         System.out.println("Luas\t: " + luas);
         System.out.println("Keliling\t: " + keliling);
+    }
+
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
     }
 }

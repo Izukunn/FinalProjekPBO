@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public interface Benda2D {
+public interface Benda2D extends Runnable {
 
     public void hitungLuas();
 
