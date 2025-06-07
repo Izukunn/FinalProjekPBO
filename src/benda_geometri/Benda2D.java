@@ -2,9 +2,9 @@ package benda_geometri;
 
 public interface Benda2D {
 
-    public double hitungLuas();
+    public void hitungLuas();
 
-    public double hitungKeliling();
+    public void hitungKeliling();
 
     public void tampilkanInfo();
 }

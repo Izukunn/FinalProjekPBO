@@ -1,7 +1,7 @@
 package Main;
 
 import java.util.Scanner;
-import benda_geometri.NegativeInputException;
+import benda_geometri.InvalidInputException;
 import benda_geometri.*;
 
 public class Main {
@@ -29,7 +29,7 @@ public class Main {
                         System.out.println("Opsi Tidak Valid!");
                         break;
                 }
-            } catch (NegativeInputException e) {
+            } catch (InvalidInputException e) {
                 System.err.println("Error: " + e.getMessage());
             } catch (Exception e) {
                 System.err.println("Error: Input harus angka!");
@@ -38,16 +38,16 @@ public class Main {
         }
     }
 
-    private static double inputPositif(String prompt) throws NegativeInputException {
+    private static double inputPositif(String prompt) throws InvalidInputException {
         System.out.print(prompt);
         double nilai = sc.nextDouble();
         if (nilai < 0) {
-            throw new NegativeInputException("Input tidak boleh negatif!");
+            throw new InvalidInputException("Input tidak boleh negatif!");
         }
         return nilai;
     }
 
-    private static void bangunDatar() throws NegativeInputException {
+    private static void bangunDatar() throws InvalidInputException {
         System.out.println("Bangun Datar");
         System.out.println("1. Segitiga");
         System.out.println("2. Persegi");
@@ -57,8 +57,8 @@ public class Main {
         System.out.println("6. Belah Ketupat");
         System.out.println("7. Layang-Layang");
         System.out.println("8. Lingkaran");
-        System.out.println("9. Tembereng");
-        System.out.println("10. Juring");
+        System.out.println("9. Tembereng Lingkaran");
+        System.out.println("10. Juring Lingkaran");
         System.out.print("Opsi : ");
         int opsi = sc.nextInt();
         switch (opsi) {
@@ -84,6 +84,10 @@ public class Main {
             case 9:
                 break;
             case 10:
+                radius = inputPositif("Input Radius : ");
+                double sudut = inputPositif("Input Sudut : ");
+                Lingkaran juring = new JuringLingkaran(radius, sudut);
+                juring.tampilkanInfo();
                 break;
             default:
                 System.out.println("Input Tidak Valid!");
@@ -91,7 +95,7 @@ public class Main {
         }
     }
 
-    private static void bangunRuang() throws NegativeInputException {
+    private static void bangunRuang() throws InvalidInputException {
         System.out.println("Bangun Ruang");
         System.out.println("1. Prisma Segitiga");
         System.out.println("2. Limas Segitiga");

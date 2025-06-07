@@ -4,55 +4,44 @@ public class TemberengLingkaran extends Lingkaran {
 
     private double sudut;
     private double tinggiSagitta;
+    private double luas;
+    private double keliling;
 
-    public TemberengLingkaran(double radius, double sudut, double tinggiSagitta) throws NegativeInputException {
+    public TemberengLingkaran(double radius, double sudut, double tinggiSagitta) throws InvalidInputException {
         super(radius);
-        setSudut(sudut);
-        setTinggiSagitta(tinggiSagitta);
-    }
-
-    public double getSudut() {
-        return sudut;
-    }
-
-    public void setSudut(double sudut) throws NegativeInputException {
-        if (sudut < 0) {
-            throw new NegativeInputException("Sudut tidak boleh negatif!");
+        if (sudut < 0 || sudut > 360) {
+            throw new InvalidInputException("Sudut harus antara 0 dan 360 derajat!");
         }
         this.sudut = sudut;
-    }
-
-    public double getTinggiSagitta() {
-        return tinggiSagitta;
-    }
-
-    public void setTinggiSagitta(double tinggiSagitta) throws NegativeInputException {
         if (tinggiSagitta < 0) {
-            throw new NegativeInputException("Tinggi sagitta tidak boleh negatif!");
+            throw new InvalidInputException("Tinggi sagitta tidak boleh negatif!");
+        } else if (tinggiSagitta > 2 * radius) {
+            throw new InvalidInputException("Tinggi sagitta tidak boleh lebih dari diameter!");
         }
         this.tinggiSagitta = tinggiSagitta;
     }
 
     @Override
-    public double hitungLuas() {
-        double luasJuring = (sudut / 360.0) * Math.PI * getRadius() * getRadius();
-        double luasSegitiga = 0.5 * getRadius() * getRadius() * Math.sin(Math.toRadians(sudut));
-        return luasJuring - luasSegitiga;
+    public void hitungLuas() {
+        double luasJuring = (sudut / 360.0) * super.luas;
+        double luasSegitiga = 0.5 * radius * radius * Math.sin(Math.toRadians(sudut));
+        luas = luasJuring - luasSegitiga;
     }
 
     @Override
-    public double hitungKeliling() {
-        double panjangBusur = (sudut / 360.0) * 2 * Math.PI * getRadius();
-        double taliBusur = 2 * Math.sqrt(getRadius() * getRadius() - Math.pow(getRadius() - tinggiSagitta, 2));
-        return panjangBusur + taliBusur;
+    public void hitungKeliling() {
+        double panjangBusur = (sudut / 360.0) * super.keliling;
+        double taliBusur = 2 * Math.sqrt(radius * radius - Math.pow(radius - tinggiSagitta, 2));
+        keliling = panjangBusur + taliBusur;
     }
-    
+
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Tembereng Lingkaran");
-        System.out.println("Radius\t: " + getRadius());
-        System.out.println("Sudut\t: " + getSudut());
-        System.out.println("Luas\t: " + hitungLuas());
-        System.out.println("Keliling\t: " + hitungKeliling());
+        System.out.println("Radius\t: " + radius);
+        System.out.println("Sudut\t: " + sudut);
+        System.out.println("Tinggi Sagitta\t: " + tinggiSagitta);
+        System.out.println("Luas\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
     }
 }

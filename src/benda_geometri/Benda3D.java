@@ -2,9 +2,9 @@ package benda_geometri;
 
 public interface Benda3D {
 
-    public double hitungVolume();
+    public void hitungVolume();
 
-    public double hitungLuasPermukaan();
+    public void hitungLuasPermukaan();
 
     public void tampilkanInfo();
 }

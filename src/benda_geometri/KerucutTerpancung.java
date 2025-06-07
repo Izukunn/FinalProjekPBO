@@ -5,7 +5,7 @@ public class KerucutTerpancung extends Kerucut {
     private double radiusAtas;
     private double radiusBawah;
 
-    public KerucutTerpancung(double radiusBawah, double radiusAtas, double garisPelukis, double tinggi) throws NegativeInputException {
+    public KerucutTerpancung(double radiusBawah, double radiusAtas, double garisPelukis, double tinggi) throws InvalidInputException {
         super(radiusBawah, garisPelukis, tinggi);
         setRadiusBawah(radiusBawah);
         setRadiusAtas(radiusAtas);
@@ -15,9 +15,9 @@ public class KerucutTerpancung extends Kerucut {
         return radiusBawah;
     }
 
-    public void setRadiusBawah(double radiusBawah) throws NegativeInputException {
+    public void setRadiusBawah(double radiusBawah) throws InvalidInputException {
         if (radiusBawah < 0) {
-            throw new NegativeInputException("Radius bawah tidak boleh negatif!");
+            throw new InvalidInputException("Radius bawah tidak boleh negatif!");
         }
         this.radiusBawah = radiusBawah;
     }
@@ -26,9 +26,9 @@ public class KerucutTerpancung extends Kerucut {
         return radiusAtas;
     }
 
-    public void setRadiusAtas(double radiusAtas) throws NegativeInputException {
+    public void setRadiusAtas(double radiusAtas) throws InvalidInputException {
         if (radiusAtas < 0) {
-            throw new NegativeInputException("Radius tidak boleh negatif!");
+            throw new InvalidInputException("Radius tidak boleh negatif!");
         }
         this.radiusAtas = radiusAtas;
     }

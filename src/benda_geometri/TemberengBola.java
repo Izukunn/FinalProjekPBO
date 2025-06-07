@@ -4,7 +4,7 @@ public class TemberengBola extends Bola {
 
     private double tinggiTembereng;
 
-    public TemberengBola(double radius, double tinggiTembereng) throws NegativeInputException {
+    public TemberengBola(double radius, double tinggiTembereng) throws InvalidInputException {
         super(radius);
         setTinggiTembereng(tinggiTembereng);
     }
@@ -13,9 +13,9 @@ public class TemberengBola extends Bola {
         return tinggiTembereng;
     }
 
-    public void setTinggiTembereng(double tinggiTembereng) throws NegativeInputException {
+    public void setTinggiTembereng(double tinggiTembereng) throws InvalidInputException {
         if (tinggiTembereng < 0) {
-            throw new NegativeInputException("Tinggi tembereng tidak boleh negatif!");
+            throw new InvalidInputException("Tinggi tembereng tidak boleh negatif!");
         }
         this.tinggiTembereng = tinggiTembereng;
     }

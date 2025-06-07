@@ -2,7 +2,7 @@ package benda_geometri;
 
 public class Bola extends Lingkaran implements Benda3D {
 
-    public Bola(double radius) throws NegativeInputException {
+    public Bola(double radius) throws InvalidInputException {
         super(radius);
     }
 

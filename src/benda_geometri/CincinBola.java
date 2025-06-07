@@ -5,7 +5,7 @@ public class CincinBola extends Bola {
     private double radiusLuar;
     private double radiusDalam;
 
-    public CincinBola(double radiusLuar, double radiusDalam) throws NegativeInputException {
+    public CincinBola(double radiusLuar, double radiusDalam) throws InvalidInputException {
         super(radiusLuar);
         setRadiusLuar(radiusLuar);
         setRadiusDalam(radiusDalam);
@@ -15,9 +15,9 @@ public class CincinBola extends Bola {
         return radiusLuar;
     }
 
-    public void setRadiusLuar(double radiusLuar) throws NegativeInputException {
+    public void setRadiusLuar(double radiusLuar) throws InvalidInputException {
         if (radiusLuar < 0) {
-            throw new NegativeInputException("Radius luar tidak boleh negatif!");
+            throw new InvalidInputException("Radius luar tidak boleh negatif!");
         }
         this.radiusLuar = radiusLuar;
     }
@@ -26,9 +26,9 @@ public class CincinBola extends Bola {
         return radiusDalam;
     }
 
-    public void setRadiusDalam(double radiusDalam) throws NegativeInputException {
+    public void setRadiusDalam(double radiusDalam) throws InvalidInputException {
         if (radiusDalam < 0) {
-            throw new NegativeInputException("Radius dalam tidak boleh negatif!");
+            throw new InvalidInputException("Radius dalam tidak boleh negatif!");
         }
         this.radiusDalam = radiusDalam;
     }

@@ -2,38 +2,36 @@ package benda_geometri;
 
 public class Lingkaran implements Benda2D {
 
-    private double radius;
+    public double radius;
+    public double pi = 3.14;
+    public double luas;
+    public double keliling;
 
-    public Lingkaran(double radius) throws NegativeInputException {
-        setRadius(radius);
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public void setRadius(double radius) throws NegativeInputException {
+    public Lingkaran(double radius) throws InvalidInputException {
         if (radius < 0) {
-            throw new NegativeInputException("Radius tidak boleh negatif!");
+            throw new InvalidInputException("Radius tidak boleh negatif!");
         }
         this.radius = radius;
+        hitungLuas();  // Hitung saat inisialisasi
+        hitungKeliling();
     }
 
     @Override
-    public double hitungLuas() {
-        return Math.PI * radius * radius;
+    public void hitungLuas() {
+        luas = pi * radius * radius;
     }
 
     @Override
-    public double hitungKeliling() {
-        return 2 * Math.PI * radius;
+    public void hitungKeliling() {
+        keliling = 2 * pi * radius;
     }
 
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Lingkaran");
-        System.out.println("Radius\t: " + getRadius());
-        System.out.println("Luas\t: " + hitungLuas());
-        System.out.println("Keliling\t: " + hitungKeliling());
+        System.out.println("Radius\t: " + radius);
+        System.out.println("pi\t: " + pi);
+        System.out.println("Luas\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
     }
 }

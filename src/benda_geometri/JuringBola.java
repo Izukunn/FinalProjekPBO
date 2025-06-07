@@ -4,7 +4,7 @@ public class JuringBola extends Bola {
 
     private double sudutPusat;
 
-    public JuringBola(double radius, double sudutPusat) throws NegativeInputException {
+    public JuringBola(double radius, double sudutPusat) throws InvalidInputException {
         super(radius);
         setSudutPusat(sudutPusat);
     }
@@ -13,9 +13,9 @@ public class JuringBola extends Bola {
         return sudutPusat;
     }
 
-    public void setSudutPusat(double sudutPusat) throws NegativeInputException {
+    public void setSudutPusat(double sudutPusat) throws InvalidInputException {
         if (sudutPusat < 0) {
-            throw new NegativeInputException("Sudut pusat tidak boleh negatif!");
+            throw new InvalidInputException("Sudut pusat tidak boleh negatif!");
         }
         this.sudutPusat = sudutPusat;
     }

@@ -3,40 +3,33 @@ package benda_geometri;
 public class JuringLingkaran extends Lingkaran {
 
     private double sudut;
+    private double luas;
+    private double keliling;
 
-    public JuringLingkaran(double radius, double sudut) throws NegativeInputException {
+    public JuringLingkaran(double radius, double sudut) throws InvalidInputException {
         super(radius);
-        setSudut(sudut);
-    }
-
-    public double getSudut() {
-        return sudut;
-    }
-
-    public void setSudut(double sudut) throws NegativeInputException {
-        if (sudut < 0) {
-            throw new NegativeInputException("Sudut tidak boleh negatif!");
+        if (sudut < 0 || sudut > 360) {
+            throw new InvalidInputException("Sudut harus antara 0 dan 360 derajat!");
         }
         this.sudut = sudut;
     }
 
     @Override
-    public double hitungLuas() {
-        return (sudut / 360.0) * Math.PI * Math.pow(getRadius(), 2);
+    public void hitungLuas() {
+        luas = (sudut / 360.0) * super.luas;
     }
 
     @Override
-    public double hitungKeliling() {
-        double panjangBusur = (sudut / 360.0) * 2 * Math.PI * getRadius();
-        return panjangBusur + 2 * getRadius();
+    public void hitungKeliling() {
+        keliling = ((sudut / 360.0) * super.keliling) + 2 * radius;
     }
-    
+
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Juring Lingkaran");
-        System.out.println("Radius\t: " + getRadius());
-        System.out.println("Sudut\t: " + getSudut());
-        System.out.println("Luas\t: " + hitungLuas());
-        System.out.println("Keliling\t: " + hitungKeliling());
+        System.out.println("Radius\t: " + radius);
+        System.out.println("Sudut\t: " + sudut);
+        System.out.println("Luas\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
     }
 }
