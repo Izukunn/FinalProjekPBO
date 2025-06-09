@@ -1,73 +1,48 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class PersegiPanjang implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public PersegiPanjang() {
+    public double panjang;
+    public double lebar;
+    public double luas;
+    public double keliling;
+
+    public PersegiPanjang(double panjang, double lebar) throws InvalidInputException {
+        if (panjang < 0) {
+            throw new InvalidInputException("Panjang tidak boleh negatif!");
+        }
+        if (lebar < 0) {
+            throw new InvalidInputException("Lebar tidak boleh negatif!");
+        }
+        this.panjang = panjang;
+        this.lebar = lebar;
+        hitungLuas();
+        hitungKeliling();
     }
 
-    /**
-     * 
-     */
-    private double panjang;
-
-    /**
-     * 
-     */
-    private double lebar;
-
-    /**
-     * @return
-     */
-    public double getPanjang() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungLuas() {
+        luas = panjang * lebar;
     }
 
-    /**
-     * @param panjang
-     */
-    public void setPanjang(double panjang) {
-        // TODO implement here
+    @Override
+    public void hitungKeliling() {
+        keliling = 2 * (panjang + lebar);
     }
 
-    /**
-     * @return
-     */
-    public double getLebar() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Persegi Panjang");
+        System.out.println("Panjang\t: " + panjang);
+        System.out.println("Lebar\t: " + lebar);
+        System.out.println("Luas\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
     }
 
-    /**
-     * @param lebar
-     */
-    public void setLebar(double lebar) {
-        // TODO implement here
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
     }
-
-    /**
-     * @return
-     */
-    public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
-    }
-
-    /**
-     * @return
-     */
-    public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
-    }
-
 }
