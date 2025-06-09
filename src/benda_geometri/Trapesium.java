@@ -1,133 +1,66 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Trapesium implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public Trapesium() {
+    public double sisiAtas;
+    public double sisiBawah;
+    public double sisiKiri;
+    public double sisiKanan;
+    public double tinggiAlas;
+    public double luas;
+    public double keliling;
+
+    public Trapesium(double sisiAtas, double sisiBawah, double sisiKiri, double sisiKanan, double tinggi) throws InvalidInputException {
+        if (sisiAtas < 0) {
+            throw new InvalidInputException("Sisi atas tidak boleh negatif!");
+        }
+        if (sisiBawah < 0) {
+            throw new InvalidInputException("Sisi bawah tidak boleh negatif!");
+        }
+        if (sisiKiri < 0) {
+            throw new InvalidInputException("Sisi kiri tidak boleh negatif!");
+        }
+        if (sisiKanan < 0) {
+            throw new InvalidInputException("Sisi kanan tidak boleh negatif!");
+        }
+        if (tinggi < 0) {
+            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        }
+        this.sisiAtas = sisiAtas;
+        this.sisiBawah = sisiBawah;
+        this.sisiKiri = sisiKiri;
+        this.sisiKanan = sisiKanan;
+        this.tinggiAlas = tinggi;
+        hitungLuas();
+        hitungKeliling();
     }
 
-    /**
-     * 
-     */
-    private double sisiAtas;
-
-    /**
-     * 
-     */
-    private double sisiBawah;
-
-    /**
-     * 
-     */
-    private double sisiKiri;
-
-    /**
-     * 
-     */
-    private double sisiKanan;
-
-    /**
-     * 
-     */
-    private double tinggi;
-
-    /**
-     * @return
-     */
-    public double getSisiAtas() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungLuas() {
+        luas = 0.5 * (sisiAtas + sisiBawah) * tinggiAlas;
     }
 
-    /**
-     * @param sisiAtas
-     */
-    public void setSisiAtas(double sisiAtas) {
-        // TODO implement here
+    @Override
+    public void hitungKeliling() {
+        keliling = sisiAtas + sisiBawah + sisiKiri + sisiKanan;
     }
 
-    /**
-     * @return
-     */
-    public double getSisiBawah() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Trapesium");
+        System.out.println("Sisi Atas\t: " + sisiAtas);
+        System.out.println("Sisi Bawah\t: " + sisiBawah);
+        System.out.println("Sisi Kiri\t: " + sisiKiri);
+        System.out.println("Sisi Kanan\t: " + sisiKanan);
+        System.out.println("Tinggi\t: " + tinggiAlas);
+        System.out.println("Luas\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
     }
 
-    /**
-     * @param sisiBawah
-     */
-    public void setSisiBawah(double sisiBawah) {
-        // TODO implement here
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
     }
-
-    /**
-     * @return
-     */
-    public double getSisiKiri() {
-        // TODO implement here
-        return 0.0d;
-    }
-
-    /**
-     * @param sisiKiri
-     */
-    public void setSisiKiri(double sisiKiri) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public double getSisiKanan() {
-        // TODO implement here
-        return 0.0d;
-    }
-
-    /**
-     * @param sisiKanan
-     */
-    public void setSisiKanan(double sisiKanan) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public double getTinggi() {
-        // TODO implement here
-        return 0.0d;
-    }
-
-    /**
-     * @param Tinggi
-     */
-    public void setTinggi(double Tinggi) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
-    }
-
-    /**
-     * @return
-     */
-    public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
-    }
-
 }
