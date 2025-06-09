@@ -1,53 +1,51 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class LimasTrapesium extends Trapesium implements Benda3D {
+    private double tinggi;
+    private double volume;
+    private double luasPermukaan;
 
-    /**
-     * Default constructor
-     */
-    public LimasTrapesium() {
+    public LimasTrapesium(double sisiAtas, double sisiBawah, double sisiKiri, double sisiKanan, double tinggiAlas, double tinggi) throws InvalidInputException {
+        super(sisiAtas, sisiBawah, sisiKiri, sisiKanan, tinggiAlas);
+        if (tinggi < 0) {
+            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        }
+        this.tinggi = tinggi;
     }
 
-    /**
-     * 
-     */
-    private double tinggiPrisma;
-
-    /**
-     * @return
-     */
-    public double getTinggiPrisma() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungVolume() {
+        volume = (1.0 / 3.0) * super.luas * tinggi;
     }
 
-    /**
-     * @param tinggiPrisma
-     */
-    public void setTinggiPrisma(double tinggiPrisma) {
-        // TODO implement here
+    @Override
+    public void hitungLuasPermukaan() {
+        double tinggiSegitigaAtas = Math.sqrt(Math.pow((sisiBawah - sisiAtas) / 2, 2) + Math.pow(tinggi, 2));
+        double tinggiSegitigaKiri = Math.sqrt(Math.pow((sisiKanan - sisiKiri) / 2, 2) + Math.pow(tinggi, 2));
+        double luasSegitigaAtas = sisiAtas * tinggiSegitigaAtas / 2;
+        double luasSegitigaBawah = sisiBawah * tinggiSegitigaAtas / 2;
+        double luasSegitigaKiri = sisiKiri * tinggiSegitigaKiri / 2;
+        double luasSegitigaKanan = sisiKanan * tinggiSegitigaKiri / 2;
+        luasPermukaan = super.luas + luasSegitigaAtas + luasSegitigaBawah + luasSegitigaKiri + luasSegitigaKanan;
     }
 
-    /**
-     * @return
-     */
-    public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Limas Trapesium");
+        System.out.println("Sisi Atas\t: " + sisiAtas);
+        System.out.println("Sisi Bawah\t: " + sisiBawah);
+        System.out.println("Sisi Kiri\t: " + sisiKiri);
+        System.out.println("Sisi Kanan\t: " + sisiKanan);
+        System.out.println("Tinggi Alas\t: " + tinggiAlas);
+        System.out.println("Tinggi Limas\t: " + tinggi);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
     }
 
-    /**
-     * @return
-     */
-    public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
-
 }
