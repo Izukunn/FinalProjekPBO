@@ -1,53 +1,42 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class PrismaPersegiPanjang extends PersegiPanjang implements Benda3D {
+    private double tinggi;
+    private double volume;
+    private double luasPermukaan;
 
-    /**
-     * Default constructor
-     */
-    public PrismaPersegiPanjang() {
+    public PrismaPersegiPanjang(double panjang, double lebar, double tinggi) throws InvalidInputException {
+        super(panjang, lebar);
+        if (tinggi < 0) {
+            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        }
+        this.tinggi = tinggi;
     }
 
-    /**
-     * 
-     */
-    private double tinggiPrisma;
-
-    /**
-     * @return
-     */
-    public double getTinggiPrisma() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungVolume() {
+        volume = super.luas * tinggi;
     }
 
-    /**
-     * @param tinggiPrisma
-     */
-    public void setTinggiPrisma(double tinggiPrisma) {
-        // TODO implement here
+    @Override
+    public void hitungLuasPermukaan() {
+        luasPermukaan = 2 * super.luas + (super.keliling * tinggi);
     }
 
-    /**
-     * @return
-     */
-    public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Prisma Persegi Panjang");
+        System.out.println("Panjang Alas\t: " + panjang);
+        System.out.println("Lebar Alas\t: " + lebar);
+        System.out.println("Tinggi\t: " + tinggi);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
     }
 
-    /**
-     * @return
-     */
-    public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
-
 }
