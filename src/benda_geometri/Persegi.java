@@ -1,53 +1,42 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Persegi implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public Persegi() {
+    public double sisi;
+    public double luas;
+    public double keliling;
+
+    public Persegi(double sisi) throws InvalidInputException {
+        if (sisi < 0) {
+            throw new InvalidInputException("Sisi tidak boleh negatif!");
+        }
+        this.sisi = sisi;
+        hitungLuas();
+        hitungKeliling();
     }
 
-    /**
-     * 
-     */
-    private double sisi;
-
-    /**
-     * @return
-     */
-    public double getSisi() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungLuas() {
+        luas = sisi * sisi;
     }
 
-    /**
-     * @param sisi
-     */
-    public void setSisi(double sisi) {
-        // TODO implement here
+    @Override
+    public void hitungKeliling() {
+        keliling = 4 * sisi;
     }
 
-    /**
-     * @return
-     */
-    public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Persegi");
+        System.out.println("Sisi\t: " + sisi);
+        System.out.println("Luas\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
     }
 
-    /**
-     * @return
-     */
-    public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
     }
-
 }
