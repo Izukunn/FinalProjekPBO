@@ -12,15 +12,20 @@ public class PrismaPersegi extends Persegi implements Benda3D {
             throw new InvalidInputException("Tinggi tidak boleh negatif!");
         }
         this.tinggi = tinggi;
+        hitungVolume();
+        hitungLuasPermukaan();
     }
 
     @Override
     public void hitungVolume() {
+        super.hitungLuas();
         volume = super.luas * tinggi;
     }
 
     @Override
     public void hitungLuasPermukaan() {
+        super.hitungLuas();
+        super.hitungKeliling();
         luasPermukaan = 2 * super.luas + (super.keliling * tinggi);
     }
 
