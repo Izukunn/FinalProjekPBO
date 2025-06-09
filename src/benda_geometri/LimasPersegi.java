@@ -12,15 +12,20 @@ public class LimasPersegi extends Persegi implements Benda3D {
             throw new InvalidInputException("Tinggi tidak boleh negatif!");
         }
         this.tinggi = tinggi;
+        hitungVolume();
+        hitungLuasPermukaan();
     }
 
     @Override
     public void hitungVolume() {
+        super.hitungLuas();
         volume = (1.0 / 3.0) * super.luas * tinggi;
     }
 
     @Override
     public void hitungLuasPermukaan() {
+        super.hitungLuas();
+        super.hitungKeliling();
         double tinggiSegitiga = Math.sqrt((tinggi * tinggi) + Math.pow((sisi / 2), 2));
         double luasSegitiga = 0.5 * sisi * tinggiSegitiga;
         luasPermukaan = super.luas + 4 * luasSegitiga;
