@@ -1,53 +1,45 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class PrismaTrapesium extends Trapesium implements Benda3D {
+    private double tinggi;
+    private double volume;
+    private double luasPermukaan;
 
-    /**
-     * Default constructor
-     */
-    public PrismaTrapesium() {
+    public PrismaTrapesium(double sisiAtas, double sisiBawah, double sisiKiri, double sisiKanan, double tinggiAlas, double tinggi) throws InvalidInputException {
+        super(sisiAtas, sisiBawah, sisiKiri, sisiKanan, tinggiAlas);
+        if (tinggi < 0) {
+            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        }
+        this.tinggi = tinggi;
     }
 
-    /**
-     * 
-     */
-    private double tinggiPrisma;
-
-    /**
-     * @return
-     */
-    public double getTinggiPrisma() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungVolume() {
+        volume = super.luas * tinggi;
     }
 
-    /**
-     * @param tinggiPrisma
-     */
-    public void setTinggiPrisma(double tinggiPrisma) {
-        // TODO implement here
+    @Override
+    public void hitungLuasPermukaan() {
+        luasPermukaan = 2 * super.luas + (super.keliling * tinggi);
     }
 
-    /**
-     * @return
-     */
-    public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Prisma Trapesium");
+        System.out.println("Sisi Atas\t: " + sisiAtas);
+        System.out.println("Sisi Bawah\t: " + sisiBawah);
+        System.out.println("Sisi Kiri\t: " + sisiKiri);
+        System.out.println("Sisi Kanan\t: " + sisiKanan);
+        System.out.println("Tinggi Alas\t: " + tinggiAlas);
+        System.out.println("Tinggi Prisma\t: " + tinggi);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
     }
 
-    /**
-     * @return
-     */
-    public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
-
 }
