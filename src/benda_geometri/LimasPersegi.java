@@ -1,53 +1,44 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class LimasPersegi extends Persegi implements Benda3D {
 
-    /**
-     * Default constructor
-     */
-    public LimasPersegi() {
+    private double tinggi;
+    private double volume;
+    private double luasPermukaan;
+
+    public LimasPersegi(double sisi, double tinggi) throws InvalidInputException {
+        super(sisi);
+        if (tinggi < 0) {
+            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        }
+        this.tinggi = tinggi;
     }
 
-    /**
-     * 
-     */
-    private double tinggiPrisma;
-
-    /**
-     * @return
-     */
-    public double getTinggiPrisma() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungVolume() {
+        volume = (1.0 / 3.0) * super.luas * tinggi;
     }
 
-    /**
-     * @param tinggiPrisma
-     */
-    public void setTinggiPrisma(double tinggiPrisma) {
-        // TODO implement here
+    @Override
+    public void hitungLuasPermukaan() {
+        double tinggiSegitiga = Math.sqrt((tinggi * tinggi) + Math.pow((sisi / 2), 2));
+        double luasSegitiga = 0.5 * sisi * tinggiSegitiga;
+        luasPermukaan = super.luas + 4 * luasSegitiga;
     }
 
-    /**
-     * @return
-     */
-    public double hitungVolume() {
-        // TODO implement Benda3D.hitungVolume() here
-        return 0.0d;
+    @Override
+    public void tampilkanInfo() {
+        System.out.println("Bangun\t: Limas Persegi");
+        System.out.println("Sisi Alas\t: " + sisi);
+        System.out.println("Tinggi\t: " + tinggi);
+        System.out.println("Volume\t: " + volume);
+        System.out.println("Luas Permukaan\t: " + luasPermukaan);
     }
 
-    /**
-     * @return
-     */
-    public double hitungLuasPermukaan() {
-        // TODO implement Benda3D.hitungLuasPermukaan() here
-        return 0.0d;
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
-
 }
