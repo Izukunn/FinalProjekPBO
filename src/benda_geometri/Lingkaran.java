@@ -7,11 +7,30 @@ public class Lingkaran implements Benda2D {
     public double luas;
     public double keliling;
 
+    public Lingkaran() {
+        this.radius = 10;
+        hitungLuas();
+        hitungKeliling();
+    }
+    
     public Lingkaran(double radius) throws InvalidInputException {
         if (radius < 0) {
             throw new InvalidInputException("Radius tidak boleh negatif!");
         }
         this.radius = radius;
+        hitungLuas();
+        hitungKeliling();
+    }
+
+    public Lingkaran(double radius, double customPi) throws InvalidInputException {
+        if (radius < 0) {
+            throw new InvalidInputException("Radius tidak boleh negatif!");
+        }
+        this.radius = radius;
+        if (customPi < 0) {
+            throw new InvalidInputException("Pi tidak boleh negatif!");
+        }
+        this.pi = customPi;
         hitungLuas();
         hitungKeliling();
     }

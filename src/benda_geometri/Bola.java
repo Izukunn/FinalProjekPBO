@@ -7,11 +7,26 @@ public class Bola implements Benda3D {
     private double volume;
     private double luasPermukaan;
 
+    public Bola() throws InvalidInputException {
+        this.radius = 10;
+    }
+    
     public Bola(double radius) throws InvalidInputException {
         if (radius < 0) {
             throw new InvalidInputException("Radius tidak boleh negatif!");
         }
         this.radius = radius;
+    }
+    
+    public Bola(double radius, double customPi) throws InvalidInputException {
+        if (radius < 0) {
+            throw new InvalidInputException("Radius tidak boleh negatif!");
+        }
+        this.radius = radius;
+        if (customPi < 0) {
+            throw new InvalidInputException("pi tidak boleh negatif!");
+        }
+        this.pi = customPi;
     }
 
     @Override

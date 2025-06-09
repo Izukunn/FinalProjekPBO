@@ -78,16 +78,19 @@ public class Main {
                 break;
             case 8:
                 double radius = inputPositif("Input Radius : ");
-                Lingkaran lingkaran = new Lingkaran(radius);
+                Lingkaran lingkaran = new Lingkaran(radius, 4);
                 lingkaran.tampilkanInfo();
                 break;
             case 9:
+                radius = inputPositif("Input Radius : ");
+                Lingkaran benda9 = new TemberengLingkaran(radius, 90);
+                benda9.tampilkanInfo();
                 break;
             case 10:
                 radius = inputPositif("Input Radius : ");
                 double sudut = inputPositif("Input Sudut : ");
-                Lingkaran juring = new JuringLingkaran(radius, sudut);
-                juring.tampilkanInfo();
+                Lingkaran benda10 = new JuringLingkaran(radius, sudut, 4);
+                benda10.tampilkanInfo();
                 break;
             default:
                 System.out.println("Input Tidak Valid!");
@@ -159,12 +162,12 @@ public class Main {
                 kerucut.tampilkanInfo();
                 break;
             case 17:
-                double radiusBawah = inputPositif("Input Radius Bawah: ");
-                double radiusAtas = inputPositif("Input Radius Atas : ");
-                garisPelukis = inputPositif("Input Garis Pelukis : ");
-                tinggi = inputPositif("Input Tinggi : ");
-                KerucutTerpancung kerucutT = new KerucutTerpancung(radiusBawah, radiusAtas, garisPelukis, tinggi);
-                kerucutT.tampilkanInfo();
+//                double radiusBawah = inputPositif("Input Radius Bawah: ");
+//                double radiusAtas = inputPositif("Input Radius Atas : ");
+//                garisPelukis = inputPositif("Input Garis Pelukis : ");
+//                tinggi = inputPositif("Input Tinggi : ");
+//                KerucutTerpancung kerucutT = new KerucutTerpancung(radiusBawah, radiusAtas, garisPelukis, tinggi);
+//                kerucutT.tampilkanInfo();
                 break;
             case 18:
                 radius = inputPositif("Input Radius : ");
