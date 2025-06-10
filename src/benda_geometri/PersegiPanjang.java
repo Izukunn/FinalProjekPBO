@@ -31,13 +31,13 @@ public class PersegiPanjang implements Benda2D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Persegi Panjang");
-        System.out.println("Panjang\t: " + panjang);
-        System.out.println("Lebar\t: " + lebar);
-        System.out.println("Luas\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
-    }
+    public String tampilkanInfo() {
+    return "=== PERSEGI PANJANG ===\n"
+            + "Panjang\t: " + panjang + "\n"
+            + "Lebar\t: " + lebar + "\n"
+            + "Luas\t: " + luas + "\n"
+            + "Keliling\t: " + keliling;
+}
 
     @Override
     public void run() {
