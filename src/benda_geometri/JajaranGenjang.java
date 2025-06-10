@@ -1,93 +1,76 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class JajaranGenjang implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public JajaranGenjang() {
-    }
-
-    /**
-     * 
-     */
     private double alas;
-
-    /**
-     * 
-     */
     private double tinggi;
+    private double sisiMiring;
+    private double luas;
+    private double keliling;
 
-    /**
-     * 
-     */
-    public double sisiMiring;
+    public JajaranGenjang() {
+        this.alas = 8;
+        this.tinggi = 5;
+        this.sisiMiring = 6;
+        hitungLuas();
+        hitungKeliling();
+    }
 
-    /**
-     * @return
-     */
+    public JajaranGenjang(double alas, double tinggi, double sisiMiring) throws InvalidInputException {
+        if (alas < 0 || tinggi < 0 || sisiMiring < 0) {
+            throw new InvalidInputException("Nilai tidak boleh negatif!");
+        }
+        this.alas = alas;
+        this.tinggi = tinggi;
+        this.sisiMiring = sisiMiring;
+        hitungLuas();
+        hitungKeliling();
+    }
+
     public double getAlas() {
-        // TODO implement here
-        return 0.0d;
+        return alas;
     }
 
-    /**
-     * @param alas
-     */
-    public void setAlas(double alas) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
     public double getTinggi() {
-        // TODO implement here
-        return 0.0d;
+        return tinggi;
     }
 
-    /**
-     * @param tinggi
-     */
-    public void setTinggi(double tinggi) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
     public double getSisiMiring() {
-        // TODO implement here
-        return 0.0d;
+        return sisiMiring;
     }
 
-    /**
-     * @param sisiMiring
-     */
-    public void setSisiMiring(double sisiMiring) {
-        // TODO implement here
+    @Override
+    public void hitungLuas() {
+        luas = alas * tinggi;
     }
 
-    /**
-     * @return
-     */
-    public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
+    @Override
+    public void hitungKeliling() {
+        keliling = 2 * (alas + sisiMiring);
     }
 
-    /**
-     * @return
-     */
-    public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
+    @Override
+    public String tampilkanInfo() {
+        return "=== JAJARAN GENJANG ===\n"
+                + "Alas\t: " + alas + "\n"
+                + "Tinggi\t: " + tinggi + "\n"
+                + "Sisi Miring: " + sisiMiring + "\n"
+                + "Luas\t: " + luas + "\n"
+                + "Keliling: " + keliling;
     }
 
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
+    }
+
+    public double hitungLuasReturn() {
+        return alas * tinggi;
+    }
+
+    public double hitungKelilingReturn() {
+        return 2 * (alas + sisiMiring);
+    }
 }
