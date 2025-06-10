@@ -1,49 +1,44 @@
 package benda_geometri;
 
-public class Bola implements Benda3D {
+public class Bola extends Lingkaran implements Benda3D {
 
-    private double radius;
-    private double pi = 3.14;
-    private double volume;
-    private double luasPermukaan;
+    public double volume;
+    public double luasPermukaan;
 
-    public Bola() throws InvalidInputException {
-        this.radius = 10;
+    public Bola() {
+        super();
+        hitungVolume();
+        hitungLuasPermukaan();
     }
     
     public Bola(double radius) throws InvalidInputException {
-        if (radius < 0) {
-            throw new InvalidInputException("Radius tidak boleh negatif!");
-        }
-        this.radius = radius;
+        super(radius);
+        hitungVolume();
+        hitungLuasPermukaan();
     }
     
     public Bola(double radius, double customPi) throws InvalidInputException {
-        if (radius < 0) {
-            throw new InvalidInputException("Radius tidak boleh negatif!");
-        }
-        this.radius = radius;
-        if (customPi < 0) {
-            throw new InvalidInputException("pi tidak boleh negatif!");
-        }
-        this.pi = customPi;
+        super(radius, customPi);
+        hitungVolume();
+        hitungLuasPermukaan();
     }
 
     @Override
     public void hitungVolume() {
-        volume = (4.0 / 3) * pi * Math.pow(radius, 3);
+        volume = (4.0 / 3) * super.pi * Math.pow(radius, 3);
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        luasPermukaan = 4 * pi * Math.pow(radius, 2);
+        super.hitungLuas();
+        luasPermukaan = 4 * super.luas;
     }
 
     @Override
     public void tampilkanInfo() {
         System.out.println("Bangun\t: Bola");
         System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + pi);
+        System.out.println("pi\t: " + super.pi);
         System.out.println("Volume\t: " + volume);
         System.out.println("Luas Permukaan\t: " + luasPermukaan);
     }
