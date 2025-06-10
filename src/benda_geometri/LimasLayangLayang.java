@@ -84,13 +84,3 @@ public class LimasLayangLayang extends LayangLayang implements Benda3D, Runnable
         hitungLuasPermukaan();
         tampilkanInfo();
     }
-
-    // Penanganan default konstruktor superclass yang butuh parameter
-    private static void superDummy() {
-        try {
-            new LayangLayang(1, 1, 1, 1); // dummy object untuk init superclass
-        } catch (NegativeInputException e) {
-            // Tidak akan terjadi karena input valid
-        }
-    }
-}
