@@ -1,21 +1,38 @@
 package benda_geometri;
 
-public class LayangLayang implements Benda2D {
+public class LayangLayang implements Benda2D, Runnable {
 
     private double diagonal1;
     private double diagonal2;
     private double sisiPendek;
     private double sisiPanjang;
 
-    // Constructor
-    public LayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang) throws NegativeInputException {
+    // Tambahan atribut
+    private double luas;
+    private double keliling;
+
+    // Constructor default
+    public LayangLayang() {
+        this.diagonal1 = 1.0;
+        this.diagonal2 = 1.0;
+        this.sisiPendek = 1.0;
+        this.sisiPanjang = 1.0;
+        hitungLuas();
+        hitungKeliling();
+    }
+
+    // Constructor overloading dengan parameter
+    public LayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang)
+            throws NegativeInputException {
         setDiagonal1(diagonal1);
         setDiagonal2(diagonal2);
         setSisiPendek(sisiPendek);
         setSisiPanjang(sisiPanjang);
+        hitungLuas();
+        hitungKeliling();
     }
 
-    // Getter dan Setter dengan validasi
+    // Getter dan Setter
     public double getDiagonal1() {
         return diagonal1;
     }
@@ -60,24 +77,44 @@ public class LayangLayang implements Benda2D {
         this.sisiPanjang = sisiPanjang;
     }
 
+    // Getter untuk luas dan keliling
+    public double getLuas() {
+        return luas;
+    }
+
+    public double getKeliling() {
+        return keliling;
+    }
+
+    // Perhitungan luas dan keliling
     @Override
     public double hitungLuas() {
-        return 0.5 * diagonal1 * diagonal2;
+        luas = 0.5 * diagonal1 * diagonal2;
+        return luas;
     }
 
     @Override
     public double hitungKeliling() {
-        return 2 * (sisiPendek + sisiPanjang);
+        keliling = 2 * (sisiPendek + sisiPanjang);
+        return keliling;
     }
 
     @Override
     public void tampilkanInfo() {
-        System.out.println("Bangun\t\t: Layang-layang");
-        System.out.println("Diagonal 1\t: " + getDiagonal1());
-        System.out.println("Diagonal 2\t: " + getDiagonal2());
-        System.out.println("Sisi Pendek\t: " + getSisiPendek());
-        System.out.println("Sisi Panjang\t: " + getSisiPanjang());
-        System.out.println("Luas\t\t: " + hitungLuas());
-        System.out.println("Keliling\t: " + hitungKeliling());
+        System.out.println("=== LAYANG-LAYANG ===");
+        System.out.println("Diagonal 1\t: " + diagonal1);
+        System.out.println("Diagonal 2\t: " + diagonal2);
+        System.out.println("Sisi Pendek\t: " + sisiPendek);
+        System.out.println("Sisi Panjang\t: " + sisiPanjang);
+        System.out.println("Luas\t\t: " + luas);
+        System.out.println("Keliling\t: " + keliling);
+    }
+
+    // Multi-thread support
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
     }
 }
