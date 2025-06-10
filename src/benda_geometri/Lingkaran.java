@@ -3,7 +3,7 @@ package benda_geometri;
 public class Lingkaran implements Benda2D {
 
     public double radius;
-    public double pi = 3.14;
+    public double pi = Math.PI;
     public double luas;
     public double keliling;
 
@@ -12,7 +12,7 @@ public class Lingkaran implements Benda2D {
         hitungLuas();
         hitungKeliling();
     }
-    
+
     public Lingkaran(double radius) throws InvalidInputException {
         if (radius < 0) {
             throw new InvalidInputException("Radius tidak boleh negatif!");
@@ -46,12 +46,12 @@ public class Lingkaran implements Benda2D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Lingkaran");
-        System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + pi);
-        System.out.println("Luas\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
+    public String tampilkanInfo() {
+        return "=== LINGKARAN ===\n"
+                + "Radius\t: " + radius + "\n"
+                + "pi\t: " + pi + "\n"
+                + "Luas\t: " + luas + "\n"
+                + "Keliling: " + keliling;
     }
 
     @Override

@@ -39,6 +39,8 @@ public class TemberengLingkaran extends Lingkaran {
         hitungLuas();
         hitungKeliling();
     }
+    
+    
 
     @Override
     public void hitungLuas() {
@@ -57,13 +59,13 @@ public class TemberengLingkaran extends Lingkaran {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Tembereng Lingkaran");
-        System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + super.pi);
-        System.out.println("Sudut\t: " + sudut);
-        System.out.println("Luas\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
+    public String tampilkanInfo() {
+        return "=== TEMBERENG LINGKARAN ===\n"
+                + "Radius\t: " + radius + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Sudut\t: " + sudut + "\n"
+                + "Luas\t: " + luas + "\n"
+                + "Keliling: " + keliling;
     }
 
     @Override

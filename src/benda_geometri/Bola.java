@@ -35,12 +35,12 @@ public class Bola extends Lingkaran implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Bola");
-        System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + super.pi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== BOLA ===\n"
+                + "Radius\t: " + radius + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Volume\t: " + volume + "\n"
+                + "Luas Permukaan: " + luasPermukaan;
     }
 
     @Override

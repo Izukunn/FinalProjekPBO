@@ -47,13 +47,13 @@ public class Tabung extends Lingkaran implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Tabung");
-        System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + super.pi);
-        System.out.println("Tinggi\t: " + tinggi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== TABUNG ===\n"
+                + "Radius\t: " + radius + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Tinggi\t: " + tinggi + "\n"
+                + "Volume\t: " + volume + "\n"
+                + "Luas Permukaan: " + luasPermukaan;
     }
 
     @Override

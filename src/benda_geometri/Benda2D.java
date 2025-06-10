@@ -6,5 +6,5 @@ public interface Benda2D extends Runnable {
 
     public void hitungKeliling();
 
-    public void tampilkanInfo();
+    public String tampilkanInfo();
 }

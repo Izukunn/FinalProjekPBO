@@ -6,5 +6,5 @@ public interface Benda3D extends Runnable{
 
     public void hitungLuasPermukaan();
 
-    public void tampilkanInfo();
+    public String tampilkanInfo();
 }

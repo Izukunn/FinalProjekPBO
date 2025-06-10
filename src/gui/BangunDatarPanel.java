@@ -19,7 +19,7 @@ public class BangunDatarPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // ComboBox untuk memilih bangun datar
-        String[] bangunDatar = {"Pilih Bangun", "Persegi", "Lingkaran", "Segitiga", "Persegi Panjang", "Jajar Genjang"};
+        String[] bangunDatar = {"Pilih Bangun", "Segitiga", "Persegi", "Persegi Panjang", "Jajaran Genjang", "Trapesium", "Belah Ketupat", "Layang-Layang", "Lingkaran", "Tembereng Lingkaran", "Juring Lingkaran"};
         bangunComboBox = new JComboBox<>(bangunDatar);
         bangunComboBox.setPreferredSize(new Dimension(150, 25));
 
@@ -100,16 +100,6 @@ public class BangunDatarPanel extends JPanel {
         int row = 0;
 
         switch (selected) {
-            case "Persegi":
-                gbc.gridx = 0;
-                gbc.gridy = row;
-                inputPanel.add(new JLabel("Sisi:"), gbc);
-                gbc.gridx = 1;
-                JTextField sisiField = new JTextField(10);
-                inputPanel.add(sisiField, gbc);
-                hitungButton.setEnabled(true);
-                break;
-
             case "Segitiga":
                 gbc.gridx = 0;
                 gbc.gridy = row;
@@ -123,6 +113,16 @@ public class BangunDatarPanel extends JPanel {
                 inputPanel.add(new JLabel("Tinggi:"), gbc);
                 gbc.gridx = 1;
                 inputPanel.add(new JTextField(10), gbc);
+                hitungButton.setEnabled(true);
+                break;
+
+            case "Persegi":
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Sisi:"), gbc);
+                gbc.gridx = 1;
+                JTextField sisiField = new JTextField(10);
+                inputPanel.add(sisiField, gbc);
                 hitungButton.setEnabled(true);
                 break;
 
@@ -142,7 +142,7 @@ public class BangunDatarPanel extends JPanel {
                 hitungButton.setEnabled(true);
                 break;
 
-            case "Jajar Genjang":
+            case "Jajaran Genjang":
                 gbc.gridx = 0;
                 gbc.gridy = row;
                 inputPanel.add(new JLabel("Alas:"), gbc);
@@ -165,10 +165,65 @@ public class BangunDatarPanel extends JPanel {
                 hitungButton.setEnabled(true);
                 break;
 
+            case "Trapesium":
+                break;
+
+            case "Belah Ketupat":
+                break;
+
+            case "Layang-Layang":
+                break;
+
             case "Lingkaran":
                 gbc.gridx = 0;
                 gbc.gridy = row;
-                inputPanel.add(new JLabel("Radius:"), gbc);
+                inputPanel.add(new JLabel("Radius(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Custom pi(opsional):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField("0", 10), gbc);
+                hitungButton.setEnabled(true);
+                break;
+
+            case "Tembereng Lingkaran":
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Radius(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Sudut:"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Custom pi(opsional):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField("0", 10), gbc);
+                hitungButton.setEnabled(true);
+                break;
+
+            case "Juring Lingkaran":
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Radius(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Sudut:"), gbc);
                 gbc.gridx = 1;
                 inputPanel.add(new JTextField(10), gbc);
 
@@ -204,25 +259,6 @@ public class BangunDatarPanel extends JPanel {
                     result.append("Keliling: ").append(String.format("%.2f", keliling)).append(" unit\n");
                     break;
 
-                case "Lingkaran":
-                    double radius = Double.parseDouble(((JTextField) components[1]).getText());
-                    double customPi = Double.parseDouble(((JTextField) components[3]).getText());
-                    try {
-                        Lingkaran lingkaran;
-                        if (customPi == 0) {
-                            lingkaran = new Lingkaran(radius);
-                        } else {
-                            lingkaran = new Lingkaran(radius, customPi);
-                        }
-                        result.append("=== LINGKARAN ===\n");
-                        result.append("Radius: ").append(radius).append(" cm\n");
-                        result.append("Luas: ").append(String.format("%.2f", lingkaran.luas)).append(" cm²\n");
-                        result.append("Keliling: ").append(String.format("%.2f", lingkaran.keliling)).append(" cm\n");
-                    } catch (InvalidInputException ex) {
-                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    break;
-
                 case "Segitiga":
                     double alas = Double.parseDouble(((JTextField) components[1]).getText());
                     double tinggi = Double.parseDouble(((JTextField) components[3]).getText());
@@ -245,7 +281,7 @@ public class BangunDatarPanel extends JPanel {
                     result.append("Keliling: ").append(String.format("%.2f", kelilingPersegiPanjang)).append(" unit\n");
                     break;
 
-                case "Jajar Genjang":
+                case "Jajaran Genjang":
                     double alasJajar = Double.parseDouble(((JTextField) components[1]).getText());
                     double tinggiJajar = Double.parseDouble(((JTextField) components[3]).getText());
                     double sisiMiring = Double.parseDouble(((JTextField) components[5]).getText());
@@ -257,6 +293,64 @@ public class BangunDatarPanel extends JPanel {
                     result.append("Sisi Miring: ").append(sisiMiring).append(" unit\n");
                     result.append("Luas: ").append(String.format("%.2f", luasJajar)).append(" unit²\n");
                     result.append("Keliling: ").append(String.format("%.2f", kelilingJajar)).append(" unit\n");
+                    break;
+
+                case "Trapesium":
+                    break;
+
+                case "Belah Ketupat":
+                    break;
+
+                case "Layang-Layang":
+                    break;
+
+                case "Lingkaran":
+                    double radiusLingkaran = Double.parseDouble(((JTextField) components[1]).getText());
+                    double customPiLingkaran = Double.parseDouble(((JTextField) components[3]).getText());
+                    try {
+                        Lingkaran lingkaran;
+                        if (customPiLingkaran == 0) {
+                            lingkaran = new Lingkaran(radiusLingkaran);
+                        } else {
+                            lingkaran = new Lingkaran(radiusLingkaran, customPiLingkaran);
+                        }
+                        result.append(lingkaran.tampilkanInfo());
+                    } catch (InvalidInputException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case "Tembereng Lingkaran":
+                    double radiusTembereng = Double.parseDouble(((JTextField) components[1]).getText());
+                    double sudutTembereng = Double.parseDouble(((JTextField) components[3]).getText());
+                    double customPiTembereng = Double.parseDouble(((JTextField) components[5]).getText());
+                    try {
+                        Lingkaran temberengLingkaran;
+                        if (customPiTembereng == 0) {
+                            temberengLingkaran = new TemberengLingkaran(radiusTembereng, sudutTembereng);
+                        } else {
+                            temberengLingkaran = new TemberengLingkaran(radiusTembereng, sudutTembereng, customPiTembereng);
+                        }
+                        result.append(temberengLingkaran.tampilkanInfo());
+                    } catch (InvalidInputException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+
+                case "Juring Lingkaran":
+                    double radiusJuring = Double.parseDouble(((JTextField) components[1]).getText());
+                    double sudutJuring = Double.parseDouble(((JTextField) components[3]).getText());
+                    double customPiJuring = Double.parseDouble(((JTextField) components[5]).getText());
+                    try {
+                        Lingkaran juringLingkaran;
+                        if (customPiJuring == 0) {
+                            juringLingkaran = new JuringLingkaran(radiusJuring, sudutJuring);
+                        } else {
+                            juringLingkaran = new JuringLingkaran(radiusJuring, sudutJuring, customPiJuring);
+                        }
+                        result.append(juringLingkaran.tampilkanInfo());
+                    } catch (InvalidInputException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
             }
 

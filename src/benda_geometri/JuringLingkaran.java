@@ -12,14 +12,14 @@ public class JuringLingkaran extends Lingkaran {
         hitungLuas();
         hitungKeliling();
     }
-    
+
     public JuringLingkaran(double radius) throws InvalidInputException {
         super(radius);
         this.sudut = 60;
         hitungLuas();
         hitungKeliling();
     }
-    
+
     public JuringLingkaran(double radius, double sudut) throws InvalidInputException {
         super(radius);
         if (sudut < 0 || sudut > 360) {
@@ -29,7 +29,7 @@ public class JuringLingkaran extends Lingkaran {
         hitungLuas();
         hitungKeliling();
     }
-    
+
     public JuringLingkaran(double radius, double sudut, double customPi) throws InvalidInputException {
         super(radius, customPi);
         if (sudut < 0 || sudut > 360) {
@@ -53,13 +53,13 @@ public class JuringLingkaran extends Lingkaran {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Juring Lingkaran");
-        System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + super.pi);
-        System.out.println("Sudut\t: " + sudut);
-        System.out.println("Luas\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
+    public String tampilkanInfo() {
+        return "=== JURING LINGKARAN ===\n"
+                + "Radius\t: " + radius + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Sudut\t: " + sudut + "\n"
+                + "Luas\t: " + luas + "\n"
+                + "Keliling: " + keliling;
     }
 
     @Override

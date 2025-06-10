@@ -54,14 +54,14 @@ public class Kerucut extends Lingkaran implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Kerucut");
-        System.out.println("Radius\t: " + radius);
-        System.out.println("pi\t: " + super.pi);
-        System.out.println("Tinggi\t: " + tinggi);
-        System.out.println("Garis Pelukis\t: " + garisPelukis);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== KERUCUT ===\n"
+                + "Radius\t: " + radius + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Tinggi\t: " + tinggi + "\n"
+                + "Garis Pelukis: " + garisPelukis + "\n"
+                + "Volume\t: " + volume + "\n"
+                + "Luas Permukaan: " + luasPermukaan;
     }
 
     @Override

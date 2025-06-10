@@ -41,13 +41,13 @@ public class CincinBola extends Bola implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Cincin Bola");
-        System.out.println("Radius Luar\t: " + super.radius);
-        System.out.println("Radius Dalam\t: " + radiusDalam);
-        System.out.println("pi\t: " + pi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== CINCIN BOLA ===\n"
+                + "Radius Luar: " + super.radius + "\n"
+                + "Radius Dalam: " + radiusDalam + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Volume\t: " + volume + "\n"
+                + "Luas Permukaan: " + luasPermukaan;
     }
     
     @Override
