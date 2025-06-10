@@ -29,17 +29,17 @@ public class PrismaTrapesium extends Trapesium implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Prisma Trapesium");
-        System.out.println("Sisi Atas\t: " + sisiAtas);
-        System.out.println("Sisi Bawah\t: " + sisiBawah);
-        System.out.println("Sisi Kiri\t: " + sisiKiri);
-        System.out.println("Sisi Kanan\t: " + sisiKanan);
-        System.out.println("Tinggi Alas\t: " + tinggiAlas);
-        System.out.println("Tinggi Prisma\t: " + tinggi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
-    }
+    public String tampilkanInfo() {
+    return "=== PRISMA TRAPESIUM ===\n"
+            + "Sisi Atas\t: " + sisiAtas + "\n"
+            + "Sisi Bawah\t: " + sisiBawah + "\n"
+            + "Sisi Kiri\t: " + sisiKiri + "\n"
+            + "Sisi Kanan\t: " + sisiKanan + "\n"
+            + "Tinggi Alas\t: " + tinggiAlas + "\n"
+            + "Tinggi Prisma\t: " + tinggi + "\n"
+            + "Volume\t: " + volume + "\n"
+            + "Luas Permukaan\t: " + luasPermukaan;
+}
 
     @Override
     public void run() {
