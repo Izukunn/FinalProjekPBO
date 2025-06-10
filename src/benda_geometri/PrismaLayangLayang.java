@@ -13,14 +13,14 @@ public class PrismaLayangLayang extends LayangLayang implements Benda3D, Runnabl
             this.tinggiPrisma = 1.0;
             hitungVolume();
             hitungLuasPermukaan();
-        } catch (NegativeInputException e) {
+        } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
     }
 
     // Constructor utama
     public PrismaLayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang, double tinggiPrisma)
-            throws NegativeInputException {
+            throws InvalidInputException {
         super(diagonal1, diagonal2, sisiPendek, sisiPanjang);
         setTinggiPrisma(tinggiPrisma);
         hitungVolume();
@@ -32,9 +32,9 @@ public class PrismaLayangLayang extends LayangLayang implements Benda3D, Runnabl
         return tinggiPrisma;
     }
 
-    public void setTinggiPrisma(double tinggiPrisma) throws NegativeInputException {
+    public void setTinggiPrisma(double tinggiPrisma) throws InvalidInputException {
         if (tinggiPrisma < 0) {
-            throw new NegativeInputException("Tinggi prisma tidak boleh negatif!");
+            throw new InvalidInputException("Tinggi prisma tidak boleh negatif!");
         }
         this.tinggiPrisma = tinggiPrisma;
     }
@@ -47,18 +47,29 @@ public class PrismaLayangLayang extends LayangLayang implements Benda3D, Runnabl
         return luasPermukaan;
     }
 
-    // Perhitungan volume
+    // Perhitungan volume (void)
     @Override
-    public double hitungVolume() {
-        volume = super.hitungLuas() * tinggiPrisma;
-        return volume;
+    public void hitungVolume() {
+        volume = super.getLuas() * tinggiPrisma;
     }
 
-    // Perhitungan luas permukaan
+    // Perhitungan luas permukaan (void)
     @Override
-    public double hitungLuasPermukaan() {
-        luasPermukaan = (2 * super.hitungLuas()) + (super.hitungKeliling() * tinggiPrisma);
-        return luasPermukaan;
+    public void hitungLuasPermukaan() {
+        luasPermukaan = (2 * super.getLuas()) + (super.getKeliling() * tinggiPrisma);
+    }
+
+    // Tampilkan info lengkap (String)
+    @Override
+    public String tampilkanInfo() {
+        return "=== PRISMA LAYANG-LAYANG ===\n" +
+                "Diagonal 1\t: " + getDiagonal1() + "\n" +
+                "Diagonal 2\t: " + getDiagonal2() + "\n" +
+                "Sisi Pendek\t: " + getSisiPendek() + "\n" +
+                "Sisi Panjang\t: " + getSisiPanjang() + "\n" +
+                "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
+                "Volume\t\t: " + volume + "\n" +
+                "Luas Permukaan\t: " + luasPermukaan;
     }
 
     // Implementasi Runnable
@@ -66,18 +77,6 @@ public class PrismaLayangLayang extends LayangLayang implements Benda3D, Runnabl
     public void run() {
         hitungVolume();
         hitungLuasPermukaan();
-        tampilkanInfo();
+        System.out.println(tampilkanInfo());
     }
-
-    // Tampilkan info lengkap
-    @Override
-    public void tampilkanInfo() {
-        System.out.println("=== PRISMA LAYANG-LAYANG ===");
-        System.out.println("Diagonal 1\t: " + getDiagonal1());
-        System.out.println("Diagonal 2\t: " + getDiagonal2());
-        System.out.println("Sisi Pendek\t: " + getSisiPendek());
-        System.out.println("Sisi Panjang\t: " + getSisiPanjang());
-        System.out.println("Tinggi Prisma\t: " + tinggiPrisma);
-        System.out.println("Volume\t\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
-    }
+}
