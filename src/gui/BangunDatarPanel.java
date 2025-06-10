@@ -19,7 +19,8 @@ public class BangunDatarPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // ComboBox untuk memilih bangun datar
-        String[] bangunDatar = {"Pilih Bangun", "Segitiga", "Persegi", "Persegi Panjang", "Jajaran Genjang", "Trapesium", "Belah Ketupat", "Layang-Layang", "Lingkaran", "Tembereng Lingkaran", "Juring Lingkaran"};
+        String[] bangunDatar = {"Pilih Bangun", "Segitiga", "Persegi", "Persegi Panjang", "Jajaran Genjang",
+            "Trapesium", "Belah Ketupat", "Layang-Layang", "Lingkaran", "Tembereng Lingkaran", "Juring Lingkaran"};
         bangunComboBox = new JComboBox<>(bangunDatar);
         bangunComboBox.setPreferredSize(new Dimension(150, 25));
 

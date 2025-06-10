@@ -75,3 +75,4 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
         hitungLuasPermukaan();
         System.out.println(tampilkanInfo());
     }
+}

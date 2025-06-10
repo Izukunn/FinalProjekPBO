@@ -1,26 +1,48 @@
 package benda_geometri;
 
-public class KerucutTerpancung implements Benda3D {
+public class KerucutTerpancung extends Kerucut implements Benda3D {
 
     private double radiusBawah;
     private double radiusAtas;
-    private double pi = 3.14;
     private double tinggi;
     private double volume;
     private double luasPermukaan;
 
+    public KerucutTerpancung() {
+        super();
+        this.radiusAtas = 3;
+        hitungVolume();
+        hitungLuasPermukaan();
+    }
+
     public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi) throws InvalidInputException {
-        if (radiusBawah < 0 || radiusAtas < 0 || tinggi < 0) {
+        super(radiusBawah, tinggi);
+        if (radiusAtas < 0) {
             throw new InvalidInputException("Input tidak boleh negatif!");
+        } else if (radiusBawah < radiusAtas) {
+            throw new InvalidInputException("Radius atas kerucut tidak boleh lebih besar daripada radius bawah!");
         }
-        this.radiusBawah = radiusBawah;
         this.radiusAtas = radiusAtas;
-        this.tinggi = tinggi;
+        hitungVolume();
+        hitungLuasPermukaan();
+    }
+
+    public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi, double customPi) throws InvalidInputException {
+        super(radiusBawah, tinggi, customPi);
+        if (radiusAtas < 0) {
+            throw new InvalidInputException("Input tidak boleh negatif!");
+        } else if (radiusBawah < radiusAtas) {
+            throw new InvalidInputException("Radius atas kerucut tidak boleh lebih besar daripada radius bawah!");
+        }
+        this.radiusAtas = radiusAtas;
+        hitungVolume();
+        hitungLuasPermukaan();
     }
 
     @Override
     public void hitungVolume() {
-        volume = (1.0 / 3) * pi * tinggi* (Math.pow(radiusBawah, 2) + Math.pow(radiusAtas, 2) + (radiusBawah * radiusAtas));
+        super.hitungVolume();
+        volume = super.volume + (1.0 / 3) * pi * tinggi * (Math.pow(radiusAtas, 2) + (radiusBawah * radiusAtas));
     }
 
     @Override
@@ -31,14 +53,15 @@ public class KerucutTerpancung implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Kerucut Terpancung");
-        System.out.println("Radius Bawah\t: " + radiusBawah);
-        System.out.println("Radius Atas\t: " + radiusAtas);
-        System.out.println("Pi\t: " + pi);
-        System.out.println("Tinggi\t: " + tinggi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== Kerucut Terpancung ===\n"
+                + "Radius Bawah: " + radiusBawah + "\n"
+                + "Radius Atas: " + radiusAtas + "\n"
+                + "Tinggi Kerucut: " + tinggi + "\n"
+                + "Garis Pelukis: " + garisPelukis + "\n"
+                + "pi\t: " + super.pi + "\n"
+                + "Volume\t: " + volume + "\n"
+                + "Luas Permukaan: " + luasPermukaan;
     }
 
     @Override

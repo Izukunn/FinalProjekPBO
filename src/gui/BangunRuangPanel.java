@@ -172,10 +172,86 @@ public class BangunRuangPanel extends JPanel {
                 hitungButton.setEnabled(true);
                 break;
 
+            case "Kerucut Terpancung":
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Radius Bawah(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Radius Atas(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Tinggi(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Custom pi(opsional):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField("0", 10), gbc);
+                hitungButton.setEnabled(true);
+                break;
+
             case "Bola":
                 gbc.gridx = 0;
                 gbc.gridy = row;
                 inputPanel.add(new JLabel("Radius(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Custom pi(opsional):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField("0", 10), gbc);
+                hitungButton.setEnabled(true);
+                break;
+
+            case "Tembereng Bola":
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Radius Bola(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Tinggi Tembereng(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Custom pi(opsional):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField("0", 10), gbc);
+                hitungButton.setEnabled(true);
+                break;
+                
+                case "Juring Bola":
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Radius Bola(cm):"), gbc);
+                gbc.gridx = 1;
+                inputPanel.add(new JTextField(10), gbc);
+
+                row++;
+                gbc.gridx = 0;
+                gbc.gridy = row;
+                inputPanel.add(new JLabel("Tinggi Juring(cm):"), gbc);
                 gbc.gridx = 1;
                 inputPanel.add(new JTextField(10), gbc);
 
@@ -282,6 +358,24 @@ public class BangunRuangPanel extends JPanel {
                     }
                     break;
 
+                case "Kerucut Terpancung":
+                    double radiusBawahKerucutT = Double.parseDouble(((JTextField) components[1]).getText());
+                    double radiusAtasKerucutT = Double.parseDouble(((JTextField) components[3]).getText());
+                    double tinggiKerucutT = Double.parseDouble(((JTextField) components[5]).getText());
+                    double customPiKerucutT = Double.parseDouble(((JTextField) components[7]).getText());
+                    try {
+                        KerucutTerpancung kerucutT;
+                        if (customPiKerucutT == 0) {
+                            kerucutT = new KerucutTerpancung(radiusBawahKerucutT, radiusAtasKerucutT, tinggiKerucutT);
+                        } else {
+                            kerucutT = new KerucutTerpancung(radiusBawahKerucutT, radiusAtasKerucutT, tinggiKerucutT, customPiKerucutT);
+                        }
+                        result.append(kerucutT.tampilkanInfo());
+                    } catch (InvalidInputException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+
                 case "Bola":
                     double radiusBola = Double.parseDouble(((JTextField) components[1]).getText());
                     double customPiBola = Double.parseDouble(((JTextField) components[3]).getText());
@@ -293,6 +387,40 @@ public class BangunRuangPanel extends JPanel {
                             bola = new Bola(radiusBola, customPiBola);
                         }
                         result.append(bola.tampilkanInfo());
+                    } catch (InvalidInputException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+
+                case "Tembereng Bola":
+                    double radiusBolaTembereng = Double.parseDouble(((JTextField) components[1]).getText());
+                    double tinggiTembereng = Double.parseDouble(((JTextField) components[3]).getText());
+                    double customPiTembereng = Double.parseDouble(((JTextField) components[5]).getText());
+                    try {
+                        TemberengBola temberengBola;
+                        if (customPiTembereng == 0) {
+                            temberengBola = new TemberengBola(radiusBolaTembereng, tinggiTembereng);
+                        } else {
+                            temberengBola = new TemberengBola(radiusBolaTembereng, tinggiTembereng, customPiTembereng);
+                        }
+                        result.append(temberengBola.tampilkanInfo());
+                    } catch (InvalidInputException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+
+                case "Juring Bola":
+                    double radiusBolaJuring = Double.parseDouble(((JTextField) components[1]).getText());
+                    double tinggiJuring = Double.parseDouble(((JTextField) components[3]).getText());
+                    double customPiJuring = Double.parseDouble(((JTextField) components[5]).getText());
+                    try {
+                        JuringBola juringBola;
+                        if (customPiJuring == 0) {
+                            juringBola = new JuringBola(radiusBolaJuring, tinggiJuring);
+                        } else {
+                            juringBola = new JuringBola(radiusBolaJuring, tinggiJuring, customPiJuring);
+                        }
+                        result.append(juringBola.tampilkanInfo());
                     } catch (InvalidInputException ex) {
                         JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }

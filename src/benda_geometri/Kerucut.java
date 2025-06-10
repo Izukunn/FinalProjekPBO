@@ -2,10 +2,10 @@ package benda_geometri;
 
 public class Kerucut extends Lingkaran implements Benda3D {
 
-    private double tinggi;
-    private double garisPelukis;
-    private double volume;
-    private double luasPermukaan;
+    public double tinggi;
+    public double garisPelukis;
+    public double volume;
+    public double luasPermukaan;
 
     public Kerucut() {
         super();
