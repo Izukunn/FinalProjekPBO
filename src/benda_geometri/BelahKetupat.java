@@ -6,13 +6,10 @@ public class BelahKetupat implements Benda2D, Runnable {
     private double diagonal2;
     private double sisi;
 
-    // Tambah atribut luas & keliling
     private double luas;
     private double keliling;
 
-    // Constructor default
     public BelahKetupat() {
-        // Nilai default 1.0
         this.diagonal1 = 1.0;
         this.diagonal2 = 1.0;
         this.sisi = 1.0;
@@ -20,8 +17,7 @@ public class BelahKetupat implements Benda2D, Runnable {
         hitungKeliling();
     }
 
-    // Constructor dengan parameter
-    public BelahKetupat(double diagonal1, double diagonal2, double sisi) throws NegativeInputException {
+    public BelahKetupat(double diagonal1, double diagonal2, double sisi) throws InvalidInputException {
         setDiagonal1(diagonal1);
         setDiagonal2(diagonal2);
         setSisi(sisi);
@@ -29,14 +25,13 @@ public class BelahKetupat implements Benda2D, Runnable {
         hitungKeliling();
     }
 
-    // Getter & Setter
     public double getDiagonal1() {
         return diagonal1;
     }
 
-    public void setDiagonal1(double diagonal1) throws NegativeInputException {
+    public void setDiagonal1(double diagonal1) throws InvalidInputException {
         if (diagonal1 < 0) {
-            throw new NegativeInputException("Diagonal 1 tidak boleh negatif!");
+            throw new InvalidInputException("Diagonal 1 tidak boleh negatif!");
         }
         this.diagonal1 = diagonal1;
     }
@@ -45,9 +40,9 @@ public class BelahKetupat implements Benda2D, Runnable {
         return diagonal2;
     }
 
-    public void setDiagonal2(double diagonal2) throws NegativeInputException {
+    public void setDiagonal2(double diagonal2) throws InvalidInputException {
         if (diagonal2 < 0) {
-            throw new NegativeInputException("Diagonal 2 tidak boleh negatif!");
+            throw new InvalidInputException("Diagonal 2 tidak boleh negatif!");
         }
         this.diagonal2 = diagonal2;
     }
@@ -56,14 +51,13 @@ public class BelahKetupat implements Benda2D, Runnable {
         return sisi;
     }
 
-    public void setSisi(double sisi) throws NegativeInputException {
+    public void setSisi(double sisi) throws InvalidInputException {
         if (sisi < 0) {
-            throw new NegativeInputException("Sisi tidak boleh negatif!");
+            throw new InvalidInputException("Sisi tidak boleh negatif!");
         }
         this.sisi = sisi;
     }
 
-    // Getter untuk luas dan keliling
     public double getLuas() {
         return luas;
     }
@@ -72,36 +66,30 @@ public class BelahKetupat implements Benda2D, Runnable {
         return keliling;
     }
 
-    // Hitung luas (simpan ke atribut luas)
     @Override
-    public double hitungLuas() {
+    public void hitungLuas() {
         luas = (diagonal1 * diagonal2) / 2.0;
-        return luas;
     }
 
-    // Hitung keliling (simpan ke atribut keliling)
     @Override
-    public double hitungKeliling() {
+    public void hitungKeliling() {
         keliling = 4 * sisi;
-        return keliling;
     }
 
-    // Tampilkan info
     @Override
-    public void tampilkanInfo() {
-        System.out.println("=== BELAH KETUPAT ===");
-        System.out.println("Diagonal 1\t: " + diagonal1);
-        System.out.println("Diagonal 2\t: " + diagonal2);
-        System.out.println("Sisi\t\t: " + sisi);
-        System.out.println("Luas\t\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
+    public String tampilkanInfo() {
+        return "=== BELAH KETUPAT ===\n" +
+               "Diagonal 1\t: " + diagonal1 + "\n" +
+               "Diagonal 2\t: " + diagonal2 + "\n" +
+               "Sisi\t\t: " + sisi + "\n" +
+               "Luas\t\t: " + luas + "\n" +
+               "Keliling\t: " + keliling;
     }
 
-    // Runnable (multi-thread)
     @Override
     public void run() {
         hitungLuas();
         hitungKeliling();
-        tampilkanInfo();
+        System.out.println(tampilkanInfo());
     }
 }
