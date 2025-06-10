@@ -46,16 +46,16 @@ public class Trapesium implements Benda2D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Trapesium");
-        System.out.println("Sisi Atas\t: " + sisiAtas);
-        System.out.println("Sisi Bawah\t: " + sisiBawah);
-        System.out.println("Sisi Kiri\t: " + sisiKiri);
-        System.out.println("Sisi Kanan\t: " + sisiKanan);
-        System.out.println("Tinggi\t: " + tinggiAlas);
-        System.out.println("Luas\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
-    }
+    public String tampilkanInfo() {
+    return "=== TRAPESIUM ===\n"
+            + "Sisi Atas\t: " + sisiAtas + "\n"
+            + "Sisi Bawah\t: " + sisiBawah + "\n"
+            + "Sisi Kiri\t: " + sisiKiri + "\n"
+            + "Sisi Kanan\t: " + sisiKanan + "\n"
+            + "Tinggi\t: " + tinggiAlas + "\n"
+            + "Luas\t: " + luas + "\n"
+            + "Keliling\t: " + keliling;
+}
 
     @Override
     public void run() {
