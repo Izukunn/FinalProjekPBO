@@ -7,11 +7,9 @@ public class LayangLayang implements Benda2D, Runnable {
     private double sisiPendek;
     private double sisiPanjang;
 
-    // Tambahan atribut
     private double luas;
     private double keliling;
 
-    // Constructor default
     public LayangLayang() {
         this.diagonal1 = 1.0;
         this.diagonal2 = 1.0;
@@ -21,9 +19,8 @@ public class LayangLayang implements Benda2D, Runnable {
         hitungKeliling();
     }
 
-    // Constructor overloading dengan parameter
     public LayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang)
-            throws NegativeInputException {
+            throws InvalidInputException {
         setDiagonal1(diagonal1);
         setDiagonal2(diagonal2);
         setSisiPendek(sisiPendek);
@@ -32,14 +29,13 @@ public class LayangLayang implements Benda2D, Runnable {
         hitungKeliling();
     }
 
-    // Getter dan Setter
     public double getDiagonal1() {
         return diagonal1;
     }
 
-    public void setDiagonal1(double diagonal1) throws NegativeInputException {
+    public void setDiagonal1(double diagonal1) throws InvalidInputException {
         if (diagonal1 < 0) {
-            throw new NegativeInputException("Diagonal 1 tidak boleh negatif!");
+            throw new InvalidInputException("Diagonal 1 tidak boleh negatif!");
         }
         this.diagonal1 = diagonal1;
     }
@@ -48,9 +44,9 @@ public class LayangLayang implements Benda2D, Runnable {
         return diagonal2;
     }
 
-    public void setDiagonal2(double diagonal2) throws NegativeInputException {
+    public void setDiagonal2(double diagonal2) throws InvalidInputException {
         if (diagonal2 < 0) {
-            throw new NegativeInputException("Diagonal 2 tidak boleh negatif!");
+            throw new InvalidInputException("Diagonal 2 tidak boleh negatif!");
         }
         this.diagonal2 = diagonal2;
     }
@@ -59,9 +55,9 @@ public class LayangLayang implements Benda2D, Runnable {
         return sisiPendek;
     }
 
-    public void setSisiPendek(double sisiPendek) throws NegativeInputException {
+    public void setSisiPendek(double sisiPendek) throws InvalidInputException {
         if (sisiPendek < 0) {
-            throw new NegativeInputException("Sisi pendek tidak boleh negatif!");
+            throw new InvalidInputException("Sisi pendek tidak boleh negatif!");
         }
         this.sisiPendek = sisiPendek;
     }
@@ -70,14 +66,13 @@ public class LayangLayang implements Benda2D, Runnable {
         return sisiPanjang;
     }
 
-    public void setSisiPanjang(double sisiPanjang) throws NegativeInputException {
+    public void setSisiPanjang(double sisiPanjang) throws InvalidInputException {
         if (sisiPanjang < 0) {
-            throw new NegativeInputException("Sisi panjang tidak boleh negatif!");
+            throw new InvalidInputException("Sisi panjang tidak boleh negatif!");
         }
         this.sisiPanjang = sisiPanjang;
     }
 
-    // Getter untuk luas dan keliling
     public double getLuas() {
         return luas;
     }
@@ -86,35 +81,31 @@ public class LayangLayang implements Benda2D, Runnable {
         return keliling;
     }
 
-    // Perhitungan luas dan keliling
     @Override
-    public double hitungLuas() {
+    public void hitungLuas() {
         luas = 0.5 * diagonal1 * diagonal2;
-        return luas;
     }
 
     @Override
-    public double hitungKeliling() {
+    public void hitungKeliling() {
         keliling = 2 * (sisiPendek + sisiPanjang);
-        return keliling;
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("=== LAYANG-LAYANG ===");
-        System.out.println("Diagonal 1\t: " + diagonal1);
-        System.out.println("Diagonal 2\t: " + diagonal2);
-        System.out.println("Sisi Pendek\t: " + sisiPendek);
-        System.out.println("Sisi Panjang\t: " + sisiPanjang);
-        System.out.println("Luas\t\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
+    public String tampilkanInfo() {
+        return "=== LAYANG-LAYANG ===\n" +
+               "Diagonal 1\t: " + diagonal1 + "\n" +
+               "Diagonal 2\t: " + diagonal2 + "\n" +
+               "Sisi Pendek\t: " + sisiPendek + "\n" +
+               "Sisi Panjang\t: " + sisiPanjang + "\n" +
+               "Luas\t\t: " + luas + "\n" +
+               "Keliling\t: " + keliling;
     }
 
-    // Multi-thread support
     @Override
     public void run() {
         hitungLuas();
         hitungKeliling();
-        tampilkanInfo();
+        System.out.println(tampilkanInfo());
     }
 }
