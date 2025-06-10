@@ -1,133 +1,70 @@
 package benda_geometri;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Segitiga implements Benda2D {
 
-    /**
-     * Default constructor
-     */
-    public Segitiga() {
-    }
-
-    /**
-     * 
-     */
     private double alas;
-
-    /**
-     * 
-     */
     private double tinggi;
+    private double luas;
+    private double keliling;
 
-    /**
-     * 
-     */
-    private double sisiA;
+    public Segitiga() {
+        this.alas = 10;
+        this.tinggi = 5;
+        hitungLuas();
+        hitungKeliling();
+    }
 
-    /**
-     * 
-     */
-    private double sisiB;
+    public Segitiga(double alas, double tinggi) throws InvalidInputException {
+        if (alas < 0 || tinggi < 0) {
+            throw new InvalidInputException("Alas dan tinggi tidak boleh negatif!");
+        }
+        this.alas = alas;
+        this.tinggi = tinggi;
+        hitungLuas();
+        hitungKeliling();
+    }
 
-    /**
-     * 
-     */
-    private double sisiC;
-
-    /**
-     * @return
-     */
     public double getAlas() {
-        // TODO implement here
-        return 0.0d;
+        return alas;
     }
 
-    /**
-     * @param alas
-     */
-    public void setAlas(double alas) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
     public double getTinggi() {
-        // TODO implement here
-        return 0.0d;
+        return tinggi;
     }
 
-    /**
-     * @param tinggi
-     */
-    public void setTinggi(double tinggi) {
-        // TODO implement here
+    @Override
+    public void hitungLuas() {
+        luas = 0.5 * alas * tinggi;
     }
 
-    /**
-     * @return
-     */
-    public double getSisiA() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void hitungKeliling() {
+        double sisiMiring = Math.sqrt(Math.pow(alas / 2, 2) + Math.pow(tinggi, 2));
+        keliling = alas + 2 * sisiMiring;
     }
 
-    /**
-     * @param sisiA
-     */
-    public void setSisiA(double sisiA) {
-        // TODO implement here
+    @Override
+    public String tampilkanInfo() {
+        return "=== SEGITIGA ===\n"
+                + "Alas\t: " + alas + "\n"
+                + "Tinggi\t: " + tinggi + "\n"
+                + "Luas\t: " + luas + "\n"
+                + "Keliling: " + keliling;
     }
 
-    /**
-     * @return
-     */
-    public double getSisiB() {
-        // TODO implement here
-        return 0.0d;
+    @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
     }
 
-    /**
-     * @param sisiB
-     */
-    public void setSisiB(double sisiB) {
-        // TODO implement here
+    public double hitungLuasReturn() {
+        return 0.5 * alas * tinggi;
     }
 
-    /**
-     * @return
-     */
-    public double getSisiC() {
-        // TODO implement here
-        return 0.0d;
+    public double hitungKelilingReturn() {
+        double sisiMiring = Math.sqrt(Math.pow(alas / 2, 2) + Math.pow(tinggi, 2));
+        return alas + 2 * sisiMiring;
     }
-
-    /**
-     * @param sisiC
-     */
-    public void setSisiC(double sisiC) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public double hitungLuas() {
-        // TODO implement Benda2D.hitungLuas() here
-        return 0.0d;
-    }
-
-    /**
-     * @return
-     */
-    public double hitungKeliling() {
-        // TODO implement Benda2D.hitungKeliling() here
-        return 0.0d;
-    }
-
 }
