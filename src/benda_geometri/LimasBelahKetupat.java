@@ -54,4 +54,11 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D {
                 "Volume\t\t: " + volume + "\n" +
                 "Luas Permukaan\t: " + luasPermukaan;
     }
+
+    @Override
+    public void run() {
+        hitungVolume();
+        hitungLuasPermukaan();
+       tampilkanInfo();
+    }
 }
