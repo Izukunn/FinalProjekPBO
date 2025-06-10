@@ -6,7 +6,7 @@ public class LimasSegitiga extends Segitiga implements Benda3D {
     private double volume;
     private double luasPermukaan;
 
-    public LimasSegitiga() {
+    public LimasSegitiga() throws InvalidInputException {
         super(6, 4);
         this.tinggiLimas = 10;
         hitungVolume();
