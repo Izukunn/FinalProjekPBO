@@ -76,7 +76,7 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
     public void run() {
         hitungVolume();
         hitungLuasPermukaan();
-        System.out.println(tampilkanInfo());
+        tampilkanInfo();
     }
 }
 

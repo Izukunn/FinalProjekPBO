@@ -1,24 +1,12 @@
 package benda_geometri;
 
-public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable {
+public class LimasBelahKetupat extends BelahKetupat implements Benda3D {
 
     private double tinggiPrisma;
     private double volume;
     private double luasPermukaan;
 
-    public LimasBelahKetupat() {
-        superDummy();
-        try {
-            this.tinggiPrisma = 1.0;
-            hitungVolume();
-            hitungLuasPermukaan();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public LimasBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma)
-            throws InvalidInputException {
+    public LimasBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma) throws InvalidInputException {
         super(diagonal1, diagonal2, sisi);
         setTinggiPrisma(tinggiPrisma);
         hitungVolume();
@@ -46,13 +34,11 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
 
     @Override
     public void hitungVolume() {
-        super.hitungLuas(); // Pastikan luas alas diperbarui
         volume = (1.0 / 3) * super.getLuas() * tinggiPrisma;
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        // Estimasi tinggi segitiga selimut
         double tinggiSegitiga = Math.sqrt(Math.pow(tinggiPrisma, 2) + Math.pow(getSisi(), 2) / 4);
         double luasSelimut = 4 * (0.5 * getSisi() * tinggiSegitiga);
         luasPermukaan = super.getLuas() + luasSelimut;
@@ -61,18 +47,18 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
     @Override
     public String tampilkanInfo() {
         return "=== LIMAS BELAH KETUPAT ===\n" +
-               "Diagonal 1\t: " + getDiagonal1() + "\n" +
-               "Diagonal 2\t: " + getDiagonal2() + "\n" +
-               "Sisi\t\t: " + getSisi() + "\n" +
-               "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
-               "Volume\t\t: " + volume + "\n" +
-               "Luas Permukaan\t: " + luasPermukaan;
+                "Diagonal 1\t: " + getDiagonal1() + "\n" +
+                "Diagonal 2\t: " + getDiagonal2() + "\n" +
+                "Sisi\t\t: " + getSisi() + "\n" +
+                "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
+                "Volume\t\t: " + volume + "\n" +
+                "Luas Permukaan\t: " + luasPermukaan;
     }
 
     @Override
     public void run() {
         hitungVolume();
         hitungLuasPermukaan();
-        System.out.println(tampilkanInfo());
+       tampilkanInfo();
     }
 }

@@ -1,33 +1,16 @@
 package benda_geometri;
 
-public class LimasLayangLayang extends LayangLayang implements Benda3D, Runnable {
+public class LimasLayangLayang extends LayangLayang implements Benda3D {
 
     private double tinggiPrisma;
     private double volume;
     private double luasPermukaan;
 
-    // Constructor default (nilai dummy valid)
-    public LimasLayangLayang() {
-        superDummy();
-        try {
-            this.tinggiPrisma = 1.0;
-            hitungVolume();
-            hitungLuasPermukaan();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    // Constructor utama
-    public LimasLayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang, double tinggiPrisma)
-            throws InvalidInputException {
+    public LimasLayangLayang(double diagonal1, double diagonal2, double sisiPendek, double sisiPanjang, double tinggiPrisma) throws InvalidInputException {
         super(diagonal1, diagonal2, sisiPendek, sisiPanjang);
         setTinggiPrisma(tinggiPrisma);
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
-    // Getter dan Setter
     public double getTinggiPrisma() {
         return tinggiPrisma;
     }
@@ -39,30 +22,21 @@ public class LimasLayangLayang extends LayangLayang implements Benda3D, Runnable
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public double getVolume() {
-        return volume;
-    }
-
-    public double getLuasPermukaan() {
-        return luasPermukaan;
-    }
-
-    // Perhitungan volume (void)
+    // hitungVolume menjadi void
     @Override
     public void hitungVolume() {
         volume = (1.0 / 3) * super.getLuas() * tinggiPrisma;
     }
 
-    // Perhitungan luas permukaan (void)
+    // hitungLuasPermukaan menjadi void
     @Override
     public void hitungLuasPermukaan() {
-        // Estimasi tinggi segitiga selimut menggunakan sisi panjang dan tinggi prisma
         double tinggiSegitiga = Math.sqrt(Math.pow(tinggiPrisma, 2) + Math.pow(getSisiPanjang(), 2) / 4);
         double luasSelimut = 4 * (0.5 * getSisiPanjang() * tinggiSegitiga);
         luasPermukaan = super.getLuas() + luasSelimut;
     }
 
-    // Tampilkan info lengkap (String)
+    // tampilkanInfo menjadi String
     @Override
     public String tampilkanInfo() {
         return "=== LIMAS LAYANG-LAYANG ===\n" +
@@ -75,11 +49,11 @@ public class LimasLayangLayang extends LayangLayang implements Benda3D, Runnable
                 "Luas Permukaan\t: " + luasPermukaan;
     }
 
-    // Implementasi Runnable
-    @Override
-    public void run() {
-        hitungVolume();
-        hitungLuasPermukaan();
-        System.out.println(tampilkanInfo());
+    public double getVolume() {
+        return volume;
+    }
+
+    public double getLuasPermukaan() {
+        return luasPermukaan;
     }
 }

@@ -90,6 +90,6 @@ public class BelahKetupat implements Benda2D, Runnable {
     public void run() {
         hitungLuas();
         hitungKeliling();
-        System.out.println(tampilkanInfo());
+        tampilkanInfo();
     }
 }
