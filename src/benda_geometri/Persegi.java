@@ -26,12 +26,12 @@ public class Persegi implements Benda2D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Persegi");
-        System.out.println("Sisi\t: " + sisi);
-        System.out.println("Luas\t: " + luas);
-        System.out.println("Keliling\t: " + keliling);
-    }
+    public String tampilkanInfo() {
+    return "=== PERSEGI ===\n"
+            + "Sisi\t: " + sisi + "\n"
+            + "Luas\t: " + luas + "\n"
+            + "Keliling\t: " + keliling;
+}
 
     @Override
     public void run() {
