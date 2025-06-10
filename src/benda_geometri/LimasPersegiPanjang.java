@@ -33,14 +33,14 @@ public class LimasPersegiPanjang extends PersegiPanjang implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Limas Persegi Panjang");
-        System.out.println("Panjang Alas\t: " + panjang);
-        System.out.println("Lebar Alas\t: " + lebar);
-        System.out.println("Tinggi\t: " + tinggi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
-    }
+    public String tampilkanInfo() {
+    return "=== LIMAS PERSEGI PANJANG ===\n"
+            + "Panjang Alas\t: " + panjang + "\n"
+            + "Lebar Alas\t: " + lebar + "\n"
+            + "Tinggi\t: " + tinggi + "\n"
+            + "Volume\t: " + volume + "\n"
+            + "Luas Permukaan\t: " + luasPermukaan;
+}
 
     @Override
     public void run() {
