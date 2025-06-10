@@ -6,7 +6,7 @@ public class LimasJajaranGenjang extends JajaranGenjang implements Benda3D {
     private double volume;
     private double luasPermukaan;
 
-    public LimasJajaranGenjang() {
+    public LimasJajaranGenjang() throws InvalidInputException {
         super(8, 5, 6);
         this.tinggiLimas = 12;
         hitungVolume();
