@@ -83,13 +83,3 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
         hitungLuasPermukaan();
         tampilkanInfo();
     }
-
-    // Penanganan default konstruktor superclass yang butuh parameter
-    private static void superDummy() {
-        try {
-            new BelahKetupat(1, 1, 1); // dummy object to initialize superclass
-        } catch (NegativeInputException e) {
-            // Tidak akan terjadi karena input valid
-        }
-    }
-}
