@@ -6,7 +6,7 @@ public class PrismaJajaranGenjang extends JajaranGenjang implements Benda3D {
     private double volume;
     private double luasPermukaan;
 
-    public PrismaJajaranGenjang() {
+    public PrismaJajaranGenjang() throws InvalidInputException {
         super(6, 4, 5);
         this.tinggiPrisma = 12;
         hitungVolume();
