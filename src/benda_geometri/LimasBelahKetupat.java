@@ -6,7 +6,6 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
     private double volume;
     private double luasPermukaan;
 
-    // Constructor default (nilai dummy valid)
     public LimasBelahKetupat() {
         superDummy();
         try {
@@ -18,23 +17,21 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
         }
     }
 
-    // Constructor utama
     public LimasBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma)
-            throws NegativeInputException {
+            throws InvalidInputException {
         super(diagonal1, diagonal2, sisi);
         setTinggiPrisma(tinggiPrisma);
         hitungVolume();
         hitungLuasPermukaan();
     }
 
-    // Setter dan Getter
     public double getTinggiPrisma() {
         return tinggiPrisma;
     }
 
-    public void setTinggiPrisma(double tinggiPrisma) throws NegativeInputException {
+    public void setTinggiPrisma(double tinggiPrisma) throws InvalidInputException {
         if (tinggiPrisma < 0) {
-            throw new NegativeInputException("Tinggi prisma tidak boleh negatif!");
+            throw new InvalidInputException("Tinggi prisma tidak boleh negatif!");
         }
         this.tinggiPrisma = tinggiPrisma;
     }
@@ -47,39 +44,34 @@ public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable
         return luasPermukaan;
     }
 
-    // Perhitungan volume
     @Override
-    public double hitungVolume() {
-        volume = (1.0 / 3) * super.hitungLuas() * tinggiPrisma;
-        return volume;
+    public void hitungVolume() {
+        super.hitungLuas(); // Pastikan luas alas diperbarui
+        volume = (1.0 / 3) * super.getLuas() * tinggiPrisma;
     }
 
-    // Perhitungan luas permukaan
     @Override
-    public double hitungLuasPermukaan() {
-        // Estimasi tinggi segitiga selimut menggunakan Pythagoras
+    public void hitungLuasPermukaan() {
+        // Estimasi tinggi segitiga selimut
         double tinggiSegitiga = Math.sqrt(Math.pow(tinggiPrisma, 2) + Math.pow(getSisi(), 2) / 4);
         double luasSelimut = 4 * (0.5 * getSisi() * tinggiSegitiga);
-        luasPermukaan = super.hitungLuas() + luasSelimut;
-        return luasPermukaan;
+        luasPermukaan = super.getLuas() + luasSelimut;
     }
 
-    // Tampilkan info lengkap
     @Override
-    public void tampilkanInfo() {
-        System.out.println("=== LIMAS BELAH KETUPAT ===");
-        System.out.println("Diagonal 1\t: " + getDiagonal1());
-        System.out.println("Diagonal 2\t: " + getDiagonal2());
-        System.out.println("Sisi\t\t: " + getSisi());
-        System.out.println("Tinggi Prisma\t: " + tinggiPrisma);
-        System.out.println("Volume\t\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== LIMAS BELAH KETUPAT ===\n" +
+               "Diagonal 1\t: " + getDiagonal1() + "\n" +
+               "Diagonal 2\t: " + getDiagonal2() + "\n" +
+               "Sisi\t\t: " + getSisi() + "\n" +
+               "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
+               "Volume\t\t: " + volume + "\n" +
+               "Luas Permukaan\t: " + luasPermukaan;
     }
 
-    // Implementasi Runnable
     @Override
     public void run() {
         hitungVolume();
         hitungLuasPermukaan();
-        tampilkanInfo();
+        System.out.println(tampilkanInfo());
     }
