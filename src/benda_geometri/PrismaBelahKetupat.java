@@ -6,23 +6,13 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
     private double volume;
     private double luasPermukaan;
 
-    // Constructor default (nilai dummy valid)
-    public PrismaBelahKetupat() {
-        superDummy();
-        try {
-            this.tinggiPrisma = 1.0;
-            hitungVolume();
-            hitungLuasPermukaan();
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     // Constructor utama
     public PrismaBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma)
             throws InvalidInputException {
         super(diagonal1, diagonal2, sisi);
         setTinggiPrisma(tinggiPrisma);
+        hitungLuas();
+        hitungKeliling();
         hitungVolume();
         hitungLuasPermukaan();
     }
@@ -47,19 +37,26 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         return luasPermukaan;
     }
 
-    // Perhitungan volume (void)
     @Override
     public void hitungVolume() {
         volume = super.getLuas() * tinggiPrisma;
     }
 
-    // Perhitungan luas permukaan (void)
     @Override
     public void hitungLuasPermukaan() {
         luasPermukaan = (2 * super.getLuas()) + (super.getKeliling() * tinggiPrisma);
     }
 
-    // Tampilkan info lengkap (String)
+    @Override
+    public void hitungLuas() {
+        super.hitungLuas();
+    }
+
+    @Override
+    public void hitungKeliling() {
+        super.hitungKeliling();
+    }
+
     @Override
     public String tampilkanInfo() {
         return "=== PRISMA BELAH KETUPAT ===\n" +
@@ -67,16 +64,18 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
                 "Diagonal 2\t: " + getDiagonal2() + "\n" +
                 "Sisi\t\t: " + getSisi() + "\n" +
                 "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
+                "Luas Alas\t: " + getLuas() + "\n" +
+                "Keliling Alas\t: " + getKeliling() + "\n" +
                 "Volume\t\t: " + volume + "\n" +
                 "Luas Permukaan\t: " + luasPermukaan;
     }
 
-    // Implementasi Runnable
     @Override
     public void run() {
+        hitungLuas();
+        hitungKeliling();
         hitungVolume();
         hitungLuasPermukaan();
         tampilkanInfo();
     }
 }
-
