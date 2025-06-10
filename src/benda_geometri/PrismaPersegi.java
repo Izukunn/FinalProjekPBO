@@ -30,13 +30,13 @@ public class PrismaPersegi extends Persegi implements Benda3D {
     }
 
     @Override
-    public void tampilkanInfo() {
-        System.out.println("Bangun\t: Prisma Persegi");
-        System.out.println("Sisi Alas\t: " + sisi);
-        System.out.println("Tinggi\t: " + tinggi);
-        System.out.println("Volume\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
-    }
+    public String tampilkanInfo() {
+    return "=== PRISMA PERSEGI ===\n"
+            + "Sisi Alas\t: " + sisi + "\n"
+            + "Tinggi\t: " + tinggi + "\n"
+            + "Volume\t: " + volume + "\n"
+            + "Luas Permukaan\t: " + luasPermukaan;
+}
 
     @Override
     public void run() {
