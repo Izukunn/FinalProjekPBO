@@ -6,35 +6,35 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
     private double volume;
     private double luasPermukaan;
 
-    // Constructor default (nilai dummy valid)
+    // Constructor default
     public PrismaBelahKetupat() {
         superDummy();
         try {
             this.tinggiPrisma = 1.0;
             hitungVolume();
             hitungLuasPermukaan();
-        } catch (NegativeInputException e) {
+        } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         }
     }
 
     // Constructor utama
     public PrismaBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma)
-            throws NegativeInputException {
+            throws InvalidInputException {
         super(diagonal1, diagonal2, sisi);
         setTinggiPrisma(tinggiPrisma);
         hitungVolume();
         hitungLuasPermukaan();
     }
 
-    // Getter dan Setter
+    // Getter & Setter
     public double getTinggiPrisma() {
         return tinggiPrisma;
     }
 
-    public void setTinggiPrisma(double tinggiPrisma) throws NegativeInputException {
+    public void setTinggiPrisma(double tinggiPrisma) throws InvalidInputException {
         if (tinggiPrisma < 0) {
-            throw new NegativeInputException("Tinggi prisma tidak boleh negatif!");
+            throw new InvalidInputException("Tinggi prisma tidak boleh negatif!");
         }
         this.tinggiPrisma = tinggiPrisma;
     }
@@ -47,30 +47,40 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         return luasPermukaan;
     }
 
-    // Perhitungan volume
+    // hitungLuas ➜ void
     @Override
-    public double hitungVolume() {
+    public void hitungLuas() {
+        super.hitungLuas();
+    }
+
+    // hitungKeliling ➜ void
+    @Override
+    public void hitungKeliling() {
+        super.hitungKeliling();
+    }
+
+    // hitungVolume ➜ void
+    @Override
+    public void hitungVolume() {
         volume = super.hitungLuas() * tinggiPrisma;
-        return volume;
     }
 
-    // Perhitungan luas permukaan
+    // hitungLuasPermukaan ➜ void
     @Override
-    public double hitungLuasPermukaan() {
+    public void hitungLuasPermukaan() {
         luasPermukaan = (2 * super.hitungLuas()) + (super.hitungKeliling() * tinggiPrisma);
-        return luasPermukaan;
     }
 
-    // Tampilkan info lengkap
+    // tampilkanInfo ➜ String
     @Override
-    public void tampilkanInfo() {
-        System.out.println("=== PRISMA BELAH KETUPAT ===");
-        System.out.println("Diagonal 1\t: " + getDiagonal1());
-        System.out.println("Diagonal 2\t: " + getDiagonal2());
-        System.out.println("Sisi\t\t: " + getSisi());
-        System.out.println("Tinggi Prisma\t: " + tinggiPrisma);
-        System.out.println("Volume\t\t: " + volume);
-        System.out.println("Luas Permukaan\t: " + luasPermukaan);
+    public String tampilkanInfo() {
+        return "=== PRISMA BELAH KETUPAT ===\n" +
+               "Diagonal 1\t: " + getDiagonal1() + "\n" +
+               "Diagonal 2\t: " + getDiagonal2() + "\n" +
+               "Sisi\t\t: " + getSisi() + "\n" +
+               "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
+               "Volume\t\t: " + volume + "\n" +
+               "Luas Permukaan\t: " + luasPermukaan + "\n";
     }
 
     // Implementasi Runnable
@@ -78,5 +88,15 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
     public void run() {
         hitungVolume();
         hitungLuasPermukaan();
-        tampilkanInfo();
+        System.out.println(tampilkanInfo());
     }
+
+    // Dummy super konstruktor (untuk constructor default)
+    private static void superDummy() {
+        try {
+            new BelahKetupat(1, 1, 1);
+        } catch (InvalidInputException e) {
+            // Tidak error
+        }
+    }
+}
