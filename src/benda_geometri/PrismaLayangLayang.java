@@ -81,13 +81,3 @@ public class PrismaLayangLayang extends LayangLayang implements Benda3D, Runnabl
         System.out.println("Volume\t\t: " + volume);
         System.out.println("Luas Permukaan\t: " + luasPermukaan);
     }
-
-    // Dummy super konstruktor untuk default
-    private static void superDummy() {
-        try {
-            new LayangLayang(1, 1, 1, 1);
-        } catch (NegativeInputException e) {
-            // tidak akan error karena input valid
-        }
-    }
-}
