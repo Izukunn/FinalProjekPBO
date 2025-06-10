@@ -6,7 +6,7 @@ public class PrismaSegitiga extends Segitiga implements Benda3D {
     private double volume;
     private double luasPermukaan;
 
-    public PrismaSegitiga() {
+    public PrismaSegitiga() throws InvalidInputException {
         super(5, 4);
         this.tinggiPrisma = 10;
         hitungVolume();
