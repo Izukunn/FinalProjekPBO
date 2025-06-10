@@ -6,7 +6,7 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
     private double volume;
     private double luasPermukaan;
 
-    // Constructor default
+    // Constructor default (nilai dummy valid)
     public PrismaBelahKetupat() {
         superDummy();
         try {
@@ -27,7 +27,7 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         hitungLuasPermukaan();
     }
 
-    // Getter & Setter
+    // Getter dan Setter
     public double getTinggiPrisma() {
         return tinggiPrisma;
     }
@@ -47,40 +47,28 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         return luasPermukaan;
     }
 
-    // hitungLuas ➜ void
-    @Override
-    public void hitungLuas() {
-        super.hitungLuas();
-    }
-
-    // hitungKeliling ➜ void
-    @Override
-    public void hitungKeliling() {
-        super.hitungKeliling();
-    }
-
-    // hitungVolume ➜ void
+    // Perhitungan volume (void)
     @Override
     public void hitungVolume() {
-        volume = super.hitungLuas() * tinggiPrisma;
+        volume = super.getLuas() * tinggiPrisma;
     }
 
-    // hitungLuasPermukaan ➜ void
+    // Perhitungan luas permukaan (void)
     @Override
     public void hitungLuasPermukaan() {
-        luasPermukaan = (2 * super.hitungLuas()) + (super.hitungKeliling() * tinggiPrisma);
+        luasPermukaan = (2 * super.getLuas()) + (super.getKeliling() * tinggiPrisma);
     }
 
-    // tampilkanInfo ➜ String
+    // Tampilkan info lengkap (String)
     @Override
     public String tampilkanInfo() {
         return "=== PRISMA BELAH KETUPAT ===\n" +
-               "Diagonal 1\t: " + getDiagonal1() + "\n" +
-               "Diagonal 2\t: " + getDiagonal2() + "\n" +
-               "Sisi\t\t: " + getSisi() + "\n" +
-               "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
-               "Volume\t\t: " + volume + "\n" +
-               "Luas Permukaan\t: " + luasPermukaan + "\n";
+                "Diagonal 1\t: " + getDiagonal1() + "\n" +
+                "Diagonal 2\t: " + getDiagonal2() + "\n" +
+                "Sisi\t\t: " + getSisi() + "\n" +
+                "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
+                "Volume\t\t: " + volume + "\n" +
+                "Luas Permukaan\t: " + luasPermukaan;
     }
 
     // Implementasi Runnable
@@ -90,13 +78,5 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         hitungLuasPermukaan();
         System.out.println(tampilkanInfo());
     }
-
-    // Dummy super konstruktor (untuk constructor default)
-    private static void superDummy() {
-        try {
-            new BelahKetupat(1, 1, 1);
-        } catch (InvalidInputException e) {
-            // Tidak error
-        }
-    }
 }
+
