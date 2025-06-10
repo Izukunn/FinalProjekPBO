@@ -80,13 +80,3 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         hitungLuasPermukaan();
         tampilkanInfo();
     }
-
-    // Penanganan default konstruktor superclass
-    private static void superDummy() {
-        try {
-            new BelahKetupat(1, 1, 1); // Dummy object
-        } catch (NegativeInputException e) {
-            // Tidak akan terjadi karena input valid
-        }
-    }
-}
