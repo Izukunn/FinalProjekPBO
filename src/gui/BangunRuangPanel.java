@@ -229,10 +229,10 @@ public class BangunRuangPanel extends JPanel {
                 Component[] components = inputPanel.getComponents();
                 switch (selected) {
                     case "Prisma Persegi":
-                        double sisiPrisma = Double.parseDouble(((JTextField) components[1]).getText());
-                        double tinggiPrisma = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiPrismaP = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggiPrismaP = Double.parseDouble(((JTextField) components[3]).getText());
                         try {
-                            PrismaPersegi prismaPersegi = new PrismaPersegi(sisiPrisma, tinggiPrisma);
+                            PrismaPersegi prismaPersegi = new PrismaPersegi(sisiPrismaP, tinggiPrismaP);
                             Thread prismaThread = new Thread(prismaPersegi);
                             prismaThread.start();
                             prismaThread.join();
@@ -261,11 +261,11 @@ public class BangunRuangPanel extends JPanel {
                         break;
 
                     case "Prisma Persegi Panjang":
-                        double panjangPrisma = Double.parseDouble(((JTextField) components[1]).getText());
-                        double lebarPrisma = Double.parseDouble(((JTextField) components[3]).getText());
-                        double tinggiPrisma = Double.parseDouble(((JTextField) components[5]).getText());
+                        double panjangPrismaPP = Double.parseDouble(((JTextField) components[1]).getText());
+                        double lebarPrismaPP = Double.parseDouble(((JTextField) components[3]).getText());
+                        double tinggiPrismaPP = Double.parseDouble(((JTextField) components[5]).getText());
                         try {
-                            PrismaPersegiPanjang prismaPP = new PrismaPersegiPanjang(panjangPrisma, lebarPrisma, tinggiPrisma);
+                            PrismaPersegiPanjang prismaPP = new PrismaPersegiPanjang(panjangPrismaPP, lebarPrismaPP, tinggiPrismaPP);
                             Thread prismaPPThread = new Thread(prismaPP);
                             prismaPPThread.start();
                             prismaPPThread.join();
@@ -295,14 +295,14 @@ public class BangunRuangPanel extends JPanel {
                         break;
 
                     case "Prisma Trapesium":
-                        double sisiAtas = Double.parseDouble(((JTextField) components[1]).getText());
-                        double sisiBawah = Double.parseDouble(((JTextField) components[3]).getText());
-                        double sisiKiri = Double.parseDouble(((JTextField) components[5]).getText());
-                        double sisiKanan = Double.parseDouble(((JTextField) components[7]).getText());
-                        double tinggiAlas = Double.parseDouble(((JTextField) components[9]).getText());
-                        double tinggiPrisma = Double.parseDouble(((JTextField) components[11]).getText());
+                        double sisiAtasTp = Double.parseDouble(((JTextField) components[1]).getText());
+                        double sisiBawahTp = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiKiriTp = Double.parseDouble(((JTextField) components[5]).getText());
+                        double sisiKananTp = Double.parseDouble(((JTextField) components[7]).getText());
+                        double tinggiAlasTp = Double.parseDouble(((JTextField) components[9]).getText());
+                        double tinggiPrismaTp = Double.parseDouble(((JTextField) components[11]).getText());
                         try {
-                            PrismaTrapesium prismaTrapesium = new PrismaTrapesium(sisiAtas, sisiBawah, sisiKiri, sisiKanan, tinggiAlas, tinggiPrisma);
+                            PrismaTrapesium prismaTrapesium = new PrismaTrapesium(sisiAtasTp, sisiBawahTp, sisiKiriTp, sisiKananTp, tinggiAlasTp, tinggiPrismaTp);
                             Thread prismaTrapesiumThread = new Thread(prismaTrapesium);
                             prismaTrapesiumThread.start();
                             prismaTrapesiumThread.join();
@@ -315,14 +315,14 @@ public class BangunRuangPanel extends JPanel {
                         break;
 
                     case "Limas Trapesium":
-                        double sisiAtasT = Double.parseDouble(((JTextField) components[1]).getText());
-                        double sisiBawahT = Double.parseDouble(((JTextField) components[3]).getText());
-                        double sisiKiriT = Double.parseDouble(((JTextField) components[5]).getText());
-                        double sisiKananT = Double.parseDouble(((JTextField) components[7]).getText());
-                        double tinggiAlasT = Double.parseDouble(((JTextField) components[9]).getText());
-                        double tinggiLimasT = Double.parseDouble(((JTextField) components[11]).getText());
+                        double sisiAtasTr = Double.parseDouble(((JTextField) components[1]).getText());
+                        double sisiBawahTr = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiKiriTr = Double.parseDouble(((JTextField) components[5]).getText());
+                        double sisiKananTr = Double.parseDouble(((JTextField) components[7]).getText());
+                        double tinggiAlasTr = Double.parseDouble(((JTextField) components[9]).getText());
+                        double tinggiLimasTr = Double.parseDouble(((JTextField) components[11]).getText());
                         try {
-                            LimasTrapesium limasTrapesium = new LimasTrapesium(sisiAtasT, sisiBawahT, sisiKiriT, sisiKananT, tinggiAlasT, tinggiLimasT);
+                            LimasTrapesium limasTrapesium = new LimasTrapesium(sisiAtasTr, sisiBawahTr, sisiKiriTr, sisiKananTr, tinggiAlasTr, tinggiLimasTr);
                             Thread limasTrapesiumThread = new Thread(limasTrapesium);
                             limasTrapesiumThread.start();
                             limasTrapesiumThread.join();
