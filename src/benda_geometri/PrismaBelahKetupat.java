@@ -1,76 +1,52 @@
 package benda_geometri;
 
 public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnable {
-
     private double tinggiPrisma;
     private double volume;
     private double luasPermukaan;
 
-    public PrismaBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma)
-            throws InvalidInputException {
-        super(diagonal1, diagonal2, sisi);
-        setTinggiPrisma(tinggiPrisma);
-        hitungLuas();
-        hitungKeliling();
+    public PrismaBelahKetupat() throws InvalidInputException {
+        super(6, 8, 5);  
+        this.tinggiPrisma = 10;
         hitungVolume();
         hitungLuasPermukaan();
     }
 
-    // Getter dan Setter
-    public double getTinggiPrisma() {
-        return tinggiPrisma;
-    }
-
-    public void setTinggiPrisma(double tinggiPrisma) throws InvalidInputException {
+    public PrismaBelahKetupat(double diagonal1, double diagonal2, double sisi, double tinggiPrisma) 
+            throws InvalidInputException {
+        super(diagonal1, diagonal2, sisi);
         if (tinggiPrisma < 0) {
             throw new InvalidInputException("Tinggi prisma tidak boleh negatif!");
         }
         this.tinggiPrisma = tinggiPrisma;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public double getLuasPermukaan() {
-        return luasPermukaan;
+        hitungVolume();
+        hitungLuasPermukaan();
     }
 
     @Override
     public void hitungVolume() {
-        volume = super.getLuas() * tinggiPrisma;
+        volume = super.hitungLuasReturn() * tinggiPrisma;
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        luasPermukaan = (2 * super.getLuas()) + (super.getKeliling() * tinggiPrisma);
-    }
-
-    @Override
-    public void hitungLuas() {
-        super.hitungLuas();
-    }
-
-    @Override
-    public void hitungKeliling() {
-        super.hitungKeliling();
+        double kelilingAlas = super.hitungKelilingReturn();
+        luasPermukaan = (2 * super.hitungLuasReturn()) + (kelilingAlas * tinggiPrisma);
     }
 
     @Override
     public String tampilkanInfo() {
-        return "=== PRISMA_BELAH_KETUPAT ===\n"
-                + "Diagonal 1: " + getDiagonal1() + "\n"
-                + "Diagonal 2: " + getDiagonal2() + "\n"
-                + "Sisi: " + getSisi() + "\n"
-                + "Tinggi Prisma: " + tinggiPrisma + "\n"
-                + "Volume: " + volume + "\n"
-                + "Luas Permukaan: " + luasPermukaan;
+        return "=== PRISMA BELAH KETUPAT ===\n"
+                + "Diagonal 1\t: " + getDiagonal1() + "\n"
+                + "Diagonal 2\t: " + getDiagonal2() + "\n"
+                + "Sisi\t\t: " + getSisi() + "\n"
+                + "Tinggi Prisma\t: " + tinggiPrisma + "\n"
+                + "Volume\t\t: " + volume + "\n"
+                + "Luas Permukaan\t: " + luasPermukaan;
     }
-
+    
     @Override
     public void run() {
-        hitungLuas();
-        hitungKeliling();
         hitungVolume();
         hitungLuasPermukaan();
         tampilkanInfo();
