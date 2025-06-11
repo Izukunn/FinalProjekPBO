@@ -122,9 +122,9 @@ public class BangunDatarPanel extends JPanel {
             case "Trapesium":
                 addInputField(gbc, row++, "Sisi Atas:");
                 addInputField(gbc, row++, "Sisi Bawah:");
+                addInputField(gbc, row++, "Sisi Kiri:");
+                addInputField(gbc, row++, "Sisi Kanan:");
                 addInputField(gbc, row++, "Tinggi:");
-                addInputField(gbc, row++, "Sisi Miring Kiri:");
-                addInputField(gbc, row++, "Sisi Miring Kanan:");
                 hitungButton.setEnabled(true);
                 break;
             case "Belah Ketupat":
@@ -180,13 +180,33 @@ public class BangunDatarPanel extends JPanel {
                         result.append("Luas = ").append(0.5 * alas * tinggi);
                         break;
                     case "Persegi":
-                        double sisi = Double.parseDouble(((JTextField) components[1]).getText());
-                        result.append("Luas = ").append(sisi * sisi);
+                        double sisiPersegi = Double.parseDouble(((JTextField) components[1]).getText());
+                        try {
+                            Persegi persegi = new Persegi(sisiPersegi);
+                            Thread persegiThread = new Thread(persegi);
+                            persegiThread.start();
+                            persegiThread.join();
+                            result.append(persegi.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
                         break;
                     case "Persegi Panjang":
-                        double panjang = Double.parseDouble(((JTextField) components[1]).getText());
-                        double lebar = Double.parseDouble(((JTextField) components[3]).getText());
-                        result.append("Luas = ").append(panjang * lebar);
+                        double panjangPP = Double.parseDouble(((JTextField) components[1]).getText());
+                        double lebarPP = Double.parseDouble(((JTextField) components[3]).getText());
+                        try {
+                            PersegiPanjang persegiPanjang = new PersegiPanjang(panjangPP, lebarPP);
+                            Thread ppThread = new Thread(persegiPanjang);
+                            ppThread.start();
+                            ppThread.join();
+                            result.append(persegiPanjang.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
                         break;
                     case "Jajaran Genjang":
                         double alasJG = Double.parseDouble(((JTextField) components[1]).getText());
@@ -194,10 +214,22 @@ public class BangunDatarPanel extends JPanel {
                         result.append("Luas = ").append(alasJG * tinggiJG);
                         break;
                     case "Trapesium":
-                        double atas = Double.parseDouble(((JTextField) components[1]).getText());
-                        double bawah = Double.parseDouble(((JTextField) components[3]).getText());
-                        double tinggiTrap = Double.parseDouble(((JTextField) components[5]).getText());
-                        result.append("Luas = ").append(0.5 * (atas + bawah) * tinggiTrap);
+                        double sisiAtas = Double.parseDouble(((JTextField) components[1]).getText());
+                        double sisiBawah = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiKiri = Double.parseDouble(((JTextField) components[5]).getText());
+                        double sisiKanan = Double.parseDouble(((JTextField) components[7]).getText());
+                        double tinggi = Double.parseDouble(((JTextField) components[9]).getText());
+                        try {
+                            Trapesium trapesium = new Trapesium(sisiAtas, sisiBawah, sisiKiri, sisiKanan, tinggi);
+                            Thread trapesiumThread = new Thread(trapesium);
+                            trapesiumThread.start();
+                            trapesiumThread.join();
+                            result.append(trapesium.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
                         break;
                     case "Belah Ketupat":
                         double d1 = Double.parseDouble(((JTextField) components[1]).getText());
