@@ -1,6 +1,7 @@
 package benda_geometri;
 
 public class CincinBola extends Bola implements Benda3D {
+
     private double radiusDalam;
     private double volume;
     private double luasPermukaan;
@@ -11,18 +12,26 @@ public class CincinBola extends Bola implements Benda3D {
         hitungVolume();
         hitungLuasPermukaan();
     }
-    
+
     public CincinBola(double radiusLuar, double radiusDalam) throws InvalidInputException {
         super(radiusLuar);
-        if (radiusDalam < 0) throw new InvalidInputException("Radius tidak boleh negatif!");
+        if (radiusDalam < 0) {
+            throw new InvalidInputException("Radius tidak boleh negatif!");
+        } else if (radiusLuar < radiusDalam) {
+            throw new InvalidInputException("Radius dalam tidak boleh lebih besar daripada radius luar!");
+        }
         this.radiusDalam = radiusDalam;
         hitungVolume();
         hitungLuasPermukaan();
     }
-    
+
     public CincinBola(double radiusLuar, double radiusDalam, double customPi) throws InvalidInputException {
         super(radiusLuar, customPi);
-        if (radiusDalam < 0) throw new InvalidInputException("Radius tidak boleh negatif!");
+        if (radiusDalam < 0) {
+            throw new InvalidInputException("Radius tidak boleh negatif!");
+        } else if (radiusLuar < radiusDalam) {
+            throw new InvalidInputException("Tinggi tembereng tidak boleh lebih besar daripada radius bola!");
+        }
         this.radiusDalam = radiusDalam;
         hitungVolume();
         hitungLuasPermukaan();
@@ -31,7 +40,7 @@ public class CincinBola extends Bola implements Benda3D {
     @Override
     public void hitungVolume() {
         super.hitungVolume();
-        volume = super.volume - (4/3 * super.pi * Math.pow(radiusDalam, 3));
+        volume = super.volume - (4 / 3 * super.pi * Math.pow(radiusDalam, 3));
     }
 
     @Override
@@ -49,7 +58,7 @@ public class CincinBola extends Bola implements Benda3D {
                 + "Volume\t: " + volume + "\n"
                 + "Luas Permukaan: " + luasPermukaan;
     }
-    
+
     @Override
     public void run() {
         try {

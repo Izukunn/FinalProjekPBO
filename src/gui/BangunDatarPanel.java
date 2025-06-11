@@ -79,6 +79,15 @@ public class BangunDatarPanel extends JPanel {
         inputPanel.add(new JTextField(10), gbc);
     }
 
+    private void addInputFieldCustomPi(GridBagConstraints gbc, int row, String label) {
+        gbc.gridx = 0;
+        gbc.gridy = row;
+        inputPanel.add(new JLabel(label), gbc);
+
+        gbc.gridx = 1;
+        inputPanel.add(new JTextField("0", 10), gbc);
+    }
+
     private void updateInputFields() {
         inputPanel.removeAll();
         hitungButton.setEnabled(false);
@@ -133,14 +142,19 @@ public class BangunDatarPanel extends JPanel {
                 break;
             case "Lingkaran":
                 addInputField(gbc, row++, "Radius:");
-                addInputField(gbc, row++, "Custom Pi (opsional):");
+                addInputFieldCustomPi(gbc, row++, "Custom Pi (opsional):");
                 hitungButton.setEnabled(true);
                 break;
             case "Tembereng Lingkaran":
+                addInputField(gbc, row++, "Radius:");
+                addInputField(gbc, row++, "Sudut:");
+                addInputFieldCustomPi(gbc, row++, "Custom Pi (opsional):");
+                hitungButton.setEnabled(true);
+                break;
             case "Juring Lingkaran":
                 addInputField(gbc, row++, "Radius:");
                 addInputField(gbc, row++, "Sudut:");
-                addInputField(gbc, row++, "Custom Pi (opsional):");
+                addInputFieldCustomPi(gbc, row++, "Custom Pi (opsional):");
                 hitungButton.setEnabled(true);
                 break;
         }
@@ -151,52 +165,130 @@ public class BangunDatarPanel extends JPanel {
 
     private void hitungBangunDatar() {
         String selected = (String) bangunComboBox.getSelectedItem();
-        StringBuilder result = new StringBuilder();
-        Component[] components = inputPanel.getComponents();
+        hitungButton.setEnabled(false);
+        hasilArea.setText("Menghitung...");
 
-        try {
-            switch (selected) {
-                case "Segitiga":
-                    double alas = Double.parseDouble(((JTextField) components[1]).getText());
-                    double tinggi = Double.parseDouble(((JTextField) components[3]).getText());
-                    result.append("Luas = ").append(0.5 * alas * tinggi);
-                    break;
-                case "Persegi":
-                    double sisi = Double.parseDouble(((JTextField) components[1]).getText());
-                    result.append("Luas = ").append(sisi * sisi);
-                    break;
-                case "Persegi Panjang":
-                    double panjang = Double.parseDouble(((JTextField) components[1]).getText());
-                    double lebar = Double.parseDouble(((JTextField) components[3]).getText());
-                    result.append("Luas = ").append(panjang * lebar);
-                    break;
-                case "Jajaran Genjang":
-                    double alasJG = Double.parseDouble(((JTextField) components[1]).getText());
-                    double tinggiJG = Double.parseDouble(((JTextField) components[3]).getText());
-                    result.append("Luas = ").append(alasJG * tinggiJG);
-                    break;
-                case "Trapesium":
-                    double atas = Double.parseDouble(((JTextField) components[1]).getText());
-                    double bawah = Double.parseDouble(((JTextField) components[3]).getText());
-                    double tinggiTrap = Double.parseDouble(((JTextField) components[5]).getText());
-                    result.append("Luas = ").append(0.5 * (atas + bawah) * tinggiTrap);
-                    break;
-                case "Belah Ketupat":
-                    double d1 = Double.parseDouble(((JTextField) components[1]).getText());
-                    double d2 = Double.parseDouble(((JTextField) components[3]).getText());
-                    result.append("Luas = ").append(0.5 * d1 * d2);
-                    break;
-                case "Layang-Layang":
-                    double d1LK = Double.parseDouble(((JTextField) components[1]).getText());
-                    double d2LK = Double.parseDouble(((JTextField) components[3]).getText());
-                    result.append("Luas = ").append(0.5 * d1LK * d2LK);
-                    break;
-                // Tambahkan Lingkaran, Tembereng, Juring sesuai instance class-nya bila sudah ada
+        new Thread(() -> {
+            try {
+                StringBuilder result = new StringBuilder();
+                Component[] components = inputPanel.getComponents();
+
+                switch (selected) {
+                    case "Segitiga":
+                        double alas = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggi = Double.parseDouble(((JTextField) components[3]).getText());
+                        result.append("Luas = ").append(0.5 * alas * tinggi);
+                        break;
+                    case "Persegi":
+                        double sisi = Double.parseDouble(((JTextField) components[1]).getText());
+                        result.append("Luas = ").append(sisi * sisi);
+                        break;
+                    case "Persegi Panjang":
+                        double panjang = Double.parseDouble(((JTextField) components[1]).getText());
+                        double lebar = Double.parseDouble(((JTextField) components[3]).getText());
+                        result.append("Luas = ").append(panjang * lebar);
+                        break;
+                    case "Jajaran Genjang":
+                        double alasJG = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggiJG = Double.parseDouble(((JTextField) components[3]).getText());
+                        result.append("Luas = ").append(alasJG * tinggiJG);
+                        break;
+                    case "Trapesium":
+                        double atas = Double.parseDouble(((JTextField) components[1]).getText());
+                        double bawah = Double.parseDouble(((JTextField) components[3]).getText());
+                        double tinggiTrap = Double.parseDouble(((JTextField) components[5]).getText());
+                        result.append("Luas = ").append(0.5 * (atas + bawah) * tinggiTrap);
+                        break;
+                    case "Belah Ketupat":
+                        double d1 = Double.parseDouble(((JTextField) components[1]).getText());
+                        double d2 = Double.parseDouble(((JTextField) components[3]).getText());
+                        result.append("Luas = ").append(0.5 * d1 * d2);
+                        break;
+                    case "Layang-Layang":
+                        double d1LK = Double.parseDouble(((JTextField) components[1]).getText());
+                        double d2LK = Double.parseDouble(((JTextField) components[3]).getText());
+                        result.append("Luas = ").append(0.5 * d1LK * d2LK);
+                        break;
+
+                    case "Lingkaran":
+                        double radiusLingkaran = Double.parseDouble(((JTextField) components[1]).getText());
+                        double customPiLingkaran = Double.parseDouble(((JTextField) components[3]).getText());
+                        try {
+                            Lingkaran lingkaran;
+                            if (customPiLingkaran == 0) {
+                                lingkaran = new Lingkaran(radiusLingkaran);
+                            } else {
+                                lingkaran = new Lingkaran(radiusLingkaran, customPiLingkaran);
+                            }
+                            Thread lingkaranThread = new Thread(lingkaran);
+                            lingkaranThread.start();
+                            lingkaranThread.join();
+                            result.append(lingkaran.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
+                        break;
+
+                    case "Tembereng Lingkaran":
+                        double radiusTembereng = Double.parseDouble(((JTextField) components[1]).getText());
+                        double sudutTembereng = Double.parseDouble(((JTextField) components[3]).getText());
+                        double customPiTembereng = Double.parseDouble(((JTextField) components[5]).getText());
+                        try {
+                            Lingkaran temberengLingkaran;
+                            if (customPiTembereng == 0) {
+                                temberengLingkaran = new TemberengLingkaran(radiusTembereng, sudutTembereng);
+                            } else {
+                                temberengLingkaran = new TemberengLingkaran(radiusTembereng, sudutTembereng, customPiTembereng);
+                            }
+                            Thread temberengLingkaranThread = new Thread(temberengLingkaran);
+                            temberengLingkaranThread.start();
+                            temberengLingkaranThread.join();
+                            result.append(temberengLingkaran.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
+                        break;
+
+                    case "Juring Lingkaran":
+                        double radiusJuring = Double.parseDouble(((JTextField) components[1]).getText());
+                        double sudutJuring = Double.parseDouble(((JTextField) components[3]).getText());
+                        double customPiJuring = Double.parseDouble(((JTextField) components[5]).getText());
+                        try {
+                            Lingkaran juringLingkaran;
+                            if (customPiJuring == 0) {
+                                juringLingkaran = new JuringLingkaran(radiusJuring, sudutJuring);
+                            } else {
+                                juringLingkaran = new JuringLingkaran(radiusJuring, sudutJuring, customPiJuring);
+                            }
+                            Thread juringLingkaranThread = new Thread(juringLingkaran);
+                            juringLingkaranThread.start();
+                            juringLingkaranThread.join();
+                            result.append(juringLingkaran.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
+                        break;
+                }
+                SwingUtilities.invokeLater(() -> {
+                    hasilArea.setText(result.toString());
+                    hitungButton.setEnabled(true);
+                });
+            } catch (NumberFormatException ex) {
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(this, "Input harus berupa angka!", "Error", JOptionPane.ERROR_MESSAGE);
+                    hitungButton.setEnabled(true);
+                });
+            } catch (Exception ex) {
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    hitungButton.setEnabled(true);
+                });
             }
-
-            hasilArea.setText(result.toString());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Input harus angka!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        ).start();
+
     }
 }
