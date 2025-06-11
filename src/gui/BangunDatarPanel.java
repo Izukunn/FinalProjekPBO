@@ -215,14 +215,15 @@ public class BangunDatarPanel extends JPanel {
                         double tinggiJG = Double.parseDouble(((JTextField) components[3]).getText());
                         result.append("Luas = ").append(alasJG * tinggiJG);
                         break;
+
                     case "Trapesium":
-                        double sisiAtas = Double.parseDouble(((JTextField) components[1]).getText());
-                        double sisiBawah = Double.parseDouble(((JTextField) components[3]).getText());
-                        double sisiKiri = Double.parseDouble(((JTextField) components[5]).getText());
-                        double sisiKanan = Double.parseDouble(((JTextField) components[7]).getText());
-                        double tinggi = Double.parseDouble(((JTextField) components[9]).getText());
+                        double sisiAtasT = Double.parseDouble(((JTextField) components[1]).getText());
+                        double sisiBawahT = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiKiriT = Double.parseDouble(((JTextField) components[5]).getText());
+                        double sisiKananT = Double.parseDouble(((JTextField) components[7]).getText());
+                        double tinggiT = Double.parseDouble(((JTextField) components[9]).getText());
                         try {
-                            Trapesium trapesium = new Trapesium(sisiAtas, sisiBawah, sisiKiri, sisiKanan, tinggi);
+                            Trapesium trapesium = new Trapesium(sisiAtasT, sisiBawahT, sisiKiriT, sisiKananT, tinggiT);
                             Thread trapesiumThread = new Thread(trapesium);
                             trapesiumThread.start();
                             trapesiumThread.join();
