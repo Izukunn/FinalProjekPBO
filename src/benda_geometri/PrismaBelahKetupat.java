@@ -8,14 +8,9 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
 
     // Constructor default (nilai dummy valid)
     public PrismaBelahKetupat() {
-        superDummy();
-        try {
-            this.tinggiPrisma = 1.0;
-            hitungVolume();
-            hitungLuasPermukaan();
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-        }
+        this.tinggiPrisma = 1.0;
+        hitungVolume();
+        hitungLuasPermukaan();
     }
 
     // Constructor utama
@@ -62,13 +57,13 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
     // Tampilkan info lengkap (String)
     @Override
     public String tampilkanInfo() {
-        return "=== PRISMA BELAH KETUPAT ===\n" +
-                "Diagonal 1\t: " + getDiagonal1() + "\n" +
-                "Diagonal 2\t: " + getDiagonal2() + "\n" +
-                "Sisi\t\t: " + getSisi() + "\n" +
-                "Tinggi Prisma\t: " + tinggiPrisma + "\n" +
-                "Volume\t\t: " + volume + "\n" +
-                "Luas Permukaan\t: " + luasPermukaan;
+        return "=== PRISMA BELAH KETUPAT ===\n"
+                + "Diagonal 1\t: " + getDiagonal1() + "\n"
+                + "Diagonal 2\t: " + getDiagonal2() + "\n"
+                + "Sisi\t\t: " + getSisi() + "\n"
+                + "Tinggi Prisma\t: " + tinggiPrisma + "\n"
+                + "Volume\t\t: " + volume + "\n"
+                + "Luas Permukaan\t: " + luasPermukaan;
     }
 
     // Implementasi Runnable
@@ -79,4 +74,3 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
         tampilkanInfo();
     }
 }
-
