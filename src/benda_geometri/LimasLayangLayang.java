@@ -56,4 +56,11 @@ public class LimasLayangLayang extends LayangLayang implements Benda3D {
     public double getLuasPermukaan() {
         return luasPermukaan;
     }
+
+     @Override
+    public void run() {
+        hitungLuas();
+        hitungKeliling();
+        tampilkanInfo();
+    }
 }
