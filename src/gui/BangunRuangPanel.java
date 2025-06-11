@@ -363,8 +363,9 @@ public class BangunRuangPanel extends JPanel {
                             kerucutThread.start();
                             kerucutThread.join();
                             result.append(kerucut.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
 
@@ -380,9 +381,13 @@ public class BangunRuangPanel extends JPanel {
                             } else {
                                 kerucutT = new KerucutTerpancung(radiusBawahKerucutT, radiusAtasKerucutT, tinggiKerucutT, customPiKerucutT);
                             }
+                            Thread kerucutTThread = new Thread(kerucutT);
+                            kerucutTThread.start();
+                            kerucutTThread.join();
                             result.append(kerucutT.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
 
@@ -396,9 +401,13 @@ public class BangunRuangPanel extends JPanel {
                             } else {
                                 bola = new Bola(radiusBola, customPiBola);
                             }
+                            Thread bolaThread = new Thread(bola);
+                            bolaThread.start();
+                            bolaThread.join();
                             result.append(bola.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
 
@@ -413,9 +422,13 @@ public class BangunRuangPanel extends JPanel {
                             } else {
                                 temberengBola = new TemberengBola(radiusBolaTembereng, tinggiTembereng, customPiTembereng);
                             }
+                            Thread temberengBolaThread = new Thread(temberengBola);
+                            temberengBolaThread.start();
+                            temberengBolaThread.join();
                             result.append(temberengBola.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
 
@@ -430,9 +443,13 @@ public class BangunRuangPanel extends JPanel {
                             } else {
                                 juringBola = new JuringBola(radiusBolaJuring, tinggiJuring, customPiJuring);
                             }
+                            Thread juringBolaThread = new Thread(juringBola);
+                            juringBolaThread.start();
+                            juringBolaThread.join();
                             result.append(juringBola.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
 
@@ -447,9 +464,13 @@ public class BangunRuangPanel extends JPanel {
                             } else {
                                 cincinBola = new CincinBola(radiusLuarCincin, radiusDalamCincin, customPiCincin);
                             }
+                            Thread cincinBolaThread = new Thread(cincinBola);
+                            cincinBolaThread.start();
+                            cincinBolaThread.join();
                             result.append(cincinBola.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
                 }

@@ -338,9 +338,13 @@ public class BangunDatarPanel extends JPanel {
                             } else {
                                 temberengLingkaran = new TemberengLingkaran(radiusTembereng, sudutTembereng, customPiTembereng);
                             }
+                            Thread temberengLingkaranThread = new Thread(temberengLingkaran);
+                            temberengLingkaranThread.start();
+                            temberengLingkaranThread.join();
                             result.append(temberengLingkaran.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
 
@@ -355,9 +359,13 @@ public class BangunDatarPanel extends JPanel {
                             } else {
                                 juringLingkaran = new JuringLingkaran(radiusJuring, sudutJuring, customPiJuring);
                             }
+                            Thread juringLingkaranThread = new Thread(juringLingkaran);
+                            juringLingkaranThread.start();
+                            juringLingkaranThread.join();
                             result.append(juringLingkaran.tampilkanInfo());
-                        } catch (InvalidInputException ex) {
-                            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
                         }
                         break;
                 }

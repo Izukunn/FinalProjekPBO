@@ -64,8 +64,15 @@ public class JuringLingkaran extends Lingkaran {
 
     @Override
     public void run() {
-        hitungLuas();
-        hitungKeliling();
-        tampilkanInfo();
+        try {
+            Thread.sleep(1000);
+            hitungLuas();
+            Thread.sleep(1000);
+            hitungKeliling();
+            tampilkanInfo();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Thread interrupted");
+        }
     }
 }

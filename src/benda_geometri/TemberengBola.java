@@ -66,8 +66,15 @@ public class TemberengBola implements Benda3D {
 
     @Override
     public void run() {
-        hitungVolume();
-        hitungLuasPermukaan();
-        tampilkanInfo();
+        try {
+            Thread.sleep(1000);
+            hitungVolume();
+            Thread.sleep(1000);
+            hitungLuasPermukaan();
+            tampilkanInfo();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Thread interrupted");
+        }
     }
 }

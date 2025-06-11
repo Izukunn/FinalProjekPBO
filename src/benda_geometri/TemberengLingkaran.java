@@ -12,14 +12,14 @@ public class TemberengLingkaran extends Lingkaran {
         hitungLuas();
         hitungKeliling();
     }
-    
+
     public TemberengLingkaran(double radius) throws InvalidInputException {
         super(radius);
         this.sudut = 60;
         hitungLuas();
         hitungKeliling();
     }
-    
+
     public TemberengLingkaran(double radius, double sudut) throws InvalidInputException {
         super(radius);
         if (sudut < 0 || sudut > 360) {
@@ -39,8 +39,6 @@ public class TemberengLingkaran extends Lingkaran {
         hitungLuas();
         hitungKeliling();
     }
-    
-    
 
     @Override
     public void hitungLuas() {
@@ -70,8 +68,15 @@ public class TemberengLingkaran extends Lingkaran {
 
     @Override
     public void run() {
-        hitungLuas();
-        hitungKeliling();
-        tampilkanInfo();
+        try {
+            Thread.sleep(1000);
+            hitungLuas();
+            Thread.sleep(1000);
+            hitungKeliling();
+            tampilkanInfo();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Thread interrupted");
+        }
     }
 }
