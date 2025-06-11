@@ -5,25 +5,22 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    private JTabbedPane tabbedPane;
-    private BangunDatarPanel bangunDatarPanel;
-    private BangunRuangPanel bangunRuangPanel;
-
     public MainFrame() {
-        setTitle("Kalkulator Geometri");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Aplikasi Bangun Datar & Bangun Ruang");
+        setSize(600, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        tabbedPane = new JTabbedPane();
-        tabbedPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Tambahkan padding
+        JTabbedPane tabPane = new JTabbedPane();
+        tabPane.addTab("Bangun Datar", new BangunDatarPanel());
+        tabPane.addTab("Bangun Ruang", new BangunRuangPanel());
 
-        bangunDatarPanel = new BangunDatarPanel();
-        bangunRuangPanel = new BangunRuangPanel();
+        add(tabPane);
+    }
 
-        tabbedPane.addTab("Bangun Datar", bangunDatarPanel);
-        tabbedPane.addTab("Bangun Ruang", bangunRuangPanel);
-
-        add(tabbedPane);
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new MainFrame().setVisible(true);
+        });
     }
 }
