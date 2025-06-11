@@ -133,6 +133,7 @@ public class BangunDatarPanel extends JPanel {
                 addInputField(gbc, row++, "Sisi:");
                 hitungButton.setEnabled(true);
                 break;
+
             case "Layang-Layang":
                 addInputField(gbc, row++, "Diagonal 1:");
                 addInputField(gbc, row++, "Diagonal 2:");
@@ -140,6 +141,7 @@ public class BangunDatarPanel extends JPanel {
                 addInputField(gbc, row++, "Sisi Panjang:");
                 hitungButton.setEnabled(true);
                 break;
+
             case "Lingkaran":
                 addInputField(gbc, row++, "Radius:");
                 addInputFieldCustomPi(gbc, row++, "Custom Pi (opsional):");
@@ -231,15 +233,43 @@ public class BangunDatarPanel extends JPanel {
                             );
                         }
                         break;
+
                     case "Belah Ketupat":
-                        double d1 = Double.parseDouble(((JTextField) components[1]).getText());
-                        double d2 = Double.parseDouble(((JTextField) components[3]).getText());
-                        result.append("Luas = ").append(0.5 * d1 * d2);
+                        double diagonal1BelahKetupat = Double.parseDouble(((JTextField) components[1]).getText());
+                        double diagonal2BelahKetupat = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiBelahKetupat = Double.parseDouble(((JTextField) components[5]).getText());
+                        try {
+                            BelahKetupat belahKetupat = new BelahKetupat(diagonal1BelahKetupat, diagonal2BelahKetupat, sisiBelahKetupat);
+                            Thread belahKetupatThread = new Thread(belahKetupat);
+                            belahKetupatThread.start();
+                            belahKetupatThread.join();
+                            result.append(belahKetupat.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
                         break;
+
                     case "Layang-Layang":
-                        double d1LK = Double.parseDouble(((JTextField) components[1]).getText());
-                        double d2LK = Double.parseDouble(((JTextField) components[3]).getText());
-                        result.append("Luas = ").append(0.5 * d1LK * d2LK);
+                        double diagonal1LayangLayang = Double.parseDouble(((JTextField) components[1]).getText());
+                        double diagonal2LayangLayang = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiPendekLayangLayang = Double.parseDouble(((JTextField) components[5]).getText());
+                        double sisiPanjangLayangLayang = Double.parseDouble(((JTextField) components[7]).getText());
+                        try {
+                            LayangLayang layangLayang = new LayangLayang(
+                                    diagonal1LayangLayang,
+                                    diagonal2LayangLayang,
+                                    sisiPendekLayangLayang,
+                                    sisiPanjangLayangLayang
+                            );
+                            Thread layangLayangThread = new Thread(layangLayang);
+                            layangLayangThread.start();
+                            layangLayangThread.join();
+                            result.append(layangLayang.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
                         break;
 
                     case "Lingkaran":
