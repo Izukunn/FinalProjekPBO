@@ -5,7 +5,7 @@ public class Tabung extends Lingkaran implements Benda3D {
     private double tinggi;
     private double volume;
     private double luasPermukaan;
-    
+
     public Tabung() {
         super();
         this.tinggi = 20;
@@ -22,7 +22,7 @@ public class Tabung extends Lingkaran implements Benda3D {
         hitungVolume();
         hitungLuasPermukaan();
     }
-    
+
     public Tabung(double radius, double tinggi, double customPi) throws InvalidInputException {
         super(radius, customPi);
         if (tinggi < 0) {
@@ -58,8 +58,15 @@ public class Tabung extends Lingkaran implements Benda3D {
 
     @Override
     public void run() {
-        hitungVolume();
-        hitungLuasPermukaan();
-        tampilkanInfo();
+        try {
+            Thread.sleep(1000);
+            hitungVolume();
+            Thread.sleep(1000);
+            hitungLuasPermukaan();
+            tampilkanInfo();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Thread interrupted");
+        }
     }
 }
