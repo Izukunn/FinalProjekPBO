@@ -356,7 +356,7 @@ public class BangunRuangPanel extends JPanel {
                         }
                         break;
 
-                    case "Prisma JajaranGenjang":
+                    case "Prisma Jajaran Genjang":
                         double alasJG = Double.parseDouble(((JTextField) components[1]).getText());
                         double tinggiJG = Double.parseDouble(((JTextField) components[3]).getText());
                         double sisiMiringJG = Double.parseDouble(((JTextField) components[5]).getText());
