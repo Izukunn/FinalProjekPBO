@@ -100,6 +100,19 @@ public class BangunRuangPanel extends JPanel {
         int row = 0;
 
         switch (selected) {
+            case "Prisma Segitiga":
+                addInputField(gbc, row++, "Alas Segitiga:");
+                addInputField(gbc, row++, "Tinggi Alas:");
+                addInputField(gbc, row++, "Tinggi Prisma:");
+                hitungButton.setEnabled(true);
+                break;
+            case "Limas Segitiga":
+                addInputField(gbc, row++, "Alas Segitiga:");
+                addInputField(gbc, row++, "Tinggi Alas:");
+                addInputField(gbc, row++, "Tinggi Limas:");
+                hitungButton.setEnabled(true);
+                hitungButton.setEnabled(true);
+                break;
             case "Prisma Persegi":
                 addInputField(gbc, row++, "Sisi Alas:");
                 addInputField(gbc, row++, "Tinggi:");
@@ -120,6 +133,21 @@ public class BangunRuangPanel extends JPanel {
                 addInputField(gbc, row++, "Panjang Alas:");
                 addInputField(gbc, row++, "Lebar Alas:");
                 addInputField(gbc, row++, "Tinggi:");
+                hitungButton.setEnabled(true);
+                break;
+            case "Prisma Jajaran Genjang":
+                addInputField(gbc, row++, "Alas Jajaran genjang:");
+                addInputField(gbc, row++, "Tinggi Alas:");
+                addInputField(gbc, row++, "Sisi Miring:");
+                addInputField(gbc, row++, "Tinggi Prisma:");
+                hitungButton.setEnabled(true);
+                break;
+            case "Limas Jajaran Genjang":
+                addInputField(gbc, row++, "Alas Jajaran Genjang:");
+                addInputField(gbc, row++, "Tinggi Alas:");
+                addInputField(gbc, row++, "Sisi Miring:");
+                addInputField(gbc, row++, "Tinggi Limas:");
+                hitungButton.setEnabled(true);
                 hitungButton.setEnabled(true);
                 break;
             case "Prisma Trapesium":
@@ -228,11 +256,45 @@ public class BangunRuangPanel extends JPanel {
                 StringBuilder result = new StringBuilder();
                 Component[] components = inputPanel.getComponents();
                 switch (selected) {
+                    case "Prisma Segitiga":
+                        double alasPrismaSG = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggiAPrismaSG = Double.parseDouble(((JTextField) components[3]).getText());
+                        double tinggiPrismaSG = Double.parseDouble(((JTextField) components[5]).getText());
+                        try {
+                            Segitiga prismaSG = new PrismaSegitiga(alasPrismaSG, tinggiAPrismaSG, tinggiPrismaSG);
+                            Thread prismaSGThread = new Thread(prismaSG);
+                            prismaSGThread.start();
+                            prismaSGThread.join();
+                            result.append(prismaSG.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
+                        break;
+
+                    case "Limas Segitiga":
+                        double alasLimasSG = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggiALimasSG = Double.parseDouble(((JTextField) components[3]).getText());
+                        double tinggiLimasSG = Double.parseDouble(((JTextField) components[5]).getText());
+                        try {
+                            Segitiga limasSG = new LimasSegitiga(alasLimasSG, tinggiALimasSG, tinggiLimasSG);
+                            Thread limasSGThread = new Thread(limasSG);
+                            limasSGThread.start();
+                            limasSGThread.join();
+                            result.append(limasSG.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
+                        break;
+
                     case "Prisma Persegi":
                         double sisiPrismaP = Double.parseDouble(((JTextField) components[1]).getText());
                         double tinggiPrismaP = Double.parseDouble(((JTextField) components[3]).getText());
                         try {
-                            PrismaPersegi prismaPersegi = new PrismaPersegi(sisiPrismaP, tinggiPrismaP);
+                            Persegi prismaPersegi = new PrismaPersegi(sisiPrismaP, tinggiPrismaP);
                             Thread prismaThread = new Thread(prismaPersegi);
                             prismaThread.start();
                             prismaThread.join();
@@ -248,7 +310,7 @@ public class BangunRuangPanel extends JPanel {
                         double sisiLimasP = Double.parseDouble(((JTextField) components[1]).getText());
                         double tinggiLimasP = Double.parseDouble(((JTextField) components[3]).getText());
                         try {
-                            LimasPersegi limas = new LimasPersegi(sisiLimasP, tinggiLimasP);
+                            Persegi limas = new LimasPersegi(sisiLimasP, tinggiLimasP);
                             Thread limasThread = new Thread(limas);
                             limasThread.start();
                             limasThread.join();
@@ -265,7 +327,7 @@ public class BangunRuangPanel extends JPanel {
                         double lebarPrismaPP = Double.parseDouble(((JTextField) components[3]).getText());
                         double tinggiPrismaPP = Double.parseDouble(((JTextField) components[5]).getText());
                         try {
-                            PrismaPersegiPanjang prismaPP = new PrismaPersegiPanjang(panjangPrismaPP, lebarPrismaPP, tinggiPrismaPP);
+                            PersegiPanjang prismaPP = new PrismaPersegiPanjang(panjangPrismaPP, lebarPrismaPP, tinggiPrismaPP);
                             Thread prismaPPThread = new Thread(prismaPP);
                             prismaPPThread.start();
                             prismaPPThread.join();
@@ -282,7 +344,7 @@ public class BangunRuangPanel extends JPanel {
                         double lebarLimasPP = Double.parseDouble(((JTextField) components[3]).getText());
                         double tinggiLimasPP = Double.parseDouble(((JTextField) components[5]).getText());
                         try {
-                            LimasPersegiPanjang limasPP = new LimasPersegiPanjang(panjangLimasPP, lebarLimasPP, tinggiLimasPP);
+                            PersegiPanjang limasPP = new LimasPersegiPanjang(panjangLimasPP, lebarLimasPP, tinggiLimasPP);
                             Thread limasPPThread = new Thread(limasPP);
                             limasPPThread.start();
                             limasPPThread.join();
@@ -294,6 +356,53 @@ public class BangunRuangPanel extends JPanel {
                         }
                         break;
 
+                    case "Prisma JajaranGenjang":
+                        double alasJG = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggiJG = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiMiringJG = Double.parseDouble(((JTextField) components[5]).getText());
+                        double tinggiPrismaJG = Double.parseDouble(((JTextField) components[7]).getText());
+
+                        try {
+                            JajaranGenjang prismaJG = new PrismaJajaranGenjang(
+                                    alasJG,
+                                    tinggiJG,
+                                    sisiMiringJG,
+                                    tinggiPrismaJG
+                            );
+
+                            Thread prismaJGThread = new Thread(prismaJG);
+                            prismaJGThread.start();
+                            prismaJGThread.join();
+
+                            result.append(prismaJG.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
+                        break;
+
+                    case "Limas Jajaran Genjang":
+                        double alasLJG = Double.parseDouble(((JTextField) components[1]).getText());
+                        double tinggiLJG = Double.parseDouble(((JTextField) components[3]).getText());
+                        double sisiMiringLJG = Double.parseDouble(((JTextField) components[5]).getText());
+                        double tinggiLimasLJG = Double.parseDouble(((JTextField) components[7]).getText());
+                        try {
+                            LimasJajaranGenjang limasLJG = new LimasJajaranGenjang(
+                                    alasLJG,
+                                    tinggiLJG,
+                                    sisiMiringLJG,
+                                    tinggiLimasLJG
+                            );
+                            Thread limasLJGThread = new Thread(limasLJG);
+                            limasLJGThread.start();
+                            limasLJGThread.join();
+                            result.append(limasLJG.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
+                        break;
+
                     case "Prisma Trapesium":
                         double sisiAtasTp = Double.parseDouble(((JTextField) components[1]).getText());
                         double sisiBawahTp = Double.parseDouble(((JTextField) components[3]).getText());
@@ -302,7 +411,7 @@ public class BangunRuangPanel extends JPanel {
                         double tinggiAlasTp = Double.parseDouble(((JTextField) components[9]).getText());
                         double tinggiPrismaTp = Double.parseDouble(((JTextField) components[11]).getText());
                         try {
-                            PrismaTrapesium prismaTrapesium = new PrismaTrapesium(sisiAtasTp, sisiBawahTp, sisiKiriTp, sisiKananTp, tinggiAlasTp, tinggiPrismaTp);
+                            Trapesium prismaTrapesium = new PrismaTrapesium(sisiAtasTp, sisiBawahTp, sisiKiriTp, sisiKananTp, tinggiAlasTp, tinggiPrismaTp);
                             Thread prismaTrapesiumThread = new Thread(prismaTrapesium);
                             prismaTrapesiumThread.start();
                             prismaTrapesiumThread.join();
@@ -322,7 +431,7 @@ public class BangunRuangPanel extends JPanel {
                         double tinggiAlasTr = Double.parseDouble(((JTextField) components[9]).getText());
                         double tinggiLimasTr = Double.parseDouble(((JTextField) components[11]).getText());
                         try {
-                            LimasTrapesium limasTrapesium = new LimasTrapesium(sisiAtasTr, sisiBawahTr, sisiKiriTr, sisiKananTr, tinggiAlasTr, tinggiLimasTr);
+                            Trapesium limasTrapesium = new LimasTrapesium(sisiAtasTr, sisiBawahTr, sisiKiriTr, sisiKananTr, tinggiAlasTr, tinggiLimasTr);
                             Thread limasTrapesiumThread = new Thread(limasTrapesium);
                             limasTrapesiumThread.start();
                             limasTrapesiumThread.join();
@@ -341,7 +450,7 @@ public class BangunRuangPanel extends JPanel {
                         double tinggiPrismaBelahKetupat = Double.parseDouble(((JTextField) components[7]).getText());
 
                         try {
-                            PrismaBelahKetupat prismaBelahKetupat = new PrismaBelahKetupat(
+                            BelahKetupat prismaBelahKetupat = new PrismaBelahKetupat(
                                     diagonal1PrismaBelahKetupat,
                                     diagonal2PrismaBelahKetupat,
                                     sisiPrismaBelahKetupat,
@@ -363,13 +472,13 @@ public class BangunRuangPanel extends JPanel {
                         double diagonal1LimasBelahKetupat = Double.parseDouble(((JTextField) components[1]).getText());
                         double diagonal2LimasBelahKetupat = Double.parseDouble(((JTextField) components[3]).getText());
                         double sisiLimasBelahKetupat = Double.parseDouble(((JTextField) components[5]).getText());
-                        double tinggiPrismaLimasBelahKetupat = Double.parseDouble(((JTextField) components[7]).getText());
+                        double tinggiLimasBelahKetupat = Double.parseDouble(((JTextField) components[7]).getText());
                         try {
-                            LimasBelahKetupat limasBelahKetupat = new LimasBelahKetupat(
+                            BelahKetupat limasBelahKetupat = new LimasBelahKetupat(
                                     diagonal1LimasBelahKetupat,
                                     diagonal2LimasBelahKetupat,
                                     sisiLimasBelahKetupat,
-                                    tinggiPrismaLimasBelahKetupat
+                                    tinggiLimasBelahKetupat
                             );
                             Thread limasBelahKetupatThread = new Thread(limasBelahKetupat);
                             limasBelahKetupatThread.start();
@@ -389,7 +498,7 @@ public class BangunRuangPanel extends JPanel {
                         double tinggiPrismaLayangLayang = Double.parseDouble(((JTextField) components[9]).getText());
 
                         try {
-                            PrismaLayangLayang prismaLayangLayang = new PrismaLayangLayang(
+                            LayangLayang prismaLayangLayang = new PrismaLayangLayang(
                                     diagonal1PrismaLayangLayang,
                                     diagonal2PrismaLayangLayang,
                                     sisiPendekPrismaLayangLayang,
@@ -416,7 +525,7 @@ public class BangunRuangPanel extends JPanel {
                         double tinggiLimasLayangLayang = Double.parseDouble(((JTextField) components[9]).getText());
 
                         try {
-                            LimasLayangLayang limasLayangLayang = new LimasLayangLayang(
+                            LayangLayang limasLayangLayang = new LimasLayangLayang(
                                     diagonal1LimasLayangLayang,
                                     diagonal2LimasLayangLayang,
                                     sisiPendekLimasLayangLayang,

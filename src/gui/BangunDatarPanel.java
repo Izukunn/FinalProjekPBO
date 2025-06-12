@@ -179,7 +179,17 @@ public class BangunDatarPanel extends JPanel {
                     case "Segitiga":
                         double alas = Double.parseDouble(((JTextField) components[1]).getText());
                         double tinggi = Double.parseDouble(((JTextField) components[3]).getText());
-                        result.append("Luas = ").append(0.5 * alas * tinggi);
+                        try {
+                            Segitiga segitiga = new Segitiga(alas, tinggi);
+                            Thread segitigaThread = new Thread(segitiga);
+                            segitigaThread.start();
+                            segitigaThread.join();
+                            result.append(segitiga.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
                         break;
                     case "Persegi":
                         double sisiPersegi = Double.parseDouble(((JTextField) components[1]).getText());
@@ -213,7 +223,18 @@ public class BangunDatarPanel extends JPanel {
                     case "Jajaran Genjang":
                         double alasJG = Double.parseDouble(((JTextField) components[1]).getText());
                         double tinggiJG = Double.parseDouble(((JTextField) components[3]).getText());
-                        result.append("Luas = ").append(alasJG * tinggiJG);
+                        double sisiMJG = Double.parseDouble(((JTextField) components[5]).getText());
+                        try {
+                            JajaranGenjang jg = new JajaranGenjang(alasJG, tinggiJG, sisiMJG);
+                            Thread jgThread = new Thread(jg);
+                            jgThread.start();
+                            jgThread.join();
+                            result.append(jg.tampilkanInfo());
+                        } catch (InvalidInputException | InterruptedException ex) {
+                            SwingUtilities.invokeLater(()
+                                    -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE)
+                            );
+                        }
                         break;
 
                     case "Trapesium":
