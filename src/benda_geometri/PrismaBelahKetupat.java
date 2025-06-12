@@ -25,21 +25,24 @@ public class PrismaBelahKetupat extends BelahKetupat implements Benda3D, Runnabl
 
     @Override
     public void hitungVolume() {
-        volume = super.hitungLuasReturn() * tinggiPrisma;
+        super.hitungLuas();
+        volume = super.luas * tinggiPrisma;
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        double kelilingAlas = super.hitungKelilingReturn();
-        luasPermukaan = (2 * super.hitungLuasReturn()) + (kelilingAlas * tinggiPrisma);
+        super.hitungKeliling();
+        super.hitungLuas();
+        double kelilingAlas = super.keliling;
+        luasPermukaan = (2 * super.luas) + (kelilingAlas * tinggiPrisma);
     }
 
     @Override
     public String tampilkanInfo() {
         return "=== PRISMA BELAH KETUPAT ===\n"
-                + "Diagonal 1\t: " + getDiagonal1() + "\n"
-                + "Diagonal 2\t: " + getDiagonal2() + "\n"
-                + "Sisi\t\t: " + getSisi() + "\n"
+                + "Diagonal 1\t: " + super.diagonal1 + "\n"
+                + "Diagonal 2\t: " + super.diagonal2 + "\n"
+                + "Sisi\t\t: " + super.sisi + "\n"
                 + "Tinggi Prisma\t: " + tinggiPrisma + "\n"
                 + "Volume\t\t: " + volume + "\n"
                 + "Luas Permukaan\t: " + luasPermukaan;

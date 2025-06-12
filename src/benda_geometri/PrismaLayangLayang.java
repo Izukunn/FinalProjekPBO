@@ -19,11 +19,14 @@ public class PrismaLayangLayang extends LayangLayang implements Benda3D, Runnabl
 
     @Override
     public void hitungVolume() {
+        super.hitungLuas();
         volume = luas * tinggiPrisma;
     }
 
     @Override
     public void hitungLuasPermukaan() {
+        super.hitungLuas();
+        super.hitungKeliling();
         luasPermukaan = (2 * luas) + (keliling * tinggiPrisma);
     }
 

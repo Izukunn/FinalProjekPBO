@@ -19,11 +19,13 @@ public class LimasLayangLayang extends LayangLayang implements Benda3D {
 
     @Override
     public void hitungVolume() {
+        super.hitungLuas();
         volume = (1.0 / 3) * luas * tinggiPrisma;
     }
 
     @Override
     public void hitungLuasPermukaan() {
+        super.hitungLuas();
         double tinggiSegitiga = Math.sqrt(Math.pow(tinggiPrisma, 2) + Math.pow(sisiPanjang, 2) / 4);
         double luasSelimut = 4 * (0.5 * sisiPanjang * tinggiSegitiga);
         luasPermukaan = luas + luasSelimut;
