@@ -67,15 +67,8 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(1000);
-            hitungVolume();
-            Thread.sleep(1000);
-            hitungLuasPermukaan();
-            tampilkanInfo();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println("Thread interrupted");
-        }
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }

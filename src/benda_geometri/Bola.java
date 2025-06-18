@@ -4,13 +4,13 @@ public class Bola extends Lingkaran implements Benda3D, Runnable {
 
     public double volume;
     public double luasPermukaan;
-    
+
     public Bola(double radius) throws InvalidInputException {
         super(radius);
         hitungVolume();
         hitungLuasPermukaan();
     }
-    
+
     public Bola(double radius, double customPi) throws InvalidInputException {
         super(radius, customPi);
         hitungVolume();
@@ -40,15 +40,8 @@ public class Bola extends Lingkaran implements Benda3D, Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(1000);
-            hitungVolume();
-            Thread.sleep(1000);
-            hitungLuasPermukaan();
-            tampilkanInfo();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println("Thread interrupted");
-        }
+        hitungVolume();
+        hitungLuasPermukaan();
+        tampilkanInfo();
     }
 }
