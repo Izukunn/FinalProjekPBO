@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class LimasLayangLayang extends LayangLayang implements Benda3D {
+public class LimasLayangLayang extends LayangLayang implements Benda3D, Runnable {
 
     public double tinggiPrisma;
     public double volume;

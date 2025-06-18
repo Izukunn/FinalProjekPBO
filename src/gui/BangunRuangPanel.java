@@ -22,7 +22,7 @@ public class BangunRuangPanel extends JPanel {
             "Pilih Bangun", "Prisma Segitiga", "Limas Segitiga", "Prisma Persegi", "Limas Persegi",
             "Prisma Persegi Panjang", "Limas Persegi Panjang", "Prisma Jajaran Genjang", "Limas Jajaran Genjang", "Prisma Trapesium",
             "Limas Trapesium", "Prisma Belah Ketupat", "Limas Belah Ketupat", "Prisma Layang-Layang", "Limas Layang-Layang",
-            "Tabung", "Kerucut", "Kerucut Terpancung", "Bola", "Tembereng Bola", "Juring Bola", "Cincin Bola"
+            "Tabung", "Kerucut", "Kerucut Terpancung", "Bola", "Tembereng Bola", "Juring Bola", "Cincin Bola", "Simulasi Multi thread"
         };
         bangunComboBox = new JComboBox<>(bangunRuang);
 
@@ -238,6 +238,9 @@ public class BangunRuangPanel extends JPanel {
                 addInputField(gbc, row++, "Radius Luar:");
                 addInputField(gbc, row++, "Radius Dalam:");
                 addInputFieldCustomPi(gbc, row++, "Custom Pi(Opsional):");
+                hitungButton.setEnabled(true);
+                break;
+            case "Simulasi Multi thread":
                 hitungButton.setEnabled(true);
                 break;
         }
@@ -688,6 +691,48 @@ public class BangunRuangPanel extends JPanel {
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
                                     -> JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+                        }
+                        break;
+                    case "Simulasi Multi thread":
+                        for (int i = 1; i < 11; i++) {
+                            double radius = i * 2.5;
+                            double radius2 = i * 2;
+                            double tinggi = i * 3;
+                            double sudut = 30;
+                            Lingkaran benda1 = new Lingkaran(radius);
+                            Lingkaran benda2 = new TemberengLingkaran(radius, sudut);
+                            Lingkaran benda3 = new JuringLingkaran(radius, sudut);
+                            Lingkaran benda4 = new Tabung(radius, tinggi);
+                            Lingkaran benda5 = new Kerucut(radius, tinggi);
+                            Lingkaran benda6 = new KerucutTerpancung(radius, radius2, tinggi);
+                            Lingkaran benda7 = new Bola(radius);
+                            Lingkaran benda8 = new CincinBola(radius, radius2);
+                            Thread thread1 = new Thread(benda1);
+                            Thread thread2 = new Thread(benda2);
+                            Thread thread3 = new Thread(benda3);
+                            Thread thread4 = new Thread(benda4);
+                            Thread thread5 = new Thread(benda5);
+                            Thread thread6 = new Thread(benda6);
+                            Thread thread7 = new Thread(benda7);
+                            Thread thread8 = new Thread(benda8);
+                            
+                            thread1.start();
+                            thread2.start();
+                            thread3.start();
+                            thread4.start();
+                            thread5.start();
+                            thread6.start();
+                            thread7.start();
+                            thread8.start();
+                            
+                            result.append(benda1.tampilkanInfo());
+                            result.append(benda2.tampilkanInfo());
+                            result.append(benda3.tampilkanInfo());
+                            result.append(benda4.tampilkanInfo());
+                            result.append(benda5.tampilkanInfo());
+                            result.append(benda6.tampilkanInfo());
+                            result.append(benda7.tampilkanInfo());
+                            result.append(benda8.tampilkanInfo());
                         }
                         break;
                 }

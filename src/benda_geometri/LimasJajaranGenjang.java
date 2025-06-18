@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class LimasJajaranGenjang extends JajaranGenjang implements Benda3D {
+public class LimasJajaranGenjang extends JajaranGenjang implements Benda3D, Runnable {
 
     private double tinggiLimas;
     private double volume;

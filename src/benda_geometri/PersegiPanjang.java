@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class PersegiPanjang implements Benda2D {
+public class PersegiPanjang implements Benda2D, Runnable {
 
     public double panjang;
     public double lebar;

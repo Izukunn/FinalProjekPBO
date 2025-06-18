@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class PrismaPersegiPanjang extends PersegiPanjang implements Benda3D {
+public class PrismaPersegiPanjang extends PersegiPanjang implements Benda3D, Runnable {
     private double tinggi;
     private double volume;
     private double luasPermukaan;

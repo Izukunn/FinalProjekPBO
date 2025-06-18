@@ -8,35 +8,36 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
     private double volume;
     private double luasPermukaan;
 
-    public KerucutTerpancung() {
-        super();
-        this.radiusAtas = 3;
-        hitungVolume();
-        hitungLuasPermukaan();
-    }
-
     public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi) throws InvalidInputException {
         super(radiusBawah, tinggi);
-        if (radiusAtas < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        } else if (radiusBawah < radiusAtas) {
-            throw new InvalidInputException("Radius atas kerucut tidak boleh lebih besar daripada radius bawah!");
+        try {
+            if (radiusAtas < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            } else if (radiusBawah < radiusAtas) {
+                throw new InvalidInputException("Radius atas kerucut tidak boleh lebih besar daripada radius bawah!");
+            }
+            this.radiusAtas = radiusAtas;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radiusAtas = radiusAtas;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi, double customPi) throws InvalidInputException {
         super(radiusBawah, tinggi, customPi);
-        if (radiusAtas < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        } else if (radiusBawah < radiusAtas) {
-            throw new InvalidInputException("Radius atas kerucut tidak boleh lebih besar daripada radius bawah!");
+        try {
+            if (radiusAtas < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            } else if (radiusBawah < radiusAtas) {
+                throw new InvalidInputException("Radius atas kerucut tidak boleh lebih besar daripada radius bawah!");
+            }
+            this.radiusAtas = radiusAtas;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radiusAtas = radiusAtas;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     @Override
@@ -54,7 +55,7 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== Kerucut Terpancung ===\n"
+        return "\n=== Kerucut Terpancung ===\n"
                 + "Radius Bawah: " + radiusBawah + "\n"
                 + "Radius Atas: " + radiusAtas + "\n"
                 + "Tinggi Kerucut: " + tinggi + "\n"

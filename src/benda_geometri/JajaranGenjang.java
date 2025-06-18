@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class JajaranGenjang implements Benda2D {
+public class JajaranGenjang implements Benda2D, Runnable {
 
     private double alas;
     private double tinggi;

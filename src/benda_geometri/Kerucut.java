@@ -7,33 +7,34 @@ public class Kerucut extends Lingkaran implements Benda3D, Runnable {
     public double volume;
     public double luasPermukaan;
 
-    public Kerucut() {
-        super();
-        this.tinggi = 20;
-        hitungVolume();
-        hitungLuasPermukaan();
-    }
-
     public Kerucut(double radius, double tinggi) throws InvalidInputException {
         super(radius);
-        if (tinggi < 0) {
-            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        try {
+            if (tinggi < 0) {
+                throw new InvalidInputException("Tinggi tidak boleh negatif!");
+            }
+            this.tinggi = tinggi;
+            this.garisPelukis = hitungGarisPelukis();
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.tinggi = tinggi;
-        this.garisPelukis = hitungGarisPelukis();
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     public Kerucut(double radius, double tinggi, double customPi) throws InvalidInputException {
         super(radius, customPi);
-        if (tinggi < 0) {
-            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        try {
+            if (tinggi < 0) {
+                throw new InvalidInputException("Tinggi tidak boleh negatif!");
+            }
+            this.tinggi = tinggi;
+            this.garisPelukis = hitungGarisPelukis();
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.tinggi = tinggi;
-        this.garisPelukis = hitungGarisPelukis();
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     private double hitungGarisPelukis() {
@@ -55,7 +56,7 @@ public class Kerucut extends Lingkaran implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== KERUCUT ===\n"
+        return "\n=== KERUCUT ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + super.pi + "\n"
                 + "Tinggi\t: " + tinggi + "\n"

@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Trapesium implements Benda2D {
+public class Trapesium implements Benda2D, Runnable {
 
     public double sisiAtas;
     public double sisiBawah;

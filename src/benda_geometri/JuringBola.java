@@ -8,36 +8,37 @@ public class JuringBola implements Benda3D, Runnable {
     private double volume;
     private double luasPermukaan;
 
-    public JuringBola() {
-        this.radius = 10;
-        this.tinggi = 5;
-        hitungVolume();
-        hitungLuasPermukaan();
-    }
-
     public JuringBola(double radius, double tinggi) throws InvalidInputException {
-        if (radius < 0 || tinggi < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        } else if (radius < tinggi) {
-            throw new InvalidInputException("Tinggi juring tidak boleh lebih besar daripada radius bola!");
+        try {
+            if (radius < 0 || tinggi < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            } else if (radius < tinggi) {
+                throw new InvalidInputException("Tinggi juring tidak boleh lebih besar daripada radius bola!");
+            }
+            this.radius = radius;
+            this.tinggi = tinggi;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radius = radius;
-        this.tinggi = tinggi;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     public JuringBola(double radius, double tinggi, double customPi) throws InvalidInputException {
-        if (radius < 0 || tinggi < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        } else if (radius < tinggi) {
-            throw new InvalidInputException("Tinggi juring tidak boleh lebih besar daripada radius bola!");
+        try {
+            if (radius < 0 || tinggi < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            } else if (radius < tinggi) {
+                throw new InvalidInputException("Tinggi juring tidak boleh lebih besar daripada radius bola!");
+            }
+            this.radius = radius;
+            this.tinggi = tinggi;
+            this.pi = customPi;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radius = radius;
-        this.tinggi = tinggi;
-        this.pi = customPi;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     @Override
@@ -52,7 +53,7 @@ public class JuringBola implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== JURING BOLA ===\n"
+        return "\n=== JURING BOLA ===\n"
                 + "Radius Bola: " + radius + "\n"
                 + "Tinggi Juring: " + tinggi + "\n"
                 + "pi\t: " + pi + "\n"

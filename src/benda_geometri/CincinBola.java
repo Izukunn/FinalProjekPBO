@@ -6,27 +6,25 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
     private double volume;
     private double luasPermukaan;
 
-    public CincinBola() {
-        super();
-        this.radiusDalam = 5;
-        hitungVolume();
-        hitungLuasPermukaan();
-    }
-
     public CincinBola(double radiusLuar, double radiusDalam) throws InvalidInputException {
         super(radiusLuar);
-        if (radiusDalam < 0) {
-            throw new InvalidInputException("Radius tidak boleh negatif!");
-        } else if (radiusLuar < radiusDalam) {
-            throw new InvalidInputException("Radius dalam tidak boleh lebih besar daripada radius luar!");
+        try {
+            if (radiusDalam < 0) {
+                throw new InvalidInputException("Radius tidak boleh negatif!");
+            } else if (radiusLuar < radiusDalam) {
+                throw new InvalidInputException("Radius dalam tidak boleh lebih besar daripada radius luar!");
+            }
+            this.radiusDalam = radiusDalam;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radiusDalam = radiusDalam;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     public CincinBola(double radiusLuar, double radiusDalam, double customPi) throws InvalidInputException {
         super(radiusLuar, customPi);
+        try {
         if (radiusDalam < 0) {
             throw new InvalidInputException("Radius tidak boleh negatif!");
         } else if (radiusLuar < radiusDalam) {
@@ -35,6 +33,9 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
         this.radiusDalam = radiusDalam;
         hitungVolume();
         hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -51,7 +52,7 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== CINCIN BOLA ===\n"
+        return "\n=== CINCIN BOLA ===\n"
                 + "Radius Luar: " + super.radius + "\n"
                 + "Radius Dalam: " + radiusDalam + "\n"
                 + "pi\t: " + super.pi + "\n"

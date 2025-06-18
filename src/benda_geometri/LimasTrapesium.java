@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class LimasTrapesium extends Trapesium implements Benda3D {
+public class LimasTrapesium extends Trapesium implements Benda3D, Runnable {
     private double tinggi;
     private double volume;
     private double luasPermukaan;

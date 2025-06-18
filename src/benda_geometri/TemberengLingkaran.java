@@ -6,13 +6,6 @@ public class TemberengLingkaran extends Lingkaran implements Runnable {
     private double luas;
     private double keliling;
 
-    public TemberengLingkaran() {
-        super();
-        this.sudut = 60;
-        hitungLuas();
-        hitungKeliling();
-    }
-
     public TemberengLingkaran(double radius) throws InvalidInputException {
         super(radius);
         this.sudut = 60;
@@ -22,22 +15,30 @@ public class TemberengLingkaran extends Lingkaran implements Runnable {
 
     public TemberengLingkaran(double radius, double sudut) throws InvalidInputException {
         super(radius);
-        if (sudut < 0 || sudut > 360) {
-            throw new InvalidInputException("Sudut harus antara 0 dan 360 derajat!");
+        try {
+            if (sudut < 0 || sudut > 360) {
+                throw new InvalidInputException("Sudut harus antara 0 dan 360 derajat!");
+            }
+            this.sudut = sudut;
+            hitungLuas();
+            hitungKeliling();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.sudut = sudut;
-        hitungLuas();
-        hitungKeliling();
     }
 
     public TemberengLingkaran(double radius, double sudut, double customPi) throws InvalidInputException {
         super(radius, customPi);
-        if (sudut < 0 || sudut > 360) {
-            throw new InvalidInputException("Sudut harus antara 0 dan 360 derajat!");
+        try {
+            if (sudut < 0 || sudut > 360) {
+                throw new InvalidInputException("Sudut harus antara 0 dan 360 derajat!");
+            }
+            this.sudut = sudut;
+            hitungLuas();
+            hitungKeliling();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.sudut = sudut;
-        hitungLuas();
-        hitungKeliling();
     }
 
     @Override
@@ -58,7 +59,7 @@ public class TemberengLingkaran extends Lingkaran implements Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== TEMBERENG LINGKARAN ===\n"
+        return "\n=== TEMBERENG LINGKARAN ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + super.pi + "\n"
                 + "Sudut\t: " + sudut + "\n"

@@ -7,32 +7,34 @@ public class Lingkaran implements Benda2D, Runnable {
     public double luas;
     public double keliling;
 
-    public Lingkaran() {
-        this.radius = 10;
-        hitungLuas();
-        hitungKeliling();
-    }
-
     public Lingkaran(double radius) throws InvalidInputException {
-        if (radius < 0) {
-            throw new InvalidInputException("Radius tidak boleh negatif!");
+        try {
+            if (radius < 0) {
+                throw new InvalidInputException("Radius tidak boleh negatif!");
+            }
+            this.radius = radius;
+            hitungLuas();
+            hitungKeliling();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radius = radius;
-        hitungLuas();
-        hitungKeliling();
     }
 
     public Lingkaran(double radius, double customPi) throws InvalidInputException {
-        if (radius < 0) {
-            throw new InvalidInputException("Radius tidak boleh negatif!");
+        try {
+            if (radius < 0) {
+                throw new InvalidInputException("Radius tidak boleh negatif!");
+            }
+            this.radius = radius;
+            if (customPi < 0) {
+                throw new InvalidInputException("Pi tidak boleh negatif!");
+            }
+            this.pi = customPi;
+            hitungLuas();
+            hitungKeliling();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radius = radius;
-        if (customPi < 0) {
-            throw new InvalidInputException("Pi tidak boleh negatif!");
-        }
-        this.pi = customPi;
-        hitungLuas();
-        hitungKeliling();
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Lingkaran implements Benda2D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== LINGKARAN ===\n"
+        return "\n=== LINGKARAN ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + pi + "\n"
                 + "Luas\t: " + luas + "\n"

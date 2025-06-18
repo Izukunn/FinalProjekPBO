@@ -6,31 +6,32 @@ public class Tabung extends Lingkaran implements Benda3D, Runnable {
     private double volume;
     private double luasPermukaan;
 
-    public Tabung() {
-        super();
-        this.tinggi = 20;
-        hitungVolume();
-        hitungLuasPermukaan();
-    }
-
     public Tabung(double radius, double tinggi) throws InvalidInputException {
         super(radius);
-        if (tinggi < 0) {
-            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        try {
+            if (tinggi < 0) {
+                throw new InvalidInputException("Tinggi tidak boleh negatif!");
+            }
+            this.tinggi = tinggi;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.tinggi = tinggi;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     public Tabung(double radius, double tinggi, double customPi) throws InvalidInputException {
         super(radius, customPi);
-        if (tinggi < 0) {
-            throw new InvalidInputException("Tinggi tidak boleh negatif!");
+        try {
+            if (tinggi < 0) {
+                throw new InvalidInputException("Tinggi tidak boleh negatif!");
+            }
+            this.tinggi = tinggi;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.tinggi = tinggi;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     @Override
@@ -48,7 +49,7 @@ public class Tabung extends Lingkaran implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== TABUNG ===\n"
+        return "\n=== TABUNG ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + super.pi + "\n"
                 + "Tinggi\t: " + tinggi + "\n"

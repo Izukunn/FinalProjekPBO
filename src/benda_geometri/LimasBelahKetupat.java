@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class LimasBelahKetupat extends BelahKetupat implements Benda3D {
+public class LimasBelahKetupat extends BelahKetupat implements Benda3D, Runnable {
 
     public double tinggiPrisma;
     public double volume;

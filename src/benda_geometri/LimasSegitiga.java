@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class LimasSegitiga extends Segitiga implements Benda3D {
+public class LimasSegitiga extends Segitiga implements Benda3D, Runnable {
 
     private double tinggiLimas;
     private double volume;

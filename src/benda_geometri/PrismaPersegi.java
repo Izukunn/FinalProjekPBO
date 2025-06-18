@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class PrismaPersegi extends Persegi implements Benda3D {
+public class PrismaPersegi extends Persegi implements Benda3D, Runnable {
 
     private double tinggi;
     private double volume;

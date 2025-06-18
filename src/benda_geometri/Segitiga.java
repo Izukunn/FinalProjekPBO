@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Segitiga implements Benda2D {
+public class Segitiga implements Benda2D, Runnable {
 
     private double alas;
     private double tinggi;

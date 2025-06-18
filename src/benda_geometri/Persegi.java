@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Persegi implements Benda2D {
+public class Persegi implements Benda2D, Runnable {
 
     public double sisi;
     public double luas;

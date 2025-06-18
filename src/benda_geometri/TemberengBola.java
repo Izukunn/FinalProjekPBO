@@ -8,39 +8,40 @@ public class TemberengBola implements Benda3D, Runnable {
     private double volume;
     private double luasPermukaan;
 
-    public TemberengBola() {
-        this.radiusBola = 10;
-        this.tinggiTembereng = 3;
-        hitungVolume();
-        hitungLuasPermukaan();
-    }
-
     public TemberengBola(double radiusBola, double tinggiTembereng) throws InvalidInputException {
-        if (radiusBola < 0 || tinggiTembereng < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        } else if (radiusBola < tinggiTembereng) {
-            throw new InvalidInputException("Tinggi tembereng tidak boleh lebih besar daripada radius bola!");
+        try {
+            if (radiusBola < 0 || tinggiTembereng < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            } else if (radiusBola < tinggiTembereng) {
+                throw new InvalidInputException("Tinggi tembereng tidak boleh lebih besar daripada radius bola!");
+            }
+            this.radiusBola = radiusBola;
+            this.tinggiTembereng = tinggiTembereng;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radiusBola = radiusBola;
-        this.tinggiTembereng = tinggiTembereng;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     public TemberengBola(double radiusBola, double tinggiTembereng, double customPi) throws InvalidInputException {
-        if (radiusBola < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        } else if (radiusBola < tinggiTembereng) {
-            throw new InvalidInputException("Tinggi tembereng tidak boleh lebih besar daripada radius bola!");
+        try {
+            if (radiusBola < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            } else if (radiusBola < tinggiTembereng) {
+                throw new InvalidInputException("Tinggi tembereng tidak boleh lebih besar daripada radius bola!");
+            }
+            this.radiusBola = radiusBola;
+            if (tinggiTembereng < 0) {
+                throw new InvalidInputException("Input tidak boleh negatif!");
+            }
+            this.tinggiTembereng = tinggiTembereng;
+            this.pi = customPi;
+            hitungVolume();
+            hitungLuasPermukaan();
+        } catch (InvalidInputException e) {
+            System.err.println("Error: " + e.getMessage());
         }
-        this.radiusBola = radiusBola;
-        if (tinggiTembereng < 0) {
-            throw new InvalidInputException("Input tidak boleh negatif!");
-        }
-        this.tinggiTembereng = tinggiTembereng;
-        this.pi = customPi;
-        hitungVolume();
-        hitungLuasPermukaan();
     }
 
     @Override
@@ -56,7 +57,7 @@ public class TemberengBola implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
-        return "=== TEMBERENG BOLA ===\n"
+        return "\n=== TEMBERENG BOLA ===\n"
                 + "Radius Bola: " + radiusBola + "\n"
                 + "Tinggi Tembereng: " + tinggiTembereng + "\n"
                 + "pi\t: " + pi + "\n"
