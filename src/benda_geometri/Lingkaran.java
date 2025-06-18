@@ -6,6 +6,7 @@ public class Lingkaran implements Benda2D, Runnable {
     public double pi = Math.PI;
     public double luas;
     public double keliling;
+    public String errorMessage;
 
     public Lingkaran(double radius) throws InvalidInputException {
         try {
@@ -16,8 +17,8 @@ public class Lingkaran implements Benda2D, Runnable {
             hitungLuas();
             hitungKeliling();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
+            this.errorMessage = e.getMessage();
+        } 
     }
 
     public Lingkaran(double radius, double customPi) throws InvalidInputException {
@@ -33,8 +34,12 @@ public class Lingkaran implements Benda2D, Runnable {
             hitungLuas();
             hitungKeliling();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -49,6 +54,9 @@ public class Lingkaran implements Benda2D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== LINGKARAN ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + pi + "\n"

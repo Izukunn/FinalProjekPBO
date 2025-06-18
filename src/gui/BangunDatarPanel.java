@@ -307,6 +307,9 @@ public class BangunDatarPanel extends JPanel {
                             Thread lingkaranThread = new Thread(lingkaran);
                             lingkaranThread.start();
                             lingkaranThread.join();
+                            if (lingkaran.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, lingkaran.getErrorMessage());
+                            }
                             result.append(lingkaran.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -328,6 +331,9 @@ public class BangunDatarPanel extends JPanel {
                             Thread temberengLingkaranThread = new Thread(temberengLingkaran);
                             temberengLingkaranThread.start();
                             temberengLingkaranThread.join();
+                            if (temberengLingkaran.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, temberengLingkaran.getErrorMessage());
+                            }
                             result.append(temberengLingkaran.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -349,6 +355,9 @@ public class BangunDatarPanel extends JPanel {
                             Thread juringLingkaranThread = new Thread(juringLingkaran);
                             juringLingkaranThread.start();
                             juringLingkaranThread.join();
+                            if (juringLingkaran.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, juringLingkaran.getErrorMessage());
+                            }
                             result.append(juringLingkaran.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -360,12 +369,14 @@ public class BangunDatarPanel extends JPanel {
                     hasilArea.setText(result.toString());
                     hitungButton.setEnabled(true);
                 });
-            } catch (NumberFormatException ex) {
+            }
+            catch (NumberFormatException ex) {
                 SwingUtilities.invokeLater(() -> {
                     JOptionPane.showMessageDialog(this, "Input harus berupa angka!", "Error", JOptionPane.ERROR_MESSAGE);
                     hitungButton.setEnabled(true);
                 });
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 SwingUtilities.invokeLater(() -> {
                     JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     hitungButton.setEnabled(true);

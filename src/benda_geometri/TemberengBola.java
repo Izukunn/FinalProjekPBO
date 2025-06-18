@@ -7,6 +7,7 @@ public class TemberengBola implements Benda3D, Runnable {
     private double tinggiTembereng;
     private double volume;
     private double luasPermukaan;
+    private String errorMessage;
 
     public TemberengBola(double radiusBola, double tinggiTembereng) throws InvalidInputException {
         try {
@@ -20,7 +21,7 @@ public class TemberengBola implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
     }
 
@@ -40,8 +41,12 @@ public class TemberengBola implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -57,6 +62,9 @@ public class TemberengBola implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== TEMBERENG BOLA ===\n"
                 + "Radius Bola: " + radiusBola + "\n"
                 + "Tinggi Tembereng: " + tinggiTembereng + "\n"

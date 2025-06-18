@@ -7,6 +7,7 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
     private double tinggi;
     private double volume;
     private double luasPermukaan;
+    private String errorMessage;
 
     public KerucutTerpancung(double radiusBawah, double radiusAtas, double tinggi) throws InvalidInputException {
         super(radiusBawah, tinggi);
@@ -20,7 +21,7 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
     }
 
@@ -36,8 +37,12 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -55,6 +60,9 @@ public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== Kerucut Terpancung ===\n"
                 + "Radius Bawah: " + radiusBawah + "\n"
                 + "Radius Atas: " + radiusAtas + "\n"

@@ -5,6 +5,7 @@ public class JuringLingkaran extends Lingkaran implements Runnable {
     private double sudut;
     private double luas;
     private double keliling;
+    private String errorMessage;
 
     public JuringLingkaran(double radius) throws InvalidInputException {
         super(radius);
@@ -23,7 +24,7 @@ public class JuringLingkaran extends Lingkaran implements Runnable {
             hitungLuas();
             hitungKeliling();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
     }
 
@@ -37,8 +38,12 @@ public class JuringLingkaran extends Lingkaran implements Runnable {
             hitungLuas();
             hitungKeliling();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -55,6 +60,9 @@ public class JuringLingkaran extends Lingkaran implements Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== JURING LINGKARAN ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + super.pi + "\n"

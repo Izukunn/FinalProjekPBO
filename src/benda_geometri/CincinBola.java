@@ -5,6 +5,7 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
     private double radiusDalam;
     private double volume;
     private double luasPermukaan;
+    private String errorMessage;
 
     public CincinBola(double radiusLuar, double radiusDalam) throws InvalidInputException {
         super(radiusLuar);
@@ -18,7 +19,7 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
     }
 
@@ -34,8 +35,12 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
         hitungVolume();
         hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -52,6 +57,9 @@ public class CincinBola extends Bola implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== CINCIN BOLA ===\n"
                 + "Radius Luar: " + super.radius + "\n"
                 + "Radius Dalam: " + radiusDalam + "\n"

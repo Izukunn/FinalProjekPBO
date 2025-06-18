@@ -4,6 +4,7 @@ public class Bola extends Lingkaran implements Benda3D, Runnable {
 
     public double volume;
     public double luasPermukaan;
+    public String errorMessage;
 
     public Bola(double radius) throws InvalidInputException {
         super(radius);
@@ -15,6 +16,10 @@ public class Bola extends Lingkaran implements Benda3D, Runnable {
         super(radius, customPi);
         hitungVolume();
         hitungLuasPermukaan();
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -31,6 +36,9 @@ public class Bola extends Lingkaran implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== BOLA ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + pi + "\n"

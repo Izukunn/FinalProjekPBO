@@ -5,6 +5,7 @@ public class Tabung extends Lingkaran implements Benda3D, Runnable {
     private double tinggi;
     private double volume;
     private double luasPermukaan;
+    private String errorMessage;
 
     public Tabung(double radius, double tinggi) throws InvalidInputException {
         super(radius);
@@ -16,7 +17,7 @@ public class Tabung extends Lingkaran implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
     }
 
@@ -30,8 +31,12 @@ public class Tabung extends Lingkaran implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -49,6 +54,9 @@ public class Tabung extends Lingkaran implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== TABUNG ===\n"
                 + "Radius\t: " + radius + "\n"
                 + "pi\t: " + super.pi + "\n"

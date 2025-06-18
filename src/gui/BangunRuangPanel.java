@@ -561,6 +561,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread tabungThread = new Thread(tabung);
                             tabungThread.start();
                             tabungThread.join();
+                            if (tabung.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, tabung.getErrorMessage());
+                            }
                             result.append(tabung.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -582,6 +585,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread kerucutThread = new Thread(kerucut);
                             kerucutThread.start();
                             kerucutThread.join();
+                            if (kerucut.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, kerucut.getErrorMessage());
+                            }
                             result.append(kerucut.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -604,6 +610,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread kerucutTThread = new Thread(kerucutT);
                             kerucutTThread.start();
                             kerucutTThread.join();
+                            if (kerucutT.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, kerucutT.getErrorMessage());
+                            }
                             result.append(kerucutT.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -624,6 +633,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread bolaThread = new Thread(bola);
                             bolaThread.start();
                             bolaThread.join();
+                            if (bola.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, bola.getErrorMessage());
+                            }
                             result.append(bola.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -645,6 +657,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread temberengBolaThread = new Thread(temberengBola);
                             temberengBolaThread.start();
                             temberengBolaThread.join();
+                            if (temberengBola.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, temberengBola.getErrorMessage());
+                            }
                             result.append(temberengBola.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -666,6 +681,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread juringBolaThread = new Thread(juringBola);
                             juringBolaThread.start();
                             juringBolaThread.join();
+                            if (juringBola.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, juringBola.getErrorMessage());
+                            }
                             result.append(juringBola.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()
@@ -687,6 +705,9 @@ public class BangunRuangPanel extends JPanel {
                             Thread cincinBolaThread = new Thread(cincinBola);
                             cincinBolaThread.start();
                             cincinBolaThread.join();
+                            if (cincinBola.getErrorMessage() != null) {
+                                JOptionPane.showMessageDialog(null, cincinBola.getErrorMessage());
+                            }
                             result.append(cincinBola.tampilkanInfo());
                         } catch (InvalidInputException | InterruptedException ex) {
                             SwingUtilities.invokeLater(()

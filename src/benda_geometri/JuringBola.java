@@ -7,6 +7,7 @@ public class JuringBola implements Benda3D, Runnable {
     private double tinggi;
     private double volume;
     private double luasPermukaan;
+    private String errorMessage;
 
     public JuringBola(double radius, double tinggi) throws InvalidInputException {
         try {
@@ -20,7 +21,7 @@ public class JuringBola implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
     }
 
@@ -37,8 +38,12 @@ public class JuringBola implements Benda3D, Runnable {
             hitungVolume();
             hitungLuasPermukaan();
         } catch (InvalidInputException e) {
-            System.err.println("Error: " + e.getMessage());
+            this.errorMessage = e.getMessage();
         }
+    }
+    
+    public String getErrorMessage() { 
+        return errorMessage; 
     }
 
     @Override
@@ -53,6 +58,9 @@ public class JuringBola implements Benda3D, Runnable {
 
     @Override
     public String tampilkanInfo() {
+        if (errorMessage != null) {
+            return "Error: " + errorMessage;
+        }
         return "\n=== JURING BOLA ===\n"
                 + "Radius Bola: " + radius + "\n"
                 + "Tinggi Juring: " + tinggi + "\n"
