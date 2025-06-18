@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Kerucut extends Lingkaran implements Benda3D {
+public class Kerucut extends Lingkaran implements Benda3D, Runnable {
 
     public double tinggi;
     public double garisPelukis;

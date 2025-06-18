@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class TemberengLingkaran extends Lingkaran {
+public class TemberengLingkaran extends Lingkaran implements Runnable {
 
     private double sudut;
     private double luas;

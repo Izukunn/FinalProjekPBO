@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class KerucutTerpancung extends Kerucut implements Benda3D {
+public class KerucutTerpancung extends Kerucut implements Benda3D, Runnable {
 
     private double radiusBawah;
     private double radiusAtas;

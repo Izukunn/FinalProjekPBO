@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class CincinBola extends Bola implements Benda3D {
+public class CincinBola extends Bola implements Benda3D, Runnable {
 
     private double radiusDalam;
     private double volume;

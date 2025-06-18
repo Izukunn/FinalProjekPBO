@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class JuringBola implements Benda3D {
+public class JuringBola implements Benda3D, Runnable {
 
     private double radius;
     private double pi = Math.PI;

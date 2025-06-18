@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class TemberengBola implements Benda3D {
+public class TemberengBola implements Benda3D, Runnable {
 
     private double radiusBola;
     private double pi = Math.PI;

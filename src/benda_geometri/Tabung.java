@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Tabung extends Lingkaran implements Benda3D {
+public class Tabung extends Lingkaran implements Benda3D, Runnable {
 
     private double tinggi;
     private double volume;

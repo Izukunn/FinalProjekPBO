@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Bola extends Lingkaran implements Benda3D {
+public class Bola extends Lingkaran implements Benda3D, Runnable {
 
     public double volume;
     public double luasPermukaan;
@@ -25,20 +25,21 @@ public class Bola extends Lingkaran implements Benda3D {
 
     @Override
     public void hitungVolume() {
-        volume = (4.0 / 3) * super.pi * Math.pow(radius, 3);
+        super.hitungLuas();
+        volume = (4.0 / 3) * super.luas * radius;
     }
 
     @Override
     public void hitungLuasPermukaan() {
-        super.hitungLuas();
-        luasPermukaan = 4 * super.luas;
+        super.hitungKeliling();
+        luasPermukaan = super.keliling / pi;
     }
 
     @Override
     public String tampilkanInfo() {
         return "=== BOLA ===\n"
                 + "Radius\t: " + radius + "\n"
-                + "pi\t: " + super.pi + "\n"
+                + "pi\t: " + pi + "\n"
                 + "Volume\t: " + volume + "\n"
                 + "Luas Permukaan: " + luasPermukaan;
     }

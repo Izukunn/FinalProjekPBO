@@ -1,6 +1,6 @@
 package benda_geometri;
 
-public class Lingkaran implements Benda2D {
+public class Lingkaran implements Benda2D, Runnable {
 
     public double radius;
     public double pi = Math.PI;
